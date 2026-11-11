@@ -39,3 +39,4 @@ python -m pytest
 ### Licencia
 
 Código publicado bajo licencia MIT. Los conjuntos de datos satelitales y cartográficos conservan sus respectivas licencias y términos oficiales (NASA Earthdata y Autoridad Nacional del Agua del Perú).
+

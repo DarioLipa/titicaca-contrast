@@ -46,3 +46,4 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
     </div>
   )
 }
+

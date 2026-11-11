@@ -40,3 +40,4 @@ export async function loadManifest(basePath: string = "./data/manifest.json"): P
     }
   }
 }
+

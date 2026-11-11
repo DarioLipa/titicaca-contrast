@@ -17,3 +17,4 @@ def test_flat_series():
     assert slope == pytest.approx(0.0)
     _, p_val, direction = compute_mann_kendall(values)
     assert direction == "no_trend"
+

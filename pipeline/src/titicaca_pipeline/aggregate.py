@@ -13,3 +13,4 @@ def compute_weighted_average(pixel_values: List[float], intersection_areas: List
 
 def is_valid_coverage(valid_area_fraction: float, threshold: float = 0.95) -> bool:
     return valid_area_fraction >= threshold
+

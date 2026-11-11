@@ -25,3 +25,4 @@ def test_benjamini_hochberg_correction():
     for i in range(len(q_vals) - 1):
         assert q_vals[i] <= q_vals[i + 1]
     assert q_vals[0] == pytest.approx(0.001 * 6 / 1)
+

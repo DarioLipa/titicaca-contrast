@@ -16,3 +16,4 @@
 3. **Seguridad y Privacidad:**
    - Búsqueda de secretos, tokens o credenciales.
    - Verificación de exclusión en `.gitignore`.
+

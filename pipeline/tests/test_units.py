@@ -23,3 +23,4 @@ def test_rate_conversion_february_leap():
 def test_negative_rate_rejection():
     with pytest.raises(ValueError):
         calculate_monthly_precipitation_mm(-0.1, 2023, 1)
+

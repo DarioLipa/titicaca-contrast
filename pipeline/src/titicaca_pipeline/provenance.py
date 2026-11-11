@@ -15,3 +15,4 @@ def generate_integrity_manifest(files_dir: Path) -> Dict[str, str]:
         if p.is_file() and p.name != "manifest.json":
             integrity[p.name] = compute_file_sha256(p)
     return integrity
+

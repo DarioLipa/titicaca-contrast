@@ -19,3 +19,4 @@ def test_valid_coverage_threshold():
     assert is_valid_coverage(0.96) is True
     assert is_valid_coverage(0.95) is True
     assert is_valid_coverage(0.94) is False
+

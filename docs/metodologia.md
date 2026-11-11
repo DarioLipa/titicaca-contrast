@@ -54,3 +54,4 @@ Para controlar la tasa de descubrimientos falsos en los 6 contrastes simultáneo
 2. **Contraste observado, no concluyente:** Variaciones observadas sin significancia estadística suficiente tras corrección múltiple.
 3. **Sin cambio detectable en la brecha:** La prueba no rechaza la hipótesis nula de pendiente cero.
 4. **Datos insuficientes:** Menos de 20 años emparejados completos o problemas de calidad en fuentes.
+

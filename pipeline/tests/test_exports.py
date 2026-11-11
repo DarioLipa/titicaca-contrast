@@ -31,3 +31,4 @@ def test_manifest_validation_rejects_missing_field():
     }
     with pytest.raises(Exception):
         validate_manifest_dict(invalid_manifest)
+

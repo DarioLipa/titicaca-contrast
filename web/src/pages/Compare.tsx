@@ -110,3 +110,4 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
     </div>
   )
 }
+

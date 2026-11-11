@@ -73,3 +73,4 @@ export const Methodology: React.FC = () => {
     </div>
   )
 }
+

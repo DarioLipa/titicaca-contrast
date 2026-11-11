@@ -48,3 +48,4 @@ La plataforma opera bajo el principio de desacoplamiento total entre el cálculo
 | Visualización | Apache ECharts | Gráficos interactivos y exportación de imágenes |
 | Validación de datos | Zod | Control estricto de contratos en el cliente |
 | Pruebas | Vitest (Frontend), Pytest (Pipeline) | Verificación automatizada de calidad |
+

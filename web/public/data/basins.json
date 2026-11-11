@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ramis",
+    "name": "Ramis",
+    "official_code": "0179+018+019",
+    "hierarchical_level": "Nivel 3/4 Pfafstetter",
+    "area_km2": 15870.42,
+    "calculated_area_km2": 15955.07,
+    "source": "ANA GeoIDEP Unidades Hidrograficas",
+    "source_url": "https://geosnirh.ana.gob.pe/Repositorio/Shape/UnidadesHidrograficas.zip",
+    "crs_original": "EPSG:4326",
+    "download_hash_sha256": "2d5dd3dc4b82f2f0a7e54d99390ab5d39d28787172647cfa911e7e9df623493d"
+  },
+  {
+    "id": "coata",
+    "name": "Coata",
+    "official_code": "0176",
+    "hierarchical_level": "Nivel 4 Pfafstetter",
+    "area_km2": 4882.42,
+    "calculated_area_km2": 4908.44,
+    "source": "ANA GeoIDEP Unidades Hidrograficas",
+    "source_url": "https://geosnirh.ana.gob.pe/Repositorio/Shape/UnidadesHidrograficas.zip",
+    "crs_original": "EPSG:4326",
+    "download_hash_sha256": "2d5dd3dc4b82f2f0a7e54d99390ab5d39d28787172647cfa911e7e9df623493d"
+  },
+  {
+    "id": "ilave",
+    "name": "Ilave",
+    "official_code": "016",
+    "hierarchical_level": "Nivel 3 Pfafstetter",
+    "area_km2": 7791.0,
+    "calculated_area_km2": 7832.53,
+    "source": "ANA GeoIDEP Unidades Hidrograficas",
+    "source_url": "https://geosnirh.ana.gob.pe/Repositorio/Shape/UnidadesHidrograficas.zip",
+    "crs_original": "EPSG:4326",
+    "download_hash_sha256": "2d5dd3dc4b82f2f0a7e54d99390ab5d39d28787172647cfa911e7e9df623493d"
+  },
+  {
+    "id": "huancane",
+    "name": "Huancané",
+    "official_code": "0178",
+    "hierarchical_level": "Nivel 4 Pfafstetter",
+    "area_km2": 3611.92,
+    "calculated_area_km2": 3631.19,
+    "source": "ANA GeoIDEP Unidades Hidrograficas",
+    "source_url": "https://geosnirh.ana.gob.pe/Repositorio/Shape/UnidadesHidrograficas.zip",
+    "crs_original": "EPSG:4326",
+    "download_hash_sha256": "2d5dd3dc4b82f2f0a7e54d99390ab5d39d28787172647cfa911e7e9df623493d"
+  }
+]

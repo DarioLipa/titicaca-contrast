@@ -45,3 +45,4 @@ MANIFEST_SCHEMA = {
 def validate_manifest_dict(data: Dict[str, Any]) -> bool:
     jsonschema.validate(instance=data, schema=MANIFEST_SCHEMA)
     return True
+

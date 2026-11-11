@@ -7,3 +7,4 @@ def test_complete_year():
 def test_incomplete_year():
     assert is_complete_year(11) is False
     assert is_complete_year(0) is False
+

@@ -28,7 +28,12 @@ export const BasinSchema = z.object({
   name: z.string(),
   official_code: z.string(),
   area_km2: z.number().positive(),
-  source: z.string()
+  source: z.string(),
+  hierarchical_level: z.string().optional(),
+  calculated_area_km2: z.number().optional(),
+  crs_original: z.string().optional(),
+  source_url: z.string().optional(),
+  download_hash_sha256: z.string().optional()
 })
 
 export type Basin = z.infer<typeof BasinSchema>
@@ -85,3 +90,4 @@ export const ContrastItemSchema = z.object({
 })
 
 export type ContrastItem = z.infer<typeof ContrastItemSchema>
+

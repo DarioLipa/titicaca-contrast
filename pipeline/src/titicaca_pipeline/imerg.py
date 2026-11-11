@@ -11,3 +11,4 @@ def calculate_monthly_precipitation_mm(rate_mm_per_h: float, year: int, month: i
     days = get_days_in_month(year, month)
     hours = days * 24
     return rate_mm_per_h * hours
+

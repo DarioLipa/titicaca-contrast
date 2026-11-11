@@ -71,3 +71,4 @@ Objeto de metadatos de integridad y trazabilidad:
 - `method_version`: Cadena
 - `notes`: Cadena
 - `integrity`: Objeto con hashes SHA-256 de los archivos derivados
+

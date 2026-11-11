@@ -84,3 +84,4 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
     </div>
   )
 }
+

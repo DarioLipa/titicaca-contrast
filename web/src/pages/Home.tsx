@@ -103,3 +103,4 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
     </div>
   )
 }
+

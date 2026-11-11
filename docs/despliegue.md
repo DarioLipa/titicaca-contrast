@@ -30,3 +30,4 @@ npm run preview
 ## 4. Política de rutas y enlaces
 
 La aplicación utiliza enrutamiento estático compatible (o HashRouter / rutas relativas) para evitar errores 404 al recargar la página en servidores que no implementan reescritura de URLs para SPAs.
+

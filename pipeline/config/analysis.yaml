@@ -10,3 +10,4 @@ statistics:
   hac_primary_lags: 2
   hac_sensitivity_lags: [1, 2, 3]
   min_valid_area_fraction: 0.95
+

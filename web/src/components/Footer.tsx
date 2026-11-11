@@ -61,3 +61,4 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
     </footer>
   )
 }
+

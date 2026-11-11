@@ -47,3 +47,4 @@ describe("CSV data contract", () => {
     expect(result.success).toBe(false)
   })
 })
+

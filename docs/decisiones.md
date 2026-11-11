@@ -12,3 +12,4 @@
 - **Fecha:** 2026-11-10
 - **Decisión:** Cumplir estrictamente la directriz del Plan Maestro: código fuente limpio sin comentarios internos (`//`, `/* */`, `#`). Toda la justificación técnica, científica y de diseño se documenta en `docs/` y en las vistas metodológicas de la interfaz.
 - **Motivo:** Especificación contractual del Plan Maestro.
+

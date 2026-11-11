@@ -25,3 +25,4 @@ python -m pytest -q
 - `python -m titicaca_pipeline.cli analyze`: Estima tendencias Theil-Sen, Mann-Kendall y el detector de contrastes emparejados.
 - `python -m titicaca_pipeline.cli export`: Genera los artefactos JSON, CSV y GeoJSON hacia `web/public/data/`.
 - `python -m titicaca_pipeline.cli verify`: Ejecuta validaciones de integridad y consistencia en los datos producidos.
+

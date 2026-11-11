@@ -22,3 +22,4 @@
 
 - **Código fuente del proyecto:** Licencia MIT.
 - **Bibliotecas y componentes:** Todas las dependencias (React, Leaflet, Apache ECharts, Pandas, SciPy, Statsmodels, GeoPandas, Vite, Vitest, Zod) poseen licencias de código abierto permisivas (MIT, Apache 2.0, BSD).
+

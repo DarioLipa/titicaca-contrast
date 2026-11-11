@@ -33,3 +33,4 @@ def compute_mann_kendall(values: List[float]) -> Tuple[float, float, str]:
     else:
         direction = "no_trend"
     return float(z), float(p_value), direction
+
