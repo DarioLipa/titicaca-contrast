@@ -1,12 +1,21 @@
-import { describe, it, expect } from "vitest"
+import { describe, it, expect, vi } from "vitest"
 import { render, screen, fireEvent } from "@testing-library/react"
 import { Compare } from "../pages/Compare"
+import { PeriodSelector } from "../components/PeriodSelector"
+import { BasinMap } from "../components/BasinMap"
 
 describe("Compare selector validation", () => {
   const dummyPayload = {
     status: "unavailable" as const,
     manifest: null,
-    errorMessage: null
+    errorMessage: null,
+    basins: [],
+    geoJson: null,
+    monthly: [],
+    annual: [],
+    trends: [],
+    contrasts: [],
+    evidence: []
   }
 
   it("shows validation alert when same basin is chosen in both selectors", () => {
@@ -26,5 +35,39 @@ describe("Compare selector validation", () => {
     fireEvent.change(selectB, { target: { value: "coata" } })
 
     expect(screen.queryByRole("alert")).not.toBeInTheDocument()
+  })
+})
+
+describe("PeriodSelector component", () => {
+  it("changes period when clicking preset buttons", () => {
+    const handleChange = vi.fn()
+    render(
+      <PeriodSelector
+        startYear={2001}
+        endYear={2024}
+        onPeriodChange={handleChange}
+      />
+    )
+
+    const presetBtn = screen.getByRole("button", { name: /2001–2020 \(Referencia\)/i })
+    fireEvent.click(presetBtn)
+    expect(handleChange).toHaveBeenCalledWith(2001, 2020)
+  })
+})
+
+describe("BasinMap component", () => {
+  it("renders accessible fallback basin buttons", () => {
+    const handleSelect = vi.fn()
+    render(
+      <BasinMap
+        selectedBasin="ramis"
+        onSelectBasin={handleSelect}
+      />
+    )
+
+    const coataBtn = screen.getByRole("button", { name: /Cuenca Coata/i })
+    expect(coataBtn).toBeInTheDocument()
+    fireEvent.click(coataBtn)
+    expect(handleSelect).toHaveBeenCalledWith("coata")
   })
 })

@@ -91,3 +91,37 @@
 - [x] Esquemas de validación Zod actualizados en `web/src/app/schemas.ts`
 - [x] Pruebas estadísticas y de integridad ampliadas a 32 tests (100% pasados: T09, T10, T11, T12, T13, T14)
 
+---
+
+## Fase 4 — Frontend Científico y Visualización Interactiva
+
+- **Fecha:** Noviembre 2026
+- **Responsable:** Antigravity / Pair Programming
+- **Estado general:** Completada y aprobada
+
+### Componentes y verificaciones técnicas
+- [x] Implementación de los 10 componentes obligatorios del sistema:
+  - `Header`: Navegación clara con indicador visual del estado de integridad de los datos (`ready`, `unavailable`, etc.).
+  - `BasinMap`: Mapa interactivo con Leaflet que proyecta `basins.geojson` con estilos diferenciados por cuenca, resaltado de selección única o por parejas, tooltips con códigos ANA y áreas oficiales, botón de restablecer vista y fallback accesible para tecnologías de asistencia.
+  - `BasinSelector`: Selector semántico de cuencas con bloqueo dinámico de selección duplicada en modo comparativo.
+  - `PeriodSelector`: Selector de rango temporal acotado a años completos válidos (2001–2024) con botones de acceso rápido (Período completo, Referencia 2001–2020, Decenio reciente).
+  - `ClimateChart`: Gráfico interactivo con Apache ECharts con soporte responsive, selector de modo (serie anual + Theil-Sen, ciclo estacional medio mensual, y serie de brechas $D(t)$ con línea HAC), y visualización accesible alternativa en formato tabla HTML.
+  - `ContrastCard`: Tarjeta de resumen de contraste emparejado con etiquetas semánticas de estado de evidencia (`supported`, `inconclusive`, `no_change`), pendiente con intervalo de confianza al 95% y valores $p$ y $q$ (FDR).
+  - `EvidencePanel`: Ficha modal accesible (con cierre por teclado `Escape`) que expone la especificación principal, la tabla de sensibilidad a 3 rezagos HAC ($L=1, 2, 3$), la autocorrelación de orden 1 y la advertencia explícita de no causalidad.
+  - `ExportControls`: Módulo de exportación con descarga de CSV mensual, anual y por parejas, y copia de enlace permanente.
+  - `StatusMessage`: Mensajes transparentes para estados del sistema (`loading`, `ready`, `partial`, `unavailable`, `error`).
+  - `Footer`: Metadatos de fuentes oficiales (NASA y ANA), licencias libres y cláusula de independencia institucional.
+- [x] Conexión integral de vistas:
+  - `Home`: Visión general, hallazgos principales 2001–2024 y accesos directos.
+  - `Explorer`: Exploración detallada individual con mapa sincronizado, series históricas y resumen univariado.
+  - `Compare`: Comparación emparejada con validación de cuencas distintas, mapa conjunto y serie de brechas $D(t)$.
+  - `Findings`: Matriz completa de las 6 parejas con filtrado por estado de evidencia y acceso a fichas reproducibles.
+  - `Methodology`: Documentación de ecuaciones de agregación espacial, conversión de unidades, estimadores estadísticos y límites.
+  - `Sources`: DOIs oficiales, enlaces SNIRH, licencias y tabla de hashes SHA-256 para verificación independiente.
+- [x] Optimización de empaquetado:
+  - Configuración de `manualChunks` en Vite para Leaflet, Apache ECharts y React, garantizando una carga rápida y modular.
+- [x] Pruebas de interfaz y accesibilidad:
+  - 16 pruebas unitarias de frontend con Vitest (100% pasadas).
+  - Verificación global limpia con `scripts/check-project.ps1` (0 errores en TypeScript, linting, tests de frontend, compilación y 32 tests de pipeline).
+
+

@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest"
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, act } from "@testing-library/react"
 import { Header } from "../components/Header"
+import { App } from "../App"
 
 describe("Header navigation", () => {
   it("renders all navigation options and active state", () => {
@@ -13,5 +14,25 @@ describe("Header navigation", () => {
     const explorerButton = screen.getByRole("button", { name: "Explorador" })
     fireEvent.click(explorerButton)
     expect(handleSelect).toHaveBeenCalledWith("explorer")
+  })
+
+  it("navigates across pages in the full App component", async () => {
+    await act(async () => {
+      render(<App />)
+    })
+
+    expect(screen.getByRole("heading", { name: /¿Evolucionan igual las lluvias en las cuencas del lago Titicaca\?/i })).toBeInTheDocument()
+
+    const navButtons = screen.getAllByRole("button", { name: /Metodología/i })
+    await act(async () => {
+      fireEvent.click(navButtons[0])
+    })
+    expect(screen.getByRole("heading", { name: /Metodología científica y protocolo inferencial/i })).toBeInTheDocument()
+
+    const sourcesButtons = screen.getAllByRole("button", { name: /Fuentes/i })
+    await act(async () => {
+      fireEvent.click(sourcesButtons[0])
+    })
+    expect(screen.getByRole("heading", { name: /Fuentes oficiales, metadatos y descargas/i })).toBeInTheDocument()
   })
 })

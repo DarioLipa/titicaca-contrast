@@ -7,19 +7,26 @@ import { Compare } from "./pages/Compare"
 import { Findings } from "./pages/Findings"
 import { Methodology } from "./pages/Methodology"
 import { Sources } from "./pages/Sources"
-import { loadManifest, type DataPayload } from "./app/dataLoader"
+import { loadAllHydrologyData, type HydrologyData } from "./app/dataLoader"
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>("home")
-  const [dataPayload, setDataPayload] = useState<DataPayload>({
+  const [dataPayload, setDataPayload] = useState<HydrologyData>({
     status: "loading",
     manifest: null,
+    basins: [],
+    geoJson: null,
+    monthly: [],
+    annual: [],
+    trends: [],
+    contrasts: [],
+    evidence: [],
     errorMessage: null
   })
 
   useEffect(() => {
     let isMounted = true
-    loadManifest().then((result) => {
+    loadAllHydrologyData().then((result) => {
       if (isMounted) {
         setDataPayload(result)
       }
@@ -58,4 +65,3 @@ export const App: React.FC = () => {
     </div>
   )
 }
-
