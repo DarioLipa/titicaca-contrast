@@ -174,36 +174,6 @@ select, input {
   }
 }
 
-.hero-visual-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.visual-tool-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: var(--border-radius-full);
-  background: rgba(16, 46, 67, 0.85);
-  border: 1px solid var(--color-border-discrete);
-  color: var(--color-text-secondary);
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  user-select: none;
-}
-
-.visual-tool-btn:hover {
-  background: rgba(32, 215, 223, 0.15);
-  border-color: var(--color-primary-cyan);
-  color: #F7FAFC;
-}
 
 @media (max-width: 767px) {
   .container {

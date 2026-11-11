@@ -10,7 +10,6 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
   const mountRef = useRef<HTMLDivElement | null>(null)
   const [activeBasin, setActiveBasin] = useState<string>("ramis")
   const [webGlSupported, setWebGlSupported] = useState<boolean>(true)
-  const [isPaused, setIsPaused] = useState<boolean>(false)
   const [reducedMotion, setReducedMotion] = useState<boolean>(false)
 
   const isDragging = useRef<boolean>(false)
@@ -409,7 +408,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       animationFrameId = requestAnimationFrame(animate)
       const elapsedTime = clock.getElapsedTime()
 
-      if (!isPaused && !reducedMotion) {
+      if (!reducedMotion) {
         orbitalRingGroup.rotation.y = elapsedTime * 0.04
 
         satGroup.position.y = 1.90 + Math.sin(elapsedTime * 0.6) * 0.06
@@ -517,6 +516,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     container.addEventListener("mousedown", handlePointerDown)
     window.addEventListener("mouseup", handlePointerUp)
     container.addEventListener("wheel", handleWheel, { passive: false })
+    container.addEventListener("dblclick", handleResetView)
 
     return () => {
       cancelAnimationFrame(animationFrameId)
@@ -525,6 +525,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       container.removeEventListener("mousedown", handlePointerDown)
       window.removeEventListener("mouseup", handlePointerUp)
       container.removeEventListener("wheel", handleWheel)
+      container.removeEventListener("dblclick", handleResetView)
 
       if (renderer) {
         renderer.dispose()
@@ -533,7 +534,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
         }
       }
     }
-  }, [isPaused, reducedMotion])
+  }, [reducedMotion])
 
   useEffect(() => {
     basinMeshes.current.forEach((data, id) => {
@@ -729,30 +730,6 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
         >
           <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "var(--basin-huancane)" }} />
           Cuenca Huancané
-        </button>
-      </div>
-
-      <div
-        className="hero-visual-toolbar"
-        role="toolbar"
-        aria-label="Opciones de visualización"
-      >
-        <button
-          type="button"
-          onClick={handleResetView}
-          className="visual-tool-btn"
-          aria-label="Restablecer encuadre geográfico inicial"
-        >
-          ↺ Restablecer vista
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setIsPaused(!isPaused)}
-          className="visual-tool-btn"
-          aria-label={isPaused ? "Reanudar animación orbital" : "Pausar animación orbital"}
-        >
-          {isPaused ? "▶ Reanudar animación" : "⏸ Pausar animación"}
         </button>
       </div>
     </div>
