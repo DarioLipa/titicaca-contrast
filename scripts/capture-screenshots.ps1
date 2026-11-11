@@ -1,7 +1,6 @@
 $ErrorActionPreference = "Stop"
 
 $screenshotsDir = (Resolve-Path "docs\screenshots").Path
-$artifactDir = "C:\Users\Usuario\.gemini\antigravity\brain\efff69b4-5fc5-4ca0-8df8-21c41b3bfef0"
 
 $server = Start-Process -FilePath "pipeline\.venv\Scripts\python.exe" -ArgumentList "-m", "http.server", "8085", "--directory", "web/dist" -PassThru
 Start-Sleep -Seconds 2
@@ -34,6 +33,8 @@ foreach ($res in $resList) {
 
 Stop-Process -Id $server.Id -Force -ErrorAction SilentlyContinue
 
-Copy-Item "$screenshotsDir\*.png" $artifactDir -Force -ErrorAction SilentlyContinue
+if ($env:ARTIFACT_DIR -and (Test-Path $env:ARTIFACT_DIR)) {
+    Copy-Item "$screenshotsDir\*.png" $env:ARTIFACT_DIR -Force -ErrorAction SilentlyContinue
+}
 
 Get-ChildItem $screenshotsDir
