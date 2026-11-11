@@ -120,3 +120,4 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
     </div>
   )
 }
+

@@ -12,6 +12,7 @@ web/dist/
 dist/
 build/
 .vite/
+*.zip
 
 # Secretos y credenciales
 .env
