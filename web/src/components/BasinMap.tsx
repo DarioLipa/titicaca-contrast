@@ -36,6 +36,8 @@ export const BasinMap: React.FC<BasinMapProps> = ({
     if (!mapContainerRef.current) return
     if (mapInstanceRef.current) return
 
+    let resizeObserver: ResizeObserver | null = null
+
     try {
       const map = L.map(mapContainerRef.current, {
         center: [-15.5, -70.0],
@@ -44,20 +46,31 @@ export const BasinMap: React.FC<BasinMapProps> = ({
         attributionControl: true
       })
 
-      const tileLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      const tileLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        subdomains: ["a", "b", "c"],
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a>',
         maxZoom: 18,
-        minZoom: 6
+        minZoom: 5,
+        crossOrigin: true
       })
 
       tileLayer.addTo(map)
       tileLayerRef.current = tileLayer
       mapInstanceRef.current = map
+
+      resizeObserver = new ResizeObserver(() => {
+        map.invalidateSize()
+      })
+      resizeObserver.observe(mapContainerRef.current)
+      setTimeout(() => map.invalidateSize(), 150)
     } catch {
       return
     }
 
     return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect()
+      }
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove()
         mapInstanceRef.current = null
@@ -71,15 +84,20 @@ export const BasinMap: React.FC<BasinMapProps> = ({
 
     if (showBasemap) {
       if (!tileLayerRef.current) {
-        tileLayerRef.current = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        tileLayerRef.current = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          subdomains: ["a", "b", "c"],
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a>',
           maxZoom: 18,
-          minZoom: 6
+          minZoom: 5,
+          crossOrigin: true
         })
       }
-      tileLayerRef.current.addTo(map)
+      if (!map.hasLayer(tileLayerRef.current)) {
+        tileLayerRef.current.addTo(map)
+      }
+      map.invalidateSize()
     } else {
-      if (tileLayerRef.current) {
+      if (tileLayerRef.current && map.hasLayer(tileLayerRef.current)) {
         map.removeLayer(tileLayerRef.current)
       }
     }
@@ -147,6 +165,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
       const bounds = layer.getBounds()
       if (bounds.isValid()) {
         map.fitBounds(bounds, { padding: [20, 20] })
+        setTimeout(() => map.invalidateSize(), 50)
       }
     } catch {
       return
@@ -158,6 +177,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
       const bounds = geoJsonLayerRef.current.getBounds()
       if (bounds.isValid()) {
         mapInstanceRef.current.fitBounds(bounds, { padding: [20, 20] })
+        mapInstanceRef.current.invalidateSize()
       }
     }
   }
