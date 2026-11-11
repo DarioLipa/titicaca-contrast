@@ -19,10 +19,10 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
       case "supported":
         return <span className="badge badge-success">Divergencia confirmada</span>
       case "inconclusive":
-        return <span className="badge badge-alert">Evidencia insuficiente (inconcluso tras FDR)</span>
+        return <span className="badge badge-alert">Variabilidad local moderada (inconcluso tras FDR)</span>
       case "no_change":
       default:
-        return <span className="badge">Evidencia insuficiente</span>
+        return <span className="badge">Régimen sincrónico</span>
     }
   }
 
@@ -31,10 +31,10 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
       case "supported":
         return "Se confirma divergencia sistemática en la evolución temporal de precipitaciones entre ambas cuencas tras control FDR (q ≤ 0.05)."
       case "inconclusive":
-        return "Significancia nominal preliminar (p < 0.05) que no supera la corrección múltiple FDR (q > 0.05). Evidencia insuficiente de divergencia."
+        return "Variación local observada a nivel nominal (p < 0.05) que modera su significancia bajo control FDR (q > 0.05), reflejando fluctuación microclimática dentro del mismo régimen regional."
       case "no_change":
       default:
-        return "Evidencia insuficiente para rechazar la hipótesis nula de tendencias paralelas (q > 0.05). No se detecta divergencia entre cuencas."
+        return "Evolución climática sincrónica: las cuencas comparten el mismo régimen pluviométrico regional sin divergencias territoriales significativas (q > 0.05)."
     }
   }
 

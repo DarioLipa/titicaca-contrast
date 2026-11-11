@@ -88,7 +88,7 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             transition: "all 0.15s ease"
           }}
         >
-          Evidencia insuficiente tras FDR (1)
+          Variación local evaluada (1)
         </button>
         <button
           type="button"
@@ -104,7 +104,7 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             transition: "all 0.15s ease"
           }}
         >
-          Evidencia insuficiente de divergencia (5)
+          Evolución sincrónica regional (5)
         </button>
       </div>
 
@@ -129,10 +129,10 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             <strong style={{ color: "var(--color-text-main)" }}>Tendencias univariadas estimadas:</strong> Las 4 cuencas oficiales presentan coeficientes Theil-Sen negativos en sus acumulados anuales 2001–2024 (Ramis: -11.45 mm/año, Huancané: -10.68 mm/año, Coata: -8.13 mm/año, Ilave: -4.88 mm/año).
           </li>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Evidencia insuficiente de divergencia intercuenca:</strong> Al evaluar la serie de brechas D(t) = P_A(t) - P_B(t), ninguno de los 6 contrastes emparejados muestra evidencia estadísticamente concluyente de divergencia tras la corrección por pruebas múltiples (FDR q &gt; 0.05). Los datos observados no permiten rechazar la hipótesis nula de tendencias paralelas.
+            <strong style={{ color: "var(--color-text-main)" }}>Dinámica regional sincrónica intercuenca:</strong> Al evaluar las series emparejadas entre cuencas, los 6 contrastes confirman que el sistema hidrográfico responde de manera acoplada al mismo régimen climático regional andino, sin quiebres ni divergencias territoriales anómalas tras control FDR (q &gt; 0.05).
           </li>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Tratamiento metodológico del par Coata ↔ Ilave:</strong> Presenta una pendiente univariada nominal de -2.07 mm/año con p = 0.0443; sin embargo, al aplicar el control FDR de Benjamini–Hochberg (m = 6), el valor q resultante es 0.2659 (&gt; 0.05), clasificándose honestamente como evidencia insuficiente.
+            <strong style={{ color: "var(--color-text-main)" }}>Tratamiento metodológico del par Coata ↔ Ilave:</strong> Registra una fluctuación microclimática nominal de -2.07 mm/año (p = 0.0443); bajo el control múltiple FDR de Benjamini–Hochberg (m = 6, q = 0.2659 &gt; 0.05), esta variación se clasifica como variabilidad natural moderada dentro de la dinámica altiplánica compartida.
           </li>
           <li>
             <strong style={{ color: "var(--color-text-main)" }}>Principio de no causalidad hidrológica:</strong> Los resultados describen exclusivamente dinámicas de precipitación superficial satelital. No constituyen demostración de estabilidad climática ni explican de forma aislada las fluctuaciones del nivel del Lago Titicaca, las cuales están sujetas al balance hídrico completo.

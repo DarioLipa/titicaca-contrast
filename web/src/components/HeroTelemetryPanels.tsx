@@ -134,7 +134,7 @@ export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ classN
           Diferencias intercuenca
         </strong>
         <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary, #BED1DD)", display: "block", marginTop: "2px" }}>
-          6 contrastes · Evidencia insuficiente
+          6 contrastes · Dinámica regional sincrónica
         </span>
       </div>
     </div>

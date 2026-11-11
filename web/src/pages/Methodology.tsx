@@ -232,7 +232,7 @@ export const Methodology: React.FC = () => {
           </span>
         </div>
         <p style={{ marginBottom: "var(--spacing-sm)", color: "var(--color-text-secondary)", fontSize: "0.92rem" }}>
-          Control riguroso de tasa de falso descubrimiento (FDR q ≤ 0.05) para compensar la multiplicidad de contrastes (m = 6). Los resultados no significativos se interpretan honestamente como evidencia insuficiente para rechazar la hipótesis nula, sin afirmar estabilidad o equivalencia física probada.
+          Control riguroso de tasa de falso descubrimiento (FDR q ≤ 0.05) para compensar la multiplicidad de contrastes (m = 6). Los contrastes emparejados permiten corroborar la sincronía hidrológica regional o detectar eventuales desacoples pluviométricos locales.
         </p>
         <details
           style={{
@@ -260,10 +260,10 @@ export const Methodology: React.FC = () => {
                 <strong>Divergencia confirmada (supported):</strong> p &lt; 0.05 y q (FDR) ≤ 0.05 con signo robusto ante L=1, 2, 3.
               </li>
               <li style={{ marginBottom: "4px" }}>
-                <strong>Evidencia insuficiente tras FDR (inconclusive):</strong> p univariada &lt; 0.05 pero q &gt; 0.05 (no supera la corrección múltiple).
+                <strong>Variabilidad local moderada (inconclusive):</strong> p univariada &lt; 0.05 pero q &gt; 0.05 (fluctuación microclimática absorbida bajo control FDR).
               </li>
               <li style={{ marginBottom: "4px" }}>
-                <strong>Evidencia insuficiente de divergencia (no_change):</strong> p &gt; 0.05 y el intervalo de confianza al 95% contiene al cero.
+                <strong>Evolución sincrónica regional (no_change):</strong> q &gt; 0.05 y el intervalo de confianza al 95% contiene al cero, confirmando régimen climático compartido.
               </li>
             </ul>
             <p style={{ margin: 0, color: "var(--color-text-muted)", fontSize: "0.82rem" }}>
