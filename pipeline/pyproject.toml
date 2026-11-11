@@ -17,9 +17,14 @@ dependencies = [
     "scipy>=1.12.0",
     "statsmodels>=0.14.0",
     "shapely>=2.0.0",
+    "geopandas>=1.0.0",
+    "pyogrio>=0.9.0",
+    "pyproj>=3.6.0",
+    "h5py>=3.10.0",
     "pyyaml>=6.0.0",
     "jsonschema>=4.21.0",
-    "requests>=2.31.0"
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0"
 ]
 
 [project.optional-dependencies]
@@ -37,4 +42,3 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-
