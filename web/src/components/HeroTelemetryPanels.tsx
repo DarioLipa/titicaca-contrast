@@ -8,13 +8,12 @@ export interface HeroTelemetryPanelsProps {
 export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ className, style }) => {
   return (
     <div
-      className={className}
+      className={className ? `hero-telemetry-panels ${className}` : "hero-telemetry-panels"}
       style={{
         display: "flex",
         flexDirection: "column",
         gap: "12px",
         width: "100%",
-        maxWidth: "230px",
         zIndex: 20,
         ...style
       }}

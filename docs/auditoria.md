@@ -349,3 +349,19 @@
 - [x] **Pruebas Frontend:** 16 de 16 pruebas unitarias y de integración pasadas en Vitest (100%).
 - [x] **Pruebas de Pipeline:** 32 de 32 pruebas científicas pasadas en Pytest (100%).
 - [x] **Compilación de Producción:** Vite genera exitosamente `web/dist/` optimizado con `manualChunks`.
+
+---
+
+## Corrección Definitiva del Encuadre 3D, Cuadrícula y Controles (Noviembre 2026)
+
+- **Problema corregido:** Presencia de una cuadrícula decorativa rectangular en el fondo de las cuencas, encuadre de cámara con ocupación visual reducida o recortes, botones flotantes sobre el satélite y superposición con paneles de telemetría.
+- **Acciones ejecutadas:**
+  1. *Eliminación de cuadrículas y planos rectangulares:* Se suprimió `THREE.GridHelper` y cualquier textura de fondo con patrón de puntos/rejilla. El canvas WebGL se configuró con transparencia alfa absoluta (`clearColor: 0x000000, 0`), integrándose de forma limpia directamente sobre la fotografía panorámica del Lago Titicaca.
+  2. *Algoritmo de encuadre proyectado (`fitCameraToScene`):* Se modelaron las dimensiones 2D proyectadas en el plano de la cámara (ancho 5.76 unidades, alto proyectado 3.72 unidades a $30^\circ$ de elevación). La distancia focal se ajusta dinámicamente según la relación de aspecto real del contenedor (`aspect`), garantizando una ocupación visual del 75–80% sin recortes en cuencas, lago, satélite ni anillo orbital.
+  3. *Límites de cámara y navegación acotada:* Se establecieron límites de zoom (`minDistance = targetDist * 0.82`, `maxDistance = targetDist * 1.25`) y rotación con inercia (pitch acotado entre $0.04$ y $0.32$ rad; yaw entre $\pm 0.45$ rad). El botón «Restablecer vista» recupera el encuadre óptimo calculado automáticamente.
+  4. *Retiro de controles flotantes:* Se eliminaron los botones superpuestos en la esquina superior del canvas («↺ Vista», iconos aislados). Se implementó una barra accesible `Opciones de visualización` (`.hero-visual-toolbar`) situada fuera del canvas geográfico con botones etiquetados textualmente («Restablecer vista», «Pausar animación» / «Reanudar animación»), respetando `prefers-reduced-motion`.
+  5. *Ajuste proporcional del satélite:* Se redimensionó a una escala armónica (envergadura de alas de 1.91 unidades, cuerpo central y aviónica proporcionados), con haz cónico de escaneo translúcido hacia el lago y oscilación orbital suave.
+  6. *Reajuste del anillo orbital:* Anillo concéntrico refinado ($R = 2.82 - 2.86$) con marcas radiales y nodos de telemetría que rodean de forma completa y continua las cuatro cuencas y el lago Titicaca sin cortes rectangulares.
+  7. *Separación espacial de paneles de telemetría:* Distribución en CSS Grid que reserva el 77% de la zona derecha del hero para la escena 3D y el 23% para la columna de telemetría en escritorio. En pantallas medianas y móviles, los paneles se despliegan automáticamente debajo del modelo, impidiendo cualquier solapamiento.
+  8. *Integración con ResizeObserver:* Actualización automática y reactiva del renderizador y matriz de proyección ante cualquier cambio de dimensiones del contenedor.
+  9. *Verificación multidispositivo:* Pruebas reales y capturas automatizadas en 1920×1080, 1650×900, 1366×768, 768×1024 y 390×844.

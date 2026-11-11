@@ -33,19 +33,6 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
           borderBottom: "1px solid var(--color-border-discrete)"
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: "radial-gradient(circle at 50% 50%, rgba(32, 215, 223, 0.03) 1px, transparent 1px)",
-            backgroundSize: "36px 36px",
-            pointerEvents: "none"
-          }}
-        />
-
         <div className="container" style={{ position: "relative", zIndex: 10 }}>
           <StatusMessage status={data.status} message={data.errorMessage || data.manifest?.notes} />
 
