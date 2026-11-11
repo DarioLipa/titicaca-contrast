@@ -1,29 +1,38 @@
 :root {
-  --color-primary-navy: #12314A;
-  --color-action-blue: #1177A7;
-  --color-teal-water: #1D8F87;
-  --color-surface-bg: #F5F8FA;
-  --color-surface-card: #FFFFFF;
-  --color-surface-muted: #E8EEF3;
-  --color-text-main: #142532;
-  --color-text-muted: #536B7E;
-  --color-border: #CFD9E1;
-  --color-alert: #A44F24;
-  --color-success: #1D8F87;
-  --color-tag-bg: #E3EFF7;
+  --color-bg-main: #061827;
+  --color-bg-secondary: #0B2B40;
+  --color-surface-card: #102E43;
+  --color-surface-elevated: #153C52;
+  --color-surface-muted: rgba(16, 46, 67, 0.6);
+  --color-surface-bg: #061827;
 
-  --color-hero-bg: #061827;
-  --color-petroleum: #0B2B40;
-  --color-navy-dark: #123E56;
-  --color-cyan-tech: #23D7E5;
-  --color-turquoise: #70DCD8;
-  --color-indicator-green: #20D8A1;
-  --color-text-hero-white: #F7FAFC;
-  --color-text-hero-secondary: #BCD0DC;
-  --color-accent-amber: #DCA86F;
-  --color-glass-bg: rgba(11, 43, 64, 0.78);
-  --color-glass-border: rgba(35, 215, 229, 0.28);
-  
+  --color-primary-cyan: #20D7DF;
+  --color-secondary-turquoise: #69DAD6;
+  --color-action-blue: #20D7DF;
+  --color-teal-water: #20D6A0;
+  --color-primary-navy: #F7FAFC;
+
+  --color-text-main: #F7FAFC;
+  --color-text-secondary: #BED1DD;
+  --color-text-muted: #8EA6B8;
+
+  --color-border: #28536A;
+  --color-border-discrete: #28536A;
+  --color-border-subtle: rgba(40, 83, 106, 0.5);
+
+  --color-status-positive: #20D6A0;
+  --color-status-warning: #D6A461;
+  --color-status-error: #E97979;
+  --color-success: #20D6A0;
+  --color-alert: #D6A461;
+  --color-tag-bg: rgba(32, 215, 223, 0.12);
+
+  --basin-ramis: #20D7DF;
+  --basin-coata: #20D6A0;
+  --basin-ilave: #C084FC;
+  --basin-huancane: #69DAD6;
+  --basin-titicaca: #0369A1;
+
   --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
@@ -34,13 +43,13 @@
   --spacing-xl: 32px;
   --spacing-2xl: 48px;
 
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 14px;
   --border-radius-full: 9999px;
 
-  --shadow-sm: 0 1px 3px rgba(18, 49, 74, 0.08);
-  --shadow-md: 0 4px 12px rgba(18, 49, 74, 0.1);
-  --shadow-lg: 0 8px 24px rgba(18, 49, 74, 0.14);
-  --shadow-hero-glow: 0 0 30px rgba(35, 215, 229, 0.25);
+  --shadow-sm: 0 2px 6px rgba(3, 12, 22, 0.35);
+  --shadow-md: 0 6px 16px rgba(3, 12, 22, 0.45);
+  --shadow-lg: 0 12px 30px rgba(3, 12, 22, 0.6);
+  --shadow-glow: 0 0 20px rgba(32, 215, 223, 0.25);
 }

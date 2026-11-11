@@ -1,6 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <circle cx="32" cy="32" r="30" fill="#12314A"/>
-  <path d="M16 38C22 34 26 42 32 38C38 34 42 42 48 38" stroke="#1D8F87" stroke-width="4" stroke-linecap="round"/>
-  <path d="M16 26C22 22 26 30 32 26C38 22 42 30 48 26" stroke="#1177A7" stroke-width="4" stroke-linecap="round"/>
-</svg>
+<svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="favBadgeBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#20D7DF" />
+      <stop offset="50%" stopColor="#69DAD6" />
+      <stop offset="100%" stopColor="#1177A7" />
+    </linearGradient>
+    <clipPath id="favClip">
+      <rect x="3" y="3" width="94" height="94" rx="22" ry="22" />
+    </clipPath>
+  </defs>
 
+  <rect x="3" y="3" width="94" height="94" rx="22" ry="22" fill="#061827" stroke="url(#favBadgeBorder)" strokeWidth="4" />
+
+  <g clipPath="url(#favClip)">
+    <path d="M60 41 A16 16 0 0 1 73 34" stroke="#20D7DF" strokeWidth="2.4" strokeLinecap="round" fill="none" opacity="0.95" />
+    <path d="M58 46 A22 22 0 0 1 78 37" stroke="#20D7DF" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.75" />
+
+    <g transform="translate(71, 23) rotate(35)">
+      <rect x="-5" y="-6" width="10" height="12" rx="1.5" fill="#F7FAFC" stroke="#061827" strokeWidth="1" />
+      <rect x="-18" y="-4" width="11" height="8" rx="1" fill="#153C52" stroke="#20D7DF" strokeWidth="1.2" />
+      <rect x="7" y="-4" width="11" height="8" rx="1" fill="#153C52" stroke="#20D7DF" strokeWidth="1.2" />
+      <circle cx="0" cy="0" r="1.5" fill="#20D7DF" />
+    </g>
+
+    <polygon points="12,58 34,42 45,52 64,36 88,58" fill="#0B2B40" />
+    <polygon points="34,42 27,47 34,51 40,46" fill="#F7FAFC" />
+    <polygon points="64,36 54,44 64,52 74,45" fill="#F7FAFC" />
+
+    <line x1="26" y1="62" x2="74" y2="62" stroke="#20D7DF" strokeWidth="2" opacity="0.85" />
+    <line x1="32" y1="66" x2="68" y2="66" stroke="#20D7DF" strokeWidth="1.8" opacity="0.7" />
+
+    <path d="M0 80 Q 25 68 52 77 T 100 73 L 100 100 L 0 100 Z" fill="#0B2B40" />
+    <path d="M0 80 Q 25 68 52 77 T 100 73" stroke="#20D7DF" strokeWidth="3.2" fill="none" />
+    <path d="M0 90 Q 28 82 56 88 T 100 84" stroke="#69DAD6" strokeWidth="2.6" fill="none" />
+  </g>
+</svg>

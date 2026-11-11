@@ -179,8 +179,45 @@
   - Contrastes (Inferencia HAC / FDR).
 - **Fallback WebGL:**
   - Representación isométrica 2.5D en SVG vectorial con polígonos oficiales interactivos cuando WebGL no está disponible o en entornos de prueba automatizada.
-- **Verificación integral:**
-  - 16/16 pruebas unitarias pasadas en Vitest.
-  - 32/32 pruebas pasadas en Pytest.
-  - 0 errores de TypeScript y 0 advertencias de CSS/Vite.
-  - 0 comentarios de código en archivos de código fuente.
+## Auditoría y Rediseño Integral UI/UX e Identidad Visual (Noviembre 2026)
+
+- **Referencia y aprobación visual:** Isotipo y logotipo oficial `TITICACA CONTRAST` (`media_1794411952634_c706c15a.jpg`) y escena 3D validada.
+- **Identidad corporativa integrada:**
+  - Componente vectorial escalable `web/src/components/Logo.tsx` con variantes `full` (cabecera de escritorio), `compact` (pie de página y navegación compacta) y `symbol` (favicons e isotipos).
+  - Isotipo en squircle con satélite en órbita y haz de radar, cordillera andina nevada y olas del lago Titicaca con degradados cian/turquesa sobre fondo `#061827`.
+  - Tipografía oficial `TITICACA CONTRAST` y subtítulo institucional `OBSERVATORIO DE CUENCAS · PUNO`.
+  - Favicon vectorial en `web/public/favicon.svg` actualizado al isotipo squircle oficial.
+  - Eliminación definitiva del rótulo redundante `"INVESTIGACIÓN AMBIENTAL · PUNO, PERÚ"`.
+- **Sistema de diseño unificado (Dark Theme Institucional):**
+  - Fin absoluto de la discrepancia visual entre páginas claras y oscuras: todas las rutas (`Inicio`, `Explorador`, `Comparar`, `Hallazgos`, `Metodología`, `Fuentes`) comparten la misma escala cromática sobria.
+  - Paleta centralizada en `web/src/styles/tokens.css` y `web/src/styles/global.css`:
+    - Fondo principal: `#061827`
+    - Fondo secundario: `#0B2B40`
+    - Superficie de tarjetas: `#102E43`
+    - Superficie elevada: `#153C52`
+    - Color principal (Cian): `#20D7DF`
+    - Color secundario (Turquesa): `#69DAD6`
+    - Texto principal: `#F7FAFC`
+    - Texto secundario: `#BED1DD`
+    - Bordes discretos: `#28536A`
+    - Estado positivo: `#20D6A0`
+    - Advertencia: `#D6A461`
+    - Error: `#E97979`
+    - Colores por cuenca: Ramis (`#20D7DF`), Coata (`#20D6A0`), Ilave (`#C084FC`), Huancané (`#69DAD6`), Lago (`#0369A1`).
+- **Encuadre, límites de cámara y corrección del visor 3D:**
+  - Eliminación de bordes o marcos rectangulares en el contenedor 3D; fondo transparente integrado sobre el paisaje andino.
+  - Cálculo adaptativo de distancia de cámara `getOptimalDistance(aspect)` según la relación de aspecto del contenedor para impedir cualquier recorte del satélite o del anillo orbital exterior (R=3.22) en monitores ultrapanorámicos, portátiles o pantallas verticales.
+  - Restricción del ángulo de inclinación vertical (pitch clamped entre `-0.15` y `0.45` radianes) y zoom seguro para evitar inversiones o vistas anómalas.
+- **Reorganización espacial de telemetría (HeroTelemetryPanels):**
+  - Separación física en columna auxiliar lateral derecha independiente del canvas 3D para erradicar cualquier solapamiento sobre la cartografía o el satélite.
+  - 1. Monitoreo satelital (NASA IMERG V07, actualización mensual).
+  - 2. Precipitación (tendencia histórica con minigráfico interactivo + badge Altiplano 3,812 msnm).
+  - 3. Contrastes (diferenciales de precipitación y rigor inferencial HAC / FDR).
+- **Sobriedad y eliminación de redundancias textuales:**
+  - Supresión de eslóganes repetitivos como `"Análisis reproducible y transparente"` o citas repetidas en cada tarjeta.
+  - Datos de período calibrados honestamente a los 24 años completos (2001-2024).
+- **Verificación de calidad y estándares:**
+  - 16/16 pruebas unitarias y de integración de frontend en Vitest (100% pasadas).
+  - 32/32 pruebas de pipeline científico en Pytest (100% pasadas).
+  - 0 errores en `tsc --noEmit` y compilación de producción Vite limpia.
+  - 0 comentarios de código en archivos de código fuente (`.ts`, `.tsx`, `.py`).

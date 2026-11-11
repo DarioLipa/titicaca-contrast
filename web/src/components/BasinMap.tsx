@@ -12,10 +12,10 @@ export interface BasinMapProps {
 }
 
 const BASIN_COLORS: Record<string, string> = {
-  ramis: "#1177A7",
-  coata: "#1D8F87",
-  ilave: "#4F46E5",
-  huancane: "#0284C7"
+  ramis: "#20D7DF",
+  coata: "#20D6A0",
+  ilave: "#C084FC",
+  huancane: "#69DAD6"
 }
 
 export const BasinMap: React.FC<BasinMapProps> = ({
@@ -45,7 +45,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
       })
 
       const tileLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a>',
         maxZoom: 18,
         minZoom: 6
       })
@@ -72,7 +72,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
     if (showBasemap) {
       if (!tileLayerRef.current) {
         tileLayerRef.current = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors',
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a>',
           maxZoom: 18,
           minZoom: 6
         })
@@ -100,13 +100,13 @@ export const BasinMap: React.FC<BasinMapProps> = ({
           const id = feature?.properties?.id || ""
           const isPrimary = id === selectedBasin
           const isSecondary = id === secondSelectedBasin
-          const baseColor = BASIN_COLORS[id] || "#1177A7"
+          const baseColor = BASIN_COLORS[id] || "#20D7DF"
 
           return {
-            color: isPrimary ? "#12314A" : (isSecondary ? "#A44F24" : baseColor),
-            weight: isPrimary || isSecondary ? 3 : 1.5,
+            color: isPrimary ? "#F7FAFC" : (isSecondary ? "#D6A461" : baseColor),
+            weight: isPrimary || isSecondary ? 3.5 : 1.8,
             fillColor: baseColor,
-            fillOpacity: isPrimary ? 0.7 : (isSecondary ? 0.6 : 0.35),
+            fillOpacity: isPrimary ? 0.72 : (isSecondary ? 0.6 : 0.4),
             dashArray: isSecondary ? "6, 6" : undefined
           }
         },
@@ -118,8 +118,8 @@ export const BasinMap: React.FC<BasinMapProps> = ({
           const code = props.official_code ? `ANA: ${props.official_code}` : ""
 
           featureLayer.bindTooltip(
-            `<div style="font-weight:600;font-size:13px;">Cuenca ${name}</div><div style="font-size:11px;color:#555;">${code} | ${area}</div>`,
-            { sticky: true }
+            `<div style="font-weight:700;font-size:13px;color:#F7FAFC;background:#102E43;padding:4px 8px;border-radius:4px;border:1px solid #28536A;">Cuenca ${name}<div style="font-size:11px;color:#BED1DD;font-weight:400;">${code} | ${area}</div></div>`,
+            { sticky: true, className: "custom-leaflet-tooltip" }
           )
 
           featureLayer.on({
@@ -128,14 +128,14 @@ export const BasinMap: React.FC<BasinMapProps> = ({
             },
             mouseover: (e) => {
               const target = e.target
-              target.setStyle({ fillOpacity: 0.85 })
+              target.setStyle({ fillOpacity: 0.88 })
             },
             mouseout: (e) => {
               const target = e.target
               const isPrimary = id === selectedBasin
               const isSecondary = id === secondSelectedBasin
               target.setStyle({
-                fillOpacity: isPrimary ? 0.7 : (isSecondary ? 0.6 : 0.35)
+                fillOpacity: isPrimary ? 0.72 : (isSecondary ? 0.6 : 0.4)
               })
             }
           })
@@ -165,7 +165,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-xs)" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-xs)" }}>
-        <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)" }}>
+        <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>
           Mapa hidrográfico oficial (clic en un polígono para seleccionar)
         </span>
         <div style={{ display: "flex", gap: "var(--spacing-xs)" }}>
@@ -174,25 +174,27 @@ export const BasinMap: React.FC<BasinMapProps> = ({
             onClick={() => setShowBasemap(!showBasemap)}
             style={{
               fontSize: "0.8rem",
-              padding: "4px 8px",
+              padding: "5px 10px",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: "var(--color-surface-muted)",
-              color: "var(--color-primary-navy)",
+              backgroundColor: "var(--color-surface-elevated)",
+              border: "1px solid var(--color-border-discrete)",
+              color: "var(--color-text-secondary)",
               fontWeight: 500
             }}
           >
-            {showBasemap ? "Ocultar mapa base OSM" : "Mostrar mapa base OSM"}
+            {showBasemap ? "Ocultar mapa OSM" : "Mostrar mapa OSM"}
           </button>
           <button
             type="button"
             onClick={handleResetView}
             style={{
               fontSize: "0.8rem",
-              padding: "4px 8px",
+              padding: "5px 10px",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: "var(--color-surface-muted)",
-              color: "var(--color-primary-navy)",
-              fontWeight: 500
+              backgroundColor: "var(--color-surface-elevated)",
+              border: "1px solid var(--color-border-discrete)",
+              color: "var(--color-primary-cyan)",
+              fontWeight: 600
             }}
           >
             Restablecer vista
@@ -209,8 +211,8 @@ export const BasinMap: React.FC<BasinMapProps> = ({
           height,
           borderRadius: "var(--border-radius-md)",
           overflow: "hidden",
-          border: "1px solid var(--color-border)",
-          backgroundColor: "#E5ECEF",
+          border: "1px solid var(--color-border-discrete)",
+          backgroundColor: "#0B2B40",
           position: "relative"
         }}
       />
@@ -232,7 +234,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
         ]).map((b) => {
           const isSelected = b.id === selectedBasin
           const isSecondary = b.id === secondSelectedBasin
-          const baseColor = BASIN_COLORS[b.id] || "#1177A7"
+          const baseColor = BASIN_COLORS[b.id] || "#20D7DF"
           return (
             <button
               key={b.id}
@@ -241,14 +243,18 @@ export const BasinMap: React.FC<BasinMapProps> = ({
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "6px",
-                padding: "4px 10px",
-                borderRadius: "var(--border-radius-sm)",
-                border: isSelected ? "2px solid #12314A" : (isSecondary ? "2px dashed #A44F24" : "1px solid var(--color-border)"),
-                backgroundColor: isSelected || isSecondary ? "#FFFFFF" : "var(--color-surface-card)",
-                fontSize: "0.8rem",
+                gap: "8px",
+                padding: "6px 12px",
+                borderRadius: "var(--border-radius-full)",
+                border: isSelected
+                  ? "2px solid var(--color-primary-cyan)"
+                  : (isSecondary ? "2px dashed var(--color-status-warning)" : "1px solid var(--color-border-discrete)"),
+                backgroundColor: isSelected || isSecondary ? "var(--color-surface-elevated)" : "var(--color-surface-card)",
+                fontSize: "0.82rem",
                 fontWeight: isSelected || isSecondary ? 700 : 500,
-                color: "var(--color-text-main)"
+                color: isSelected ? "var(--color-primary-cyan)" : "var(--color-text-main)",
+                boxShadow: isSelected ? "0 0 10px rgba(32, 215, 223, 0.25)" : "none",
+                transition: "all 0.15s ease"
               }}
             >
               <span

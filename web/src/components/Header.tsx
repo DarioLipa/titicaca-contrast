@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import type { DataStatus } from "../app/dataLoader"
+import { Logo } from "./Logo"
 
 export interface HeaderProps {
   currentTab: string
@@ -8,6 +9,8 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
+
   const navItems = [
     { id: "home", label: "Inicio" },
     { id: "explorer", label: "Explorador" },
@@ -28,12 +31,12 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               gap: "8px",
               padding: "6px 14px",
               borderRadius: "9999px",
-              background: "rgba(11, 43, 64, 0.8)",
-              border: "1px solid rgba(32, 216, 161, 0.35)",
-              color: "var(--color-indicator-green, #20D8A1)",
+              background: "rgba(16, 46, 67, 0.8)",
+              border: "1px solid rgba(32, 214, 160, 0.35)",
+              color: "var(--color-status-positive, #20D6A0)",
               fontSize: "0.8rem",
               fontWeight: 600,
-              boxShadow: "0 0 16px rgba(32, 216, 161, 0.15)",
+              boxShadow: "0 0 12px rgba(32, 214, 160, 0.15)",
               backdropFilter: "blur(12px)"
             }}
           >
@@ -42,11 +45,11 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
                 width: "7px",
                 height: "7px",
                 borderRadius: "50%",
-                backgroundColor: "#20D8A1",
-                boxShadow: "0 0 8px #20D8A1"
+                backgroundColor: "#20D6A0",
+                boxShadow: "0 0 8px #20D6A0"
               }}
             />
-            Datos actualizados
+            Datos disponibles
           </span>
         )
       case "partial":
@@ -58,22 +61,15 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               gap: "8px",
               padding: "6px 14px",
               borderRadius: "9999px",
-              background: "rgba(11, 43, 64, 0.8)",
-              border: "1px solid rgba(220, 168, 111, 0.35)",
-              color: "var(--color-accent-amber, #DCA86F)",
+              background: "rgba(16, 46, 67, 0.8)",
+              border: "1px solid rgba(214, 164, 97, 0.35)",
+              color: "var(--color-status-warning, #D6A461)",
               fontSize: "0.8rem",
               fontWeight: 600,
               backdropFilter: "blur(12px)"
             }}
           >
-            <span
-              style={{
-                width: "7px",
-                height: "7px",
-                borderRadius: "50%",
-                backgroundColor: "#DCA86F"
-              }}
-            />
+            <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "#D6A461" }} />
             Datos parciales
           </span>
         )
@@ -86,9 +82,9 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               gap: "8px",
               padding: "6px 14px",
               borderRadius: "9999px",
-              background: "rgba(11, 43, 64, 0.8)",
-              border: "1px solid rgba(35, 215, 229, 0.35)",
-              color: "var(--color-cyan-tech, #23D7E5)",
+              background: "rgba(16, 46, 67, 0.8)",
+              border: "1px solid rgba(32, 215, 223, 0.35)",
+              color: "var(--color-primary-cyan, #20D7DF)",
               fontSize: "0.8rem",
               fontWeight: 600,
               backdropFilter: "blur(12px)"
@@ -106,9 +102,9 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               gap: "8px",
               padding: "6px 14px",
               borderRadius: "9999px",
-              background: "rgba(11, 43, 64, 0.8)",
-              border: "1px solid rgba(239, 68, 68, 0.35)",
-              color: "#F87171",
+              background: "rgba(16, 46, 67, 0.8)",
+              border: "1px solid rgba(233, 121, 121, 0.35)",
+              color: "var(--color-status-error, #E97979)",
               fontSize: "0.8rem",
               fontWeight: 600,
               backdropFilter: "blur(12px)"
@@ -126,9 +122,9 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               gap: "8px",
               padding: "6px 14px",
               borderRadius: "9999px",
-              background: "rgba(11, 43, 64, 0.8)",
-              border: "1px solid rgba(239, 68, 68, 0.35)",
-              color: "#F87171",
+              background: "rgba(16, 46, 67, 0.8)",
+              border: "1px solid rgba(233, 121, 121, 0.35)",
+              color: "#E97979",
               fontSize: "0.8rem",
               fontWeight: 600,
               backdropFilter: "blur(12px)"
@@ -140,11 +136,16 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
     }
   }
 
+  const handleNavClick = (id: string) => {
+    onSelectTab(id)
+    setMobileMenuOpen(false)
+  }
+
   return (
     <header
       style={{
-        backgroundColor: "rgba(6, 24, 39, 0.85)",
-        borderBottom: "1px solid rgba(35, 215, 229, 0.15)",
+        backgroundColor: "rgba(6, 24, 39, 0.88)",
+        borderBottom: "1px solid var(--color-border-discrete)",
         position: "sticky",
         top: 0,
         zIndex: 100,
@@ -156,74 +157,24 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
         className="container"
         style={{
           display: "flex",
-          flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "space-between",
-          paddingTop: "14px",
-          paddingBottom: "14px",
+          paddingTop: "12px",
+          paddingBottom: "12px",
           gap: "var(--spacing-md)"
         }}
       >
         <div
-          style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer" }}
-          onClick={() => onSelectTab("home")}
+          style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+          onClick={() => handleNavClick("home")}
+          role="heading"
+          aria-level={1}
+          aria-label="TITICACA CONTRAST"
         >
-          <div
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "10px",
-              background: "linear-gradient(135deg, #0B4A6F 0%, #0E7490 100%)",
-              border: "1px solid rgba(35, 215, 229, 0.3)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 0 16px rgba(35, 215, 229, 0.3)"
-            }}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#23D7E5"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M2 11c3-3.5 6-3.5 9 0s6 3.5 9 0" />
-              <path d="M2 16c3-3.5 6-3.5 9 0s6 3.5 9 0" opacity="0.6" />
-            </svg>
-          </div>
-          <div>
-            <h1
-              style={{
-                fontSize: "1.12rem",
-                fontWeight: 800,
-                color: "var(--color-text-hero-white, #F7FAFC)",
-                letterSpacing: "0.02em",
-                lineHeight: 1.15,
-                margin: 0
-              }}
-            >
-              TITICACA CONTRAST
-            </h1>
-            <p
-              style={{
-                fontSize: "0.66rem",
-                fontWeight: 600,
-                color: "var(--color-turquoise, #70DCD8)",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                margin: 0
-              }}
-            >
-              Observatorio de Cuencas · Puno
-            </p>
-          </div>
+          <Logo variant="full" height={42} />
         </div>
 
-        <nav aria-label="Navegación principal">
+        <nav aria-label="Navegación principal" className="desktop-nav">
           <ul
             style={{
               display: "flex",
@@ -231,11 +182,10 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               gap: "4px",
               margin: 0,
               padding: "4px",
-              backgroundColor: "rgba(11, 43, 64, 0.65)",
+              backgroundColor: "rgba(16, 46, 67, 0.7)",
               borderRadius: "9999px",
-              border: "1px solid rgba(35, 215, 229, 0.2)",
-              backdropFilter: "blur(12px)",
-              flexWrap: "wrap"
+              border: "1px solid var(--color-border-discrete)",
+              backdropFilter: "blur(12px)"
             }}
           >
             {navItems.map((item) => {
@@ -244,16 +194,16 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
                 <li key={item.id}>
                   <button
                     type="button"
-                    onClick={() => onSelectTab(item.id)}
+                    onClick={() => handleNavClick(item.id)}
                     aria-current={isActive ? "page" : undefined}
                     style={{
                       padding: "7px 18px",
                       borderRadius: "9999px",
-                      fontSize: "0.86rem",
+                      fontSize: "0.88rem",
                       fontWeight: isActive ? 700 : 500,
-                      color: isActive ? "#F7FAFC" : "#BCD0DC",
-                      backgroundColor: isActive ? "#0E7490" : "transparent",
-                      boxShadow: isActive ? "0 0 16px rgba(35, 215, 229, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2)" : "none",
+                      color: isActive ? "#061827" : "var(--color-text-secondary)",
+                      backgroundColor: isActive ? "var(--color-primary-cyan)" : "transparent",
+                      boxShadow: isActive ? "0 0 16px rgba(32, 215, 223, 0.4)" : "none",
                       transition: "all 0.18s ease"
                     }}
                   >
@@ -265,10 +215,102 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
           </ul>
         </nav>
 
-        <div>
-          {getStatusBadge()}
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div className="desktop-status">
+            {getStatusBadge()}
+          </div>
+
+          <button
+            type="button"
+            className="mobile-menu-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "8px",
+              border: "1px solid var(--color-border-discrete)",
+              background: "var(--color-surface-card)",
+              color: "var(--color-primary-cyan)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            {mobileMenuOpen ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="4" y1="7" x2="20" y2="7" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="17" x2="20" y2="17" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
+
+      {mobileMenuOpen && (
+        <div
+          className="mobile-drawer"
+          style={{
+            backgroundColor: "rgba(6, 24, 39, 0.98)",
+            borderTop: "1px solid var(--color-border-discrete)",
+            padding: "16px var(--spacing-md) 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px"
+          }}
+        >
+          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
+            {navItems.map((item) => {
+              const isActive = currentTab === item.id
+              return (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    onClick={() => handleNavClick(item.id)}
+                    aria-current={isActive ? "page" : undefined}
+                    style={{
+                      width: "100%",
+                      textAlign: "left",
+                      padding: "10px 16px",
+                      borderRadius: "8px",
+                      fontSize: "0.95rem",
+                      fontWeight: isActive ? 700 : 500,
+                      color: isActive ? "#061827" : "var(--color-text-main)",
+                      backgroundColor: isActive ? "var(--color-primary-cyan)" : "transparent"
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+
+          <div style={{ paddingTop: "8px", borderTop: "1px solid var(--color-border-discrete)" }}>
+            {getStatusBadge()}
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        .mobile-menu-btn { display: none !important; }
+        .desktop-nav { display: block !important; }
+        .desktop-status { display: block !important; }
+        @media (max-width: 859px) {
+          .desktop-nav { display: none !important; }
+          .desktop-status { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+        }
+        @media (min-width: 860px) {
+          .mobile-drawer { display: none !important; }
+        }
+      `}</style>
     </header>
   )
 }

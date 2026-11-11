@@ -42,63 +42,66 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
     <div className="card" style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-md)" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "var(--spacing-sm)" }}>
         <div>
-          <h3 style={{ fontSize: "1.15rem", color: "var(--color-primary-navy)", fontWeight: 700 }}>
+          <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", fontWeight: 700, margin: 0 }}>
             {basinAName} ↔ {basinBName}
           </h3>
-          <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>
+          <span style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)" }}>
             Período: {contrast.start_year}–{contrast.end_year} ({contrast.n_paired_years} años emparejados)
           </span>
         </div>
         {getBadge(contrast.evidence_status)}
       </div>
 
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: "var(--spacing-sm)",
-        padding: "var(--spacing-sm)",
-        backgroundColor: "var(--color-surface-muted)",
-        borderRadius: "var(--border-radius-sm)",
-        fontSize: "0.85rem"
-      }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "var(--spacing-sm)",
+          padding: "var(--spacing-sm)",
+          backgroundColor: "var(--color-surface-elevated)",
+          border: "1px solid var(--color-border-discrete)",
+          borderRadius: "var(--border-radius-sm)",
+          fontSize: "0.85rem"
+        }}
+      >
         <div>
-          <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>
+          <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>
             Pendiente brecha:
           </span>
-          <strong style={{ fontSize: "1rem", color: "var(--color-primary-navy)" }}>
+          <strong style={{ fontSize: "1rem", color: "var(--color-primary-cyan)" }}>
             {contrast.gap_slope_mm_per_year > 0 ? `+${contrast.gap_slope_mm_per_year}` : contrast.gap_slope_mm_per_year} mm/año
           </strong>
         </div>
 
         <div>
-          <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>
+          <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>
             IC 95% (HAC L=2):
           </span>
-          <span style={{ fontWeight: 600 }}>
+          <span style={{ fontWeight: 600, color: "var(--color-text-main)" }}>
             [{contrast.gap_slope_ci95[0]}, {contrast.gap_slope_ci95[1]}]
           </span>
         </div>
 
         <div>
-          <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>
+          <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>
             Valor p (HAC):
           </span>
-          <span style={{ fontWeight: 600 }}>
+          <span style={{ fontWeight: 600, color: "var(--color-text-main)" }}>
             {contrast.p_value}
           </span>
         </div>
 
         <div>
-          <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>
+          <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>
             Valor q (FDR m=6):
           </span>
-          <span style={{ fontWeight: 600 }}>
+          <span style={{ fontWeight: 600, color: "var(--color-text-main)" }}>
             {contrast.q_value_fdr}
           </span>
         </div>
       </div>
 
-      <p style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: 1.5, margin: 0 }}>
+      <p style={{ fontSize: "0.86rem", color: "var(--color-text-secondary)", lineHeight: 1.55, margin: 0 }}>
         {getStatusText(contrast.evidence_status)}
       </p>
 
@@ -107,12 +110,14 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
         onClick={() => onOpenEvidence(contrast.basin_a, contrast.basin_b)}
         style={{
           alignSelf: "flex-start",
-          padding: "6px 12px",
-          borderRadius: "var(--border-radius-sm)",
-          backgroundColor: "var(--color-action-blue)",
-          color: "#FFFFFF",
+          padding: "7px 14px",
+          borderRadius: "var(--border-radius-full)",
+          backgroundColor: "var(--color-surface-elevated)",
+          border: "1px solid var(--color-border-discrete)",
+          color: "var(--color-primary-cyan)",
           fontSize: "0.85rem",
-          fontWeight: 600
+          fontWeight: 600,
+          transition: "all 0.15s ease"
         }}
       >
         Ver ficha de evidencia completa
@@ -120,4 +125,3 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
     </div>
   )
 }
-

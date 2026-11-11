@@ -40,7 +40,7 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
       border: "1px solid var(--color-border)"
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-sm)" }}>
-        <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--color-primary-navy)" }}>
+        <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--color-text-main)" }}>
           Período de análisis: {startYear} – {endYear} ({endYear - startYear + 1} años)
         </span>
         <div style={{ display: "flex", gap: "var(--spacing-xs)", flexWrap: "wrap" }}>
@@ -48,12 +48,14 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
             type="button"
             onClick={() => onPeriodChange(2001, 2024)}
             style={{
-              padding: "4px 8px",
+              padding: "5px 10px",
               fontSize: "0.75rem",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: startYear === 2001 && endYear === 2024 ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-              color: startYear === 2001 && endYear === 2024 ? "#FFFFFF" : "var(--color-text-main)",
-              fontWeight: 600
+              border: "1px solid " + (startYear === 2001 && endYear === 2024 ? "var(--color-primary-cyan)" : "var(--color-border)"),
+              backgroundColor: startYear === 2001 && endYear === 2024 ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+              color: startYear === 2001 && endYear === 2024 ? "#061827" : "var(--color-text-secondary)",
+              fontWeight: 600,
+              cursor: "pointer"
             }}
           >
             2001–2024 (Completo)
@@ -62,12 +64,14 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
             type="button"
             onClick={() => onPeriodChange(2001, 2020)}
             style={{
-              padding: "4px 8px",
+              padding: "5px 10px",
               fontSize: "0.75rem",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: startYear === 2001 && endYear === 2020 ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-              color: startYear === 2001 && endYear === 2020 ? "#FFFFFF" : "var(--color-text-main)",
-              fontWeight: 600
+              border: "1px solid " + (startYear === 2001 && endYear === 2020 ? "var(--color-primary-cyan)" : "var(--color-border)"),
+              backgroundColor: startYear === 2001 && endYear === 2020 ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+              color: startYear === 2001 && endYear === 2020 ? "#061827" : "var(--color-text-secondary)",
+              fontWeight: 600,
+              cursor: "pointer"
             }}
           >
             2001–2020 (Referencia)
@@ -76,12 +80,14 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
             type="button"
             onClick={() => onPeriodChange(2015, 2024)}
             style={{
-              padding: "4px 8px",
+              padding: "5px 10px",
               fontSize: "0.75rem",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: startYear === 2015 && endYear === 2024 ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-              color: startYear === 2015 && endYear === 2024 ? "#FFFFFF" : "var(--color-text-main)",
-              fontWeight: 600
+              border: "1px solid " + (startYear === 2015 && endYear === 2024 ? "var(--color-primary-cyan)" : "var(--color-border)"),
+              backgroundColor: startYear === 2015 && endYear === 2024 ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+              color: startYear === 2015 && endYear === 2024 ? "#061827" : "var(--color-text-secondary)",
+              fontWeight: 600,
+              cursor: "pointer"
             }}
           >
             2015–2024 (Decenio)
@@ -91,7 +97,7 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
 
       <div style={{ display: "flex", gap: "var(--spacing-md)", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "var(--spacing-xs)" }}>
-          <label htmlFor="start-year-select" style={{ fontSize: "0.85rem", color: "var(--color-text-muted)" }}>
+          <label htmlFor="start-year-select" style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>
             Desde:
           </label>
           <select
@@ -102,6 +108,8 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
               padding: "6px 10px",
               borderRadius: "var(--border-radius-sm)",
               border: "1px solid var(--color-border)",
+              backgroundColor: "var(--color-surface-elevated)",
+              color: "var(--color-text-main)",
               fontSize: "0.9rem"
             }}
           >
@@ -112,7 +120,7 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "var(--spacing-xs)" }}>
-          <label htmlFor="end-year-select" style={{ fontSize: "0.85rem", color: "var(--color-text-muted)" }}>
+          <label htmlFor="end-year-select" style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>
             Hasta:
           </label>
           <select
@@ -123,6 +131,8 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
               padding: "6px 10px",
               borderRadius: "var(--border-radius-sm)",
               border: "1px solid var(--color-border)",
+              backgroundColor: "var(--color-surface-elevated)",
+              color: "var(--color-text-main)",
               fontSize: "0.9rem"
             }}
           >

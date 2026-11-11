@@ -55,11 +55,11 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
   return (
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
-        <h2 style={{ fontSize: "1.75rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-xs)" }}>
+        <h2 style={{ fontSize: "1.75rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
           Explorador de cuencas tributarias
         </h2>
-        <p style={{ color: "var(--color-text-muted)", margin: 0 }}>
-          Visualización de cartografía oficial ANA, series históricas de precipitación NASA IMERG V07 y análisis univariado Theil-Sen / Mann-Kendall.
+        <p style={{ color: "var(--color-text-secondary)", margin: 0, fontSize: "0.95rem" }}>
+          Visualización de cartografía oficial ANA, series de precipitación satelital y análisis univariado Theil-Sen / Mann-Kendall.
         </p>
       </div>
 
@@ -72,7 +72,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
             onSelectBasin={setSelectedBasin}
             geoJsonData={data.geoJson}
             basins={data.basins}
-            height="400px"
+            height="420px"
           />
         </div>
 
@@ -87,23 +87,23 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
             />
 
             <div style={{ marginTop: "var(--spacing-md)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--spacing-sm)", fontSize: "0.85rem" }}>
-              <div style={{ padding: "8px", backgroundColor: "var(--color-surface-muted)", borderRadius: "var(--border-radius-sm)" }}>
-                <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>Código oficial ANA:</span>
-                <strong style={{ color: "var(--color-primary-navy)" }}>{currentBasin.official_code}</strong>
+              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
+                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Código oficial ANA:</span>
+                <strong style={{ color: "var(--color-primary-cyan)", fontSize: "0.95rem" }}>{currentBasin.official_code}</strong>
               </div>
-              <div style={{ padding: "8px", backgroundColor: "var(--color-surface-muted)", borderRadius: "var(--border-radius-sm)" }}>
-                <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>Área oficial:</span>
-                <strong style={{ color: "var(--color-primary-navy)" }}>{Number(currentBasin.area_km2).toLocaleString()} km²</strong>
+              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
+                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Área oficial:</span>
+                <strong style={{ color: "var(--color-text-main)", fontSize: "0.95rem" }}>{Number(currentBasin.area_km2).toLocaleString()} km²</strong>
               </div>
-              <div style={{ padding: "8px", backgroundColor: "var(--color-surface-muted)", borderRadius: "var(--border-radius-sm)" }}>
-                <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>Tendencia Theil-Sen:</span>
-                <strong style={{ color: "var(--color-alert)" }}>
+              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
+                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Tendencia Theil-Sen:</span>
+                <strong style={{ color: "var(--color-status-warning)", fontSize: "0.95rem" }}>
                   {currentTrend ? `${currentTrend.sen_slope_mm_per_year} mm/año` : "Calculando..."}
                 </strong>
               </div>
-              <div style={{ padding: "8px", backgroundColor: "var(--color-surface-muted)", borderRadius: "var(--border-radius-sm)" }}>
-                <span style={{ display: "block", color: "var(--color-text-muted)", fontSize: "0.75rem" }}>Mann-Kendall p:</span>
-                <strong style={{ color: "var(--color-primary-navy)" }}>
+              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
+                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Mann-Kendall p:</span>
+                <strong style={{ color: "var(--color-text-main)", fontSize: "0.95rem" }}>
                   {currentTrend ? `p = ${currentTrend.mann_kendall_p}` : "Calculando..."}
                 </strong>
               </div>
@@ -122,7 +122,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
 
       <div className="card" style={{ marginBottom: "var(--spacing-lg)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-sm)", marginBottom: "var(--spacing-md)" }}>
-          <h3 style={{ fontSize: "1.2rem", color: "var(--color-primary-navy)", margin: 0 }}>
+          <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
             {chartMode === "annual" ? `Precipitación anual y línea Theil-Sen: Cuenca ${currentBasin.name}` : `Ciclo estacional medio multianual: Cuenca ${currentBasin.name}`}
           </h3>
           <div style={{ display: "flex", gap: "var(--spacing-xs)" }}>
@@ -130,12 +130,14 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
               type="button"
               onClick={() => setChartMode("annual")}
               style={{
-                padding: "6px 12px",
-                borderRadius: "var(--border-radius-sm)",
-                backgroundColor: chartMode === "annual" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-                color: chartMode === "annual" ? "#FFFFFF" : "var(--color-text-main)",
+                padding: "6px 14px",
+                borderRadius: "var(--border-radius-full)",
+                backgroundColor: chartMode === "annual" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+                color: chartMode === "annual" ? "#061827" : "var(--color-text-secondary)",
+                border: "1px solid var(--color-border-discrete)",
                 fontSize: "0.85rem",
-                fontWeight: 600
+                fontWeight: 600,
+                transition: "all 0.15s ease"
               }}
             >
               Serie anual + Tendencia
@@ -144,12 +146,14 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
               type="button"
               onClick={() => setChartMode("monthly")}
               style={{
-                padding: "6px 12px",
-                borderRadius: "var(--border-radius-sm)",
-                backgroundColor: chartMode === "monthly" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-                color: chartMode === "monthly" ? "#FFFFFF" : "var(--color-text-main)",
+                padding: "6px 14px",
+                borderRadius: "var(--border-radius-full)",
+                backgroundColor: chartMode === "monthly" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+                color: chartMode === "monthly" ? "#061827" : "var(--color-text-secondary)",
+                border: "1px solid var(--color-border-discrete)",
                 fontSize: "0.85rem",
-                fontWeight: 600
+                fontWeight: 600,
+                transition: "all 0.15s ease"
               }}
             >
               Ciclo estacional

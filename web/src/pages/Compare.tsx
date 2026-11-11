@@ -82,10 +82,10 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
   return (
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
-        <h2 style={{ fontSize: "1.75rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-xs)" }}>
+        <h2 style={{ fontSize: "1.75rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
           Comparador de cuencas emparejadas
         </h2>
-        <p style={{ color: "var(--color-text-muted)", margin: 0 }}>
+        <p style={{ color: "var(--color-text-secondary)", margin: 0, fontSize: "0.95rem" }}>
           Evaluación rigurosa de la brecha temporal D(t) = P_A(t) - P_B(t) con errores estándar robustos HAC y control FDR.
         </p>
       </div>
@@ -118,10 +118,11 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
             role="alert"
             style={{
               marginTop: "var(--spacing-md)",
-              padding: "var(--spacing-sm) var(--spacing-md)",
+              padding: "10px 14px",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: "#FDF3ED",
-              color: "var(--color-alert)",
+              backgroundColor: "rgba(214, 164, 97, 0.15)",
+              border: "1px solid rgba(214, 164, 97, 0.35)",
+              color: "var(--color-status-warning)",
               fontSize: "0.9rem",
               fontWeight: 500
             }}
@@ -141,7 +142,7 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
                 onSelectBasin={setBasinA}
                 geoJsonData={data.geoJson}
                 basins={data.basins}
-                height="360px"
+                height="380px"
               />
             </div>
 
@@ -167,23 +168,25 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
 
           <div className="card" style={{ marginBottom: "var(--spacing-lg)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-sm)", marginBottom: "var(--spacing-md)" }}>
-              <h3 style={{ fontSize: "1.2rem", color: "var(--color-primary-navy)", margin: 0 }}>
+              <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
                 {compareMode === "gap"
                   ? `Brecha temporal anual D(t) = ${basinAObj.name} - ${basinBObj.name}`
                   : (compareMode === "annual" ? `Precipitaciones anuales superpuestas: ${basinAObj.name} vs ${basinBObj.name}` : `Ciclos estacionales comparados: ${basinAObj.name} vs ${basinBObj.name}`)}
               </h3>
 
-              <div style={{ display: "flex", gap: "var(--spacing-xs)" }}>
+              <div style={{ display: "flex", gap: "var(--spacing-xs)", flexWrap: "wrap" }}>
                 <button
                   type="button"
                   onClick={() => setCompareMode("gap")}
                   style={{
-                    padding: "6px 12px",
-                    borderRadius: "var(--border-radius-sm)",
-                    backgroundColor: compareMode === "gap" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-                    color: compareMode === "gap" ? "#FFFFFF" : "var(--color-text-main)",
+                    padding: "6px 14px",
+                    borderRadius: "var(--border-radius-full)",
+                    backgroundColor: compareMode === "gap" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+                    color: compareMode === "gap" ? "#061827" : "var(--color-text-secondary)",
+                    border: "1px solid var(--color-border-discrete)",
                     fontSize: "0.85rem",
-                    fontWeight: 600
+                    fontWeight: 600,
+                    transition: "all 0.15s ease"
                   }}
                 >
                   Brecha D(t)
@@ -192,12 +195,14 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
                   type="button"
                   onClick={() => setCompareMode("annual")}
                   style={{
-                    padding: "6px 12px",
-                    borderRadius: "var(--border-radius-sm)",
-                    backgroundColor: compareMode === "annual" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-                    color: compareMode === "annual" ? "#FFFFFF" : "var(--color-text-main)",
+                    padding: "6px 14px",
+                    borderRadius: "var(--border-radius-full)",
+                    backgroundColor: compareMode === "annual" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+                    color: compareMode === "annual" ? "#061827" : "var(--color-text-secondary)",
+                    border: "1px solid var(--color-border-discrete)",
                     fontSize: "0.85rem",
-                    fontWeight: 600
+                    fontWeight: 600,
+                    transition: "all 0.15s ease"
                   }}
                 >
                   Superpuesta anual
@@ -206,12 +211,14 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
                   type="button"
                   onClick={() => setCompareMode("monthly")}
                   style={{
-                    padding: "6px 12px",
-                    borderRadius: "var(--border-radius-sm)",
-                    backgroundColor: compareMode === "monthly" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-                    color: compareMode === "monthly" ? "#FFFFFF" : "var(--color-text-main)",
+                    padding: "6px 14px",
+                    borderRadius: "var(--border-radius-full)",
+                    backgroundColor: compareMode === "monthly" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+                    color: compareMode === "monthly" ? "#061827" : "var(--color-text-secondary)",
+                    border: "1px solid var(--color-border-discrete)",
                     fontSize: "0.85rem",
-                    fontWeight: 600
+                    fontWeight: 600,
+                    transition: "all 0.15s ease"
                   }}
                 >
                   Ciclos estacionales

@@ -32,7 +32,7 @@ export const ExportControls: React.FC<ExportControlsProps> = ({
       border: "1px solid var(--color-border)",
       borderRadius: "var(--border-radius-md)"
     }}>
-      <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-primary-navy)" }}>
+      <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-main)" }}>
         Exportar y compartir:
       </span>
 
@@ -44,10 +44,12 @@ export const ExportControls: React.FC<ExportControlsProps> = ({
             style={{
               padding: "6px 12px",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: "var(--color-surface-muted)",
-              color: "var(--color-primary-navy)",
+              border: "1px solid var(--color-border)",
+              backgroundColor: "var(--color-surface-elevated)",
+              color: "var(--color-text-main)",
               fontSize: "0.8rem",
-              fontWeight: 600
+              fontWeight: 600,
+              cursor: "pointer"
             }}
           >
             Descargar CSV mensual
@@ -58,10 +60,12 @@ export const ExportControls: React.FC<ExportControlsProps> = ({
             style={{
               padding: "6px 12px",
               borderRadius: "var(--border-radius-sm)",
-              backgroundColor: "var(--color-surface-muted)",
-              color: "var(--color-primary-navy)",
+              border: "1px solid var(--color-border)",
+              backgroundColor: "var(--color-surface-elevated)",
+              color: "var(--color-text-main)",
               fontSize: "0.8rem",
-              fontWeight: 600
+              fontWeight: 600,
+              cursor: "pointer"
             }}
           >
             Descargar CSV anual
@@ -76,10 +80,12 @@ export const ExportControls: React.FC<ExportControlsProps> = ({
           style={{
             padding: "6px 12px",
             borderRadius: "var(--border-radius-sm)",
-            backgroundColor: "var(--color-surface-muted)",
-            color: "var(--color-primary-navy)",
+            border: "1px solid var(--color-border)",
+            backgroundColor: "var(--color-surface-elevated)",
+            color: "var(--color-text-main)",
             fontSize: "0.8rem",
-            fontWeight: 600
+            fontWeight: 600,
+            cursor: "pointer"
           }}
         >
           Guardar imagen del gráfico
@@ -90,12 +96,14 @@ export const ExportControls: React.FC<ExportControlsProps> = ({
         type="button"
         onClick={handleCopyLink}
         style={{
-          padding: "6px 12px",
+          padding: "6px 14px",
           borderRadius: "var(--border-radius-sm)",
-          backgroundColor: copied ? "var(--color-teal-water)" : "var(--color-action-blue)",
-          color: "#FFFFFF",
+          border: "none",
+          backgroundColor: copied ? "var(--color-status-positive)" : "var(--color-primary-cyan)",
+          color: "#061827",
           fontSize: "0.8rem",
-          fontWeight: 600
+          fontWeight: 700,
+          cursor: "pointer"
         }}
       >
         {copied ? "¡Enlace copiado!" : "Copiar enlace permanente"}

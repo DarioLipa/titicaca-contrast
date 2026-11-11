@@ -32,7 +32,7 @@ export const BasinSelector: React.FC<BasinSelectorProps> = ({
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-xs)" }}>
       {label && (
-        <label htmlFor={id} style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--color-primary-navy)" }}>
+        <label htmlFor={id} style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--color-text-main)" }}>
           {label}
         </label>
       )}
@@ -44,9 +44,9 @@ export const BasinSelector: React.FC<BasinSelectorProps> = ({
           width: "100%",
           padding: "10px 14px",
           borderRadius: "var(--border-radius-sm)",
-          border: "1px solid var(--color-border)",
-          backgroundColor: "#FFFFFF",
-          fontSize: "1rem",
+          border: "1px solid var(--color-border-discrete)",
+          backgroundColor: "var(--color-surface-elevated)",
+          fontSize: "0.95rem",
           color: "var(--color-text-main)",
           fontWeight: 500
         }}
@@ -56,6 +56,7 @@ export const BasinSelector: React.FC<BasinSelectorProps> = ({
             key={b.id}
             value={b.id}
             disabled={b.id === disabledBasin}
+            style={{ backgroundColor: "#102E43", color: "#F7FAFC" }}
           >
             Cuenca {b.name} (ANA: {b.code}){b.id === disabledBasin ? " — seleccionada en par" : ""}
           </option>
@@ -64,4 +65,3 @@ export const BasinSelector: React.FC<BasinSelectorProps> = ({
     </div>
   )
 }
-

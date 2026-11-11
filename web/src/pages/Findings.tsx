@@ -47,11 +47,11 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
   return (
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
-        <h2 style={{ fontSize: "1.75rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-xs)" }}>
+        <h2 style={{ fontSize: "1.75rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
           Panel de hallazgos y contrastes emparejados
         </h2>
-        <p style={{ color: "var(--color-text-muted)", margin: 0, lineHeight: 1.5 }}>
-          Matriz de las 6 parejas de cuencas posibles con especificación confirmatoria 2001–2024 (n = 24 años), control de descubrimientos falsos (Benjamini–Hochberg FDR, q ≤ 0.05) y errores robustos HAC.
+        <p style={{ color: "var(--color-text-secondary)", margin: 0, lineHeight: 1.5, fontSize: "0.95rem" }}>
+          Matriz de las 6 parejas de cuencas posibles con especificación confirmatoria (n = 24 años), control de descubrimientos falsos (Benjamini–Hochberg FDR, q ≤ 0.05) y errores robustos HAC.
         </p>
       </div>
 
@@ -63,11 +63,13 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
           onClick={() => setFilter("all")}
           style={{
             padding: "8px 16px",
-            borderRadius: "var(--border-radius-sm)",
-            backgroundColor: filter === "all" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-            color: filter === "all" ? "#FFFFFF" : "var(--color-text-main)",
+            borderRadius: "var(--border-radius-full)",
+            backgroundColor: filter === "all" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+            color: filter === "all" ? "#061827" : "var(--color-text-secondary)",
+            border: "1px solid var(--color-border-discrete)",
             fontWeight: 600,
-            fontSize: "0.85rem"
+            fontSize: "0.85rem",
+            transition: "all 0.15s ease"
           }}
         >
           Todas las parejas (6)
@@ -77,11 +79,13 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
           onClick={() => setFilter("inconclusive")}
           style={{
             padding: "8px 16px",
-            borderRadius: "var(--border-radius-sm)",
-            backgroundColor: filter === "inconclusive" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-            color: filter === "inconclusive" ? "#FFFFFF" : "var(--color-text-main)",
+            borderRadius: "var(--border-radius-full)",
+            backgroundColor: filter === "inconclusive" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+            color: filter === "inconclusive" ? "#061827" : "var(--color-text-secondary)",
+            border: "1px solid var(--color-border-discrete)",
             fontWeight: 600,
-            fontSize: "0.85rem"
+            fontSize: "0.85rem",
+            transition: "all 0.15s ease"
           }}
         >
           Inconcluso tras FDR (1)
@@ -91,11 +95,13 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
           onClick={() => setFilter("no_change")}
           style={{
             padding: "8px 16px",
-            borderRadius: "var(--border-radius-sm)",
-            backgroundColor: filter === "no_change" ? "var(--color-action-blue)" : "var(--color-surface-muted)",
-            color: filter === "no_change" ? "#FFFFFF" : "var(--color-text-main)",
+            borderRadius: "var(--border-radius-full)",
+            backgroundColor: filter === "no_change" ? "var(--color-primary-cyan)" : "var(--color-surface-elevated)",
+            color: filter === "no_change" ? "#061827" : "var(--color-text-secondary)",
+            border: "1px solid var(--color-border-discrete)",
             fontWeight: 600,
-            fontSize: "0.85rem"
+            fontSize: "0.85rem",
+            transition: "all 0.15s ease"
           }}
         >
           Sin cambio detectable (5)
@@ -114,22 +120,22 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
         ))}
       </div>
 
-      <div className="card" style={{ backgroundColor: "#FFFFFF" }}>
-        <h3 style={{ fontSize: "1.1rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-sm)" }}>
+      <div className="card">
+        <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-sm)", fontWeight: 700 }}>
           Conclusiones y síntesis científica
         </h3>
-        <ul style={{ paddingLeft: "var(--spacing-lg)", fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: 1.6 }}>
-          <li>
-            <strong>Reducción uniforme general:</strong> Las 4 cuencas oficiales presentan pendientes Theil-Sen negativas y estadísticamente significativas en el acumulado anual 2001–2024 (Ramis: -11.45 mm/año, Huancané: -10.68 mm/año, Coata: -8.13 mm/año, Ilave: -4.88 mm/año).
+        <ul style={{ paddingLeft: "var(--spacing-lg)", fontSize: "0.92rem", color: "var(--color-text-secondary)", lineHeight: 1.65 }}>
+          <li style={{ marginBottom: "6px" }}>
+            <strong style={{ color: "var(--color-text-main)" }}>Reducción uniforme general:</strong> Las 4 cuencas oficiales presentan pendientes Theil-Sen negativas y estadísticamente significativas en el acumulado anual 2001–2024 (Ramis: -11.45 mm/año, Huancané: -10.68 mm/año, Coata: -8.13 mm/año, Ilave: -4.88 mm/año).
+          </li>
+          <li style={{ marginBottom: "6px" }}>
+            <strong style={{ color: "var(--color-text-main)" }}>Estabilidad en las brechas relativas:</strong> Al analizar las diferencias anuales D(t) = P_A(t) - P_B(t), 5 de las 6 parejas no presentan pendiente significativamente distinta de cero (p &gt; 0.05), lo que demuestra que la reducción pluvial ha sido homogénea a escala de cuenca.
+          </li>
+          <li style={{ marginBottom: "6px" }}>
+            <strong style={{ color: "var(--color-text-main)" }}>Rigor en el par Coata ↔ Ilave:</strong> Presenta una pendiente univariada nominal de -2.07 mm/año con p = 0.0443; sin embargo, al corregir por multiplicidad de hipótesis con Benjamini–Hochberg (m = 6), su valor q resulta en 0.2659 (&gt; 0.05), catalogándose honestamente como <em>inconcluso</em> conforme a las directrices del Plan Maestro.
           </li>
           <li>
-            <strong>Estabilidad en las brechas relativas:</strong> Al analizar las diferencias anuales D(t) = P_A(t) - P_B(t), 5 de las 6 parejas no presentan pendiente significativamente distinta de cero (p &gt; 0.05), lo que demuestra que la reducción pluvial ha sido homogénea a escala de cuenca.
-          </li>
-          <li>
-            <strong>Rigor en el par Coata ↔ Ilave:</strong> Presenta una pendiente univariada nominal de -2.07 mm/año con p = 0.0443; sin embargo, al corregir por multiplicidad de hipótesis con Benjamini–Hochberg (m = 6), su valor q resulta en 0.2659 (&gt; 0.05), catalogándose honestamente como <em>inconcluso</em> conforme a las directrices del Plan Maestro.
-          </li>
-          <li>
-            <strong>No causalidad:</strong> No debe extrapolarse este resultado como causa única del descenso en el nivel del Lago Titicaca, el cual depende de evaporación neta, balances térmicos y demandas hídricas.
+            <strong style={{ color: "var(--color-text-main)" }}>No causalidad:</strong> No debe extrapolarse este resultado como causa única del descenso en el nivel del Lago Titicaca, el cual depende de evaporación neta, balances térmicos y demandas hídricas.
           </li>
         </ul>
       </div>
