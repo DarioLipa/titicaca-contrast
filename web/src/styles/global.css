@@ -56,9 +56,9 @@ select, input {
 
 .container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 clamp(20px, 4.2vw, 72px);
 }
 
 .card {
@@ -116,13 +116,14 @@ select, input {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  gap: var(--spacing-xl);
-  min-height: 560px;
+  gap: clamp(24px, 3.5vw, 56px);
+  width: 100%;
+  min-height: clamp(580px, 78vh, 860px);
 }
 
 @media (min-width: 1040px) {
   .hero-grid {
-    grid-template-columns: 1fr 1.15fr;
+    grid-template-columns: 4fr 6fr;
   }
 }
 
@@ -132,18 +133,19 @@ select, input {
   gap: var(--spacing-md);
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 960px) {
   .hero-right-zone {
-    grid-template-columns: 1fr 240px;
-    gap: var(--spacing-md);
+    grid-template-columns: 1fr 220px;
+    gap: clamp(16px, 2vw, 24px);
   }
 }
 
 .hero-visual-canvas {
   width: 100%;
-  height: 500px;
+  height: clamp(480px, 68vh, 720px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,10 +154,23 @@ select, input {
 
 @media (max-width: 767px) {
   .container {
-    padding: 0 var(--spacing-md);
+    padding: 0 clamp(16px, 3.5vw, 24px);
   }
 
   .hero-visual-canvas {
-    height: 380px;
+    height: clamp(360px, 48vh, 440px);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .hero-buttons button {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
   }
 }

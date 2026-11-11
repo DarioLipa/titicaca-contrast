@@ -221,3 +221,33 @@
   - 32/32 pruebas de pipeline científico en Pytest (100% pasadas).
   - 0 errores en `tsc --noEmit` y compilación de producción Vite limpia.
   - 0 comentarios de código en archivos de código fuente (`.ts`, `.tsx`, `.py`).
+
+---
+
+## Corrección de Layout Fluido, Integración del Lago Titicaca y Perfeccionamiento 3D (Noviembre 2026)
+
+- **Aprovechamiento de pantalla y distribución fluida:**
+  - Se eliminaron las restricciones de ancho rígido (`max-width: 1440px`) en `.container`, expandiéndolo a `max-width: 1800px` con padding lateral dinámico `clamp(20px, 4.2vw, 72px)`. En monitores de 1650 px los márgenes laterales se sitúan entre 60 y 70 px.
+  - Hero estructurado en dos zonas principales: columna izquierda de ~40% (título, descripción, botones CTA y fuentes científicas sin redundancias) y columna derecha de ~60% (modelo 3D y columna auxiliar de paneles).
+- **Incorporación oficial y conforme del Lago Titicaca:**
+  - Se extrajo e integró la cartografía del Lago Titicaca (`web/public/data/lake.geojson`) reproyectada en el mismo sistema geodésico y plano de referencia conforme que las cuatro cuencas tributarias (`web/src/data/basinPolygons.ts`).
+  - Modelado tridimensional de Lago Mayor y Lago Menor (Huiñaymarca) en agua azul profundo reflectante (`#073F69`), extrusión conceptual a nivel de espejo de agua (`y = 0.02`) y contorno perimétrico cian discreto (`#20D7DF`).
+  - Cohesión geográfica auténtica: las cuencas de Ramis (noroeste), Huancané (noreste), Coata (centro-oeste) e Ilave (suroeste) desembocan y encajan exactamente en el litoral del lago.
+- **Ampliación de escala y encuadre 3D (70% - 85% de ocupación):**
+  - El conjunto territorial ocupa el ~80% del área vertical y horizontal de la escena.
+  - Cámara calibrada a `FOV = 38°`, posición `(0, 3.6, dist)` y target en el centroide geográfico `(0, 0.1, 0)`.
+  - Zoom dinámico acotado estrictamente entre 4.8 y 9.8 unidades para evitar desbordes y pérdidas de contexto.
+- **Refinamiento de satélite y anillo orbital:**
+  - Satélite reposicionado a altura visible equilibrada (`y = 2.05`) dentro del encuadre. Cuerpo central octogonal de manta térmica dorada (MLI), aviónica plateada/blanca, alas fotovoltaicas simétricas de celda azul profundo, sensor parabólico apuntando al lago y haz de escaneo cónico translúcido cian con pulso armónico.
+  - Anillo orbital exterior concéntrico (`R = 3.32 - 3.36`) rodeando limpiamente todo el conjunto de lago y cuencas con marcas radiales y nodos de telemetría sin colisiones geométricas.
+- **Columna auxiliar de telemetría HUD (200 - 240 px):**
+  - Reorganizada en 3 paneles uniformes sin superposiciones sobre el modelo 3D:
+    1. *Monitoreo satelital* (NASA GPM-IMERG V07, actualización mensual calibrada).
+    2. *Precipitación* (Tendencia histórica con minigráfico interactivo y tasa media de -8.2 mm/año).
+    3. *Contrastes* (Brechas territoriales intercuenca con inferencia HAC / FDR).
+  - Eliminada la tarjeta independiente de Altiplano.
+- **Fotografía panorámica auténtica visible:**
+  - Fondo fotográfico del lago Titicaca optimizado con doble degradado sutil: oscurecimiento profundo lateral en la zona de textos (izquierda) y transparencia luminosa en el centro/derecha para apreciar con nitidez el espejo de agua andino y la cordillera.
+- **Validación visual automatizada en navegador real (Headless Chrome):**
+  - Captura y verificación de renderizado en `desktop-1650x900.png`, `laptop-1366x768.png` y `mobile-390x844.png`.
+  - En móviles, botones CTA apilados verticalmente a ancho completo sin desbordes horizontales ni recortes.

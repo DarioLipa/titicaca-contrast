@@ -19,17 +19,16 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
           position: "relative",
           backgroundColor: "var(--color-bg-main, #061827)",
           backgroundImage: `
-            radial-gradient(ellipse 65% 45% at 88% 10%, rgba(32, 215, 223, 0.16) 0%, rgba(11, 43, 64, 0.08) 45%, transparent 80%),
-            radial-gradient(circle at 18% 45%, rgba(6, 24, 39, 0.96) 0%, rgba(6, 24, 39, 0.82) 50%, transparent 80%),
-            linear-gradient(180deg, #061827 0%, rgba(6, 24, 39, 0.85) 40%, rgba(11, 43, 64, 0.7) 75%, rgba(6, 24, 39, 0.98) 100%),
+            linear-gradient(90deg, rgba(6, 24, 39, 0.96) 0%, rgba(6, 24, 39, 0.88) 36%, rgba(6, 24, 39, 0.50) 62%, rgba(6, 24, 39, 0.18) 85%, rgba(6, 24, 39, 0.38) 100%),
+            linear-gradient(180deg, rgba(6, 24, 39, 0.70) 0%, transparent 20%, transparent 75%, rgba(6, 24, 39, 0.95) 100%),
             url(/images/titicaca-panorama.jpg)
           `,
-          backgroundPosition: "center top, left center, center center, center bottom",
-          backgroundSize: "auto, auto, auto, cover",
+          backgroundPosition: "left center, center top, center 42%",
+          backgroundSize: "auto, auto, cover",
           backgroundRepeat: "no-repeat",
           color: "var(--color-text-main, #F7FAFC)",
-          paddingTop: "var(--spacing-2xl)",
-          paddingBottom: "var(--spacing-2xl)",
+          paddingTop: "clamp(24px, 4vh, 48px)",
+          paddingBottom: "clamp(32px, 5vh, 60px)",
           overflow: "hidden",
           borderBottom: "1px solid var(--color-border-discrete)"
         }}
@@ -41,8 +40,8 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: "radial-gradient(circle at 50% 50%, rgba(32, 215, 223, 0.04) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
+            backgroundImage: "radial-gradient(circle at 50% 50%, rgba(32, 215, 223, 0.03) 1px, transparent 1px)",
+            backgroundSize: "36px 36px",
             pointerEvents: "none"
           }}
         />
@@ -51,14 +50,14 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
           <StatusMessage status={data.status} message={data.errorMessage || data.manifest?.notes} />
 
           <div className="hero-grid">
-            <div style={{ maxWidth: "580px", zIndex: 15 }}>
+            <div style={{ maxWidth: "560px", zIndex: 15 }}>
               <h1
                 style={{
-                  fontSize: "clamp(2.3rem, 4.6vw, 3.8rem)",
+                  fontSize: "clamp(2.4rem, 4.4vw, 3.8rem)",
                   fontWeight: 800,
-                  lineHeight: 1.12,
-                  letterSpacing: "-0.025em",
-                  marginBottom: "var(--spacing-md)",
+                  lineHeight: 1.14,
+                  letterSpacing: "-0.03em",
+                  marginBottom: "clamp(14px, 2vh, 22px)",
                   color: "#F7FAFC"
                 }}
               >
@@ -73,10 +72,10 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
 
               <p
                 style={{
-                  fontSize: "1.06rem",
+                  fontSize: "clamp(0.98rem, 1.15vw, 1.08rem)",
                   lineHeight: 1.65,
                   color: "var(--color-text-secondary, #BED1DD)",
-                  marginBottom: "var(--spacing-xl)",
+                  marginBottom: "clamp(20px, 3vh, 32px)",
                   maxWidth: "520px"
                 }}
               >
@@ -84,11 +83,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
               </p>
 
               <div
+                className="hero-buttons"
                 style={{
                   display: "flex",
-                  gap: "var(--spacing-md)",
+                  gap: "12px",
                   flexWrap: "wrap",
-                  marginBottom: "var(--spacing-xl)"
+                  marginBottom: "clamp(20px, 3vh, 32px)",
+                  width: "100%"
                 }}
               >
                 <button
@@ -97,13 +98,14 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "10px",
+                    justifyContent: "center",
+                    gap: "8px",
                     backgroundColor: "var(--color-primary-cyan, #20D7DF)",
                     border: "none",
                     color: "#061827",
-                    padding: "14px 28px",
+                    padding: "12px 22px",
                     borderRadius: "9999px",
-                    fontSize: "0.96rem",
+                    fontSize: "0.92rem",
                     fontWeight: 700,
                     boxShadow: "0 0 20px rgba(32, 215, 223, 0.4)",
                     transition: "transform 0.15s ease, box-shadow 0.15s ease",
@@ -119,12 +121,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    backgroundColor: "rgba(16, 46, 67, 0.75)",
+                    justifyContent: "center",
+                    backgroundColor: "rgba(16, 46, 67, 0.8)",
                     color: "#F7FAFC",
                     border: "1px solid var(--color-border-discrete)",
-                    padding: "14px 26px",
+                    padding: "12px 20px",
                     borderRadius: "9999px",
-                    fontSize: "0.96rem",
+                    fontSize: "0.92rem",
                     fontWeight: 600,
                     backdropFilter: "blur(12px)",
                     transition: "background 0.15s ease",
@@ -147,8 +150,8 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
-                      width: "34px",
-                      height: "34px",
+                      width: "32px",
+                      height: "32px",
                       borderRadius: "8px",
                       background: "rgba(32, 215, 223, 0.12)",
                       border: "1px solid rgba(32, 215, 223, 0.25)",
@@ -158,16 +161,16 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                       color: "var(--color-primary-cyan)"
                     }}
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
                     </svg>
                   </div>
                   <div>
-                    <strong style={{ fontSize: "0.82rem", display: "block", color: "#F7FAFC" }}>
+                    <strong style={{ fontSize: "0.80rem", display: "block", color: "#F7FAFC" }}>
                       Datos satelitales
                     </strong>
-                    <span style={{ fontSize: "0.74rem", color: "var(--color-text-secondary)" }}>
-                      NASA IMERG
+                    <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary)" }}>
+                      NASA IMERG V07
                     </span>
                   </div>
                 </div>
@@ -175,8 +178,8 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
-                      width: "34px",
-                      height: "34px",
+                      width: "32px",
+                      height: "32px",
                       borderRadius: "8px",
                       background: "rgba(105, 218, 214, 0.12)",
                       border: "1px solid rgba(105, 218, 214, 0.25)",
@@ -186,17 +189,17 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                       color: "var(--color-secondary-turquoise)"
                     }}
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <polygon points="12 2 2 7 12 12 22 7 12 2" />
                       <polyline points="2 17 12 22 22 17" />
                       <polyline points="2 12 12 17 22 12" />
                     </svg>
                   </div>
                   <div>
-                    <strong style={{ fontSize: "0.82rem", display: "block", color: "#F7FAFC" }}>
+                    <strong style={{ fontSize: "0.80rem", display: "block", color: "#F7FAFC" }}>
                       Cartografía oficial
                     </strong>
-                    <span style={{ fontSize: "0.74rem", color: "var(--color-text-secondary)" }}>
+                    <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary)" }}>
                       ANA Perú
                     </span>
                   </div>
@@ -205,8 +208,8 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
-                      width: "34px",
-                      height: "34px",
+                      width: "32px",
+                      height: "32px",
                       borderRadius: "8px",
                       background: "rgba(32, 214, 160, 0.12)",
                       border: "1px solid rgba(32, 214, 160, 0.25)",
@@ -216,17 +219,17 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                       color: "var(--color-status-positive)"
                     }}
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="18" y1="20" x2="18" y2="10" />
                       <line x1="12" y1="20" x2="12" y2="4" />
                       <line x1="6" y1="20" x2="6" y2="14" />
                     </svg>
                   </div>
                   <div>
-                    <strong style={{ fontSize: "0.82rem", display: "block", color: "#F7FAFC" }}>
+                    <strong style={{ fontSize: "0.80rem", display: "block", color: "#F7FAFC" }}>
                       Inferencia estadística
                     </strong>
-                    <span style={{ fontSize: "0.74rem", color: "var(--color-text-secondary)" }}>
+                    <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary)" }}>
                       HAC / FDR
                     </span>
                   </div>
@@ -254,13 +257,12 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
               <h2 style={{ fontSize: "1.25rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
                 Resumen de evidencia científica confirmatoria
               </h2>
-              <span className="badge badge-success">24 años analizados</span>
             </div>
 
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
                 gap: "var(--spacing-md)",
                 marginBottom: "var(--spacing-md)"
               }}

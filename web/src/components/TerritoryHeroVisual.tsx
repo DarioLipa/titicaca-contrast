@@ -15,17 +15,17 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
 
   const isDragging = useRef<boolean>(false)
   const dragStart = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
-  const baseRotation = useRef<{ x: number; y: number }>({ x: 0.14, y: -0.06 })
-  const targetRotation = useRef<{ x: number; y: number }>({ x: 0.14, y: -0.06 })
+  const baseRotation = useRef<{ x: number; y: number }>({ x: 0.16, y: -0.08 })
+  const targetRotation = useRef<{ x: number; y: number }>({ x: 0.16, y: -0.08 })
   const pointerPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
-  const cameraDistance = useRef<number>(8.4)
-  const targetCameraDistance = useRef<number>(8.4)
+  const cameraDistance = useRef<number>(6.2)
+  const targetCameraDistance = useRef<number>(6.2)
 
   const basinMeshes = useRef<Map<string, { mesh: THREE.Mesh; topMat: THREE.MeshStandardMaterial }>>(new Map())
 
   const handleResetView = useCallback(() => {
-    targetRotation.current = { x: 0.14, y: -0.06 }
-    targetCameraDistance.current = 8.4
+    targetRotation.current = { x: 0.16, y: -0.08 }
+    targetCameraDistance.current = 6.2
   }, [])
 
   const handleSelectBasin = useCallback((basinId: string) => {
@@ -53,12 +53,12 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     const container = mountRef.current
     if (!container) return
 
-    let width = container.clientWidth || 540
-    let height = container.clientHeight || 460
+    let width = container.clientWidth || 560
+    let height = container.clientHeight || 520
     let aspect = width / height
 
     const getOptimalDistance = (asp: number) => {
-      return asp < 1.1 ? 8.4 * (1.1 / Math.max(asp, 0.65)) : 8.4
+      return asp < 1.15 ? 6.2 * (1.15 / Math.max(asp, 0.52)) : 6.2
     }
 
     const baseDist = getOptimalDistance(aspect)
@@ -66,9 +66,9 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     targetCameraDistance.current = baseDist
 
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(34, aspect, 0.1, 1000)
-    camera.position.set(0, 5.2, cameraDistance.current)
-    camera.lookAt(0, 0.15, 0)
+    const camera = new THREE.PerspectiveCamera(38, aspect, 0.1, 1000)
+    camera.position.set(0, 3.6, cameraDistance.current)
+    camera.lookAt(0, 0.1, 0)
 
     let renderer: THREE.WebGLRenderer | null = null
     try {
@@ -80,25 +80,25 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       renderer.setSize(width, height)
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       renderer.toneMapping = THREE.ACESFilmicToneMapping
-      renderer.toneMappingExposure = 1.15
+      renderer.toneMappingExposure = 1.18
       container.appendChild(renderer.domElement)
     } catch {
       setWebGlSupported(false)
       return
     }
 
-    const ambientLight = new THREE.AmbientLight(0xdbeafe, 1.2)
+    const ambientLight = new THREE.AmbientLight(0xdbeafe, 1.3)
     scene.add(ambientLight)
 
-    const mainLight = new THREE.DirectionalLight(0xf8fafc, 2.5)
-    mainLight.position.set(5.5, 10, 4.5)
+    const mainLight = new THREE.DirectionalLight(0xf8fafc, 2.6)
+    mainLight.position.set(5.5, 9.5, 5.0)
     scene.add(mainLight)
 
-    const fillLight = new THREE.DirectionalLight(0x20d7df, 1.3)
+    const fillLight = new THREE.DirectionalLight(0x20d7df, 1.4)
     fillLight.position.set(-5.5, 4.5, -3.5)
     scene.add(fillLight)
 
-    const backRimLight = new THREE.DirectionalLight(0xd6a461, 0.85)
+    const backRimLight = new THREE.DirectionalLight(0xd6a461, 0.9)
     backRimLight.position.set(0, 2, -6.5)
     scene.add(backRimLight)
 
@@ -111,7 +111,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     orbitalRingGroup.position.y = -0.06
     territoryGroup.add(orbitalRingGroup)
 
-    const primaryRingGeo = new THREE.RingGeometry(3.18, 3.22, 96)
+    const primaryRingGeo = new THREE.RingGeometry(3.32, 3.36, 96)
     const primaryRingMat = new THREE.MeshBasicMaterial({
       color: 0x20d7df,
       side: THREE.DoubleSide,
@@ -122,7 +122,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     primaryRingMesh.rotation.x = Math.PI / 2
     orbitalRingGroup.add(primaryRingMesh)
 
-    const innerRingGeo = new THREE.RingGeometry(2.55, 2.58, 64)
+    const innerRingGeo = new THREE.RingGeometry(2.70, 2.73, 64)
     const innerRingMat = new THREE.MeshBasicMaterial({
       color: 0x69dad6,
       side: THREE.DoubleSide,
@@ -133,7 +133,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     innerRingMesh.rotation.x = Math.PI / 2
     orbitalRingGroup.add(innerRingMesh)
 
-    const outerRingGeo = new THREE.RingGeometry(3.68, 3.7, 64)
+    const outerRingGeo = new THREE.RingGeometry(3.85, 3.88, 64)
     const outerRingMat = new THREE.MeshBasicMaterial({
       color: 0x1177a7,
       side: THREE.DoubleSide,
@@ -148,8 +148,8 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     for (let i = 0; i < 24; i++) {
       const angle = (i / 24) * Math.PI * 2
       const isMajor = i % 6 === 0
-      const r1 = isMajor ? 3.08 : 3.14
-      const r2 = isMajor ? 3.32 : 3.26
+      const r1 = isMajor ? 3.22 : 3.28
+      const r2 = isMajor ? 3.46 : 3.40
       const tickGeo = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(Math.cos(angle) * r1, 0, Math.sin(angle) * r1),
         new THREE.Vector3(Math.cos(angle) * r2, 0, Math.sin(angle) * r2)
@@ -158,15 +158,15 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     }
 
     const nodeMat = new THREE.MeshBasicMaterial({ color: 0x20d7df })
-    const nodeGeo = new THREE.SphereGeometry(0.04, 12, 12)
+    const nodeGeo = new THREE.SphereGeometry(0.045, 12, 12)
     for (let i = 0; i < 4; i++) {
       const angle = (i / 4) * Math.PI * 2
       const node = new THREE.Mesh(nodeGeo, nodeMat)
-      node.position.set(Math.cos(angle) * 3.2, 0, Math.sin(angle) * 3.2)
+      node.position.set(Math.cos(angle) * 3.34, 0, Math.sin(angle) * 3.34)
       orbitalRingGroup.add(node)
     }
 
-    const gridHelper = new THREE.GridHelper(6.6, 22, 0x0b2b40, 0x061827)
+    const gridHelper = new THREE.GridHelper(7.0, 24, 0x0b2b40, 0x061827)
     gridHelper.position.y = -0.09
     orbitalRingGroup.add(gridHelper)
 
@@ -236,71 +236,80 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     const coataMesh = createBasinExtrusion("coata", BASIN_POLYGONS.coata, 0.34, 0x10b981, 0x064e3b, 0x20d6a0)
     territoryGroup.add(coataMesh)
 
-    const ilaveMesh = createBasinExtrusion("ilave", BASIN_POLYGONS.ilave, 0.28, 0x8b5cf6, 0x3b0764, 0xc084fc)
+    const ilaveMesh = createBasinExtrusion("ilave", BASIN_POLYGONS.ilave, 0.30, 0x8b5cf6, 0x3b0764, 0xc084fc)
     territoryGroup.add(ilaveMesh)
 
-    const lakeShape = new THREE.Shape()
-    BASIN_POLYGONS.titicaca.forEach(([x, y], idx) => {
-      if (idx === 0) lakeShape.moveTo(x, y)
-      else lakeShape.lineTo(x, y)
-    })
-    lakeShape.closePath()
+    const createLakeMesh = (pts: [number, number][]) => {
+      const shape = new THREE.Shape()
+      pts.forEach(([x, y], idx) => {
+        if (idx === 0) shape.moveTo(x, y)
+        else shape.lineTo(x, y)
+      })
+      shape.closePath()
 
-    const lakeGeo = new THREE.ExtrudeGeometry(lakeShape, {
-      depth: 0.08,
-      bevelEnabled: true,
-      bevelSegments: 2,
-      bevelSize: 0.02,
-      bevelThickness: 0.02
-    })
-    lakeGeo.rotateX(-Math.PI / 2)
+      const lakeGeo = new THREE.ExtrudeGeometry(shape, {
+        depth: 0.10,
+        bevelEnabled: true,
+        bevelSegments: 2,
+        bevelSize: 0.02,
+        bevelThickness: 0.02
+      })
+      lakeGeo.rotateX(-Math.PI / 2)
 
-    const lakeMat = new THREE.MeshStandardMaterial({
-      color: 0x0369a1,
-      roughness: 0.12,
-      metalness: 0.88,
-      emissive: 0x0b3b64,
-      emissiveIntensity: 0.35
-    })
-    const lakeMesh = new THREE.Mesh(lakeGeo, lakeMat)
-    lakeMesh.position.y = 0.04
-    territoryGroup.add(lakeMesh)
+      const lakeMat = new THREE.MeshStandardMaterial({
+        color: 0x073f69,
+        roughness: 0.20,
+        metalness: 0.65,
+        emissive: 0x052844,
+        emissiveIntensity: 0.30
+      })
 
-    const lakeEdgeGeo = new THREE.EdgesGeometry(lakeGeo, 25)
-    const lakeEdgeMat = new THREE.LineBasicMaterial({
-      color: 0x20d7df,
-      transparent: true,
-      opacity: 0.55
-    })
-    lakeMesh.add(new THREE.LineSegments(lakeEdgeGeo, lakeEdgeMat))
+      const mesh = new THREE.Mesh(lakeGeo, lakeMat)
+      mesh.position.y = 0.02
+
+      const lakeEdgeGeo = new THREE.EdgesGeometry(lakeGeo, 28)
+      const lakeEdgeMat = new THREE.LineBasicMaterial({
+        color: 0x20d7df,
+        transparent: true,
+        opacity: 0.6
+      })
+      mesh.add(new THREE.LineSegments(lakeEdgeGeo, lakeEdgeMat))
+      return mesh
+    }
+
+    const lakeMayorMesh = createLakeMesh(BASIN_POLYGONS.titicaca)
+    territoryGroup.add(lakeMayorMesh)
+
+    const lakeMenorMesh = createLakeMesh(BASIN_POLYGONS.titicaca_menor)
+    territoryGroup.add(lakeMenorMesh)
 
     const satGroup = new THREE.Group()
-    satGroup.position.set(1.4, 3.2, 0.8)
+    satGroup.position.set(1.35, 2.05, 0.95)
     satGroup.rotation.z = -0.15
     scene.add(satGroup)
 
-    const satBusGeo = new THREE.BoxGeometry(0.38, 0.42, 0.46)
+    const satBusGeo = new THREE.CylinderGeometry(0.20, 0.23, 0.42, 8)
     const satBusMat = new THREE.MeshStandardMaterial({
       color: 0xd6a461,
       metalness: 0.85,
-      roughness: 0.22,
+      roughness: 0.25,
       emissive: 0x7c4f1c,
       emissiveIntensity: 0.12
     })
     const satBus = new THREE.Mesh(satBusGeo, satBusMat)
     satGroup.add(satBus)
 
-    const avionicsGeo = new THREE.BoxGeometry(0.39, 0.24, 0.47)
+    const avionicsGeo = new THREE.BoxGeometry(0.36, 0.20, 0.36)
     const avionicsMat = new THREE.MeshStandardMaterial({
       color: 0xf8fafc,
       metalness: 0.75,
       roughness: 0.28
     })
     const avionics = new THREE.Mesh(avionicsGeo, avionicsMat)
-    avionics.position.y = 0.12
+    avionics.position.y = 0.14
     satGroup.add(avionics)
 
-    const panelWingGeo = new THREE.BoxGeometry(1.35, 0.025, 0.48)
+    const panelWingGeo = new THREE.BoxGeometry(1.20, 0.02, 0.42)
     const panelWingMat = new THREE.MeshStandardMaterial({
       color: 0x1e3a8a,
       roughness: 0.18,
@@ -310,47 +319,47 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     })
 
     const panelL = new THREE.Mesh(panelWingGeo, panelWingMat)
-    panelL.position.set(-1.05, 0, 0)
+    panelL.position.set(-0.95, 0, 0)
     satGroup.add(panelL)
 
     const panelR = new THREE.Mesh(panelWingGeo, panelWingMat)
-    panelR.position.set(1.05, 0, 0)
+    panelR.position.set(0.95, 0, 0)
     satGroup.add(panelR)
 
     const strutMat = new THREE.MeshBasicMaterial({ color: 0x94a3b8 })
-    const strutGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.38, 8)
+    const strutGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.34, 8)
     strutGeo.rotateZ(Math.PI / 2)
     const strutL = new THREE.Mesh(strutGeo, strutMat)
-    strutL.position.set(-0.35, 0, 0)
+    strutL.position.set(-0.34, 0, 0)
     satGroup.add(strutL)
     const strutR = new THREE.Mesh(strutGeo, strutMat)
-    strutR.position.set(0.35, 0, 0)
+    strutR.position.set(0.34, 0, 0)
     satGroup.add(strutR)
 
-    const dishGeo = new THREE.CylinderGeometry(0.2, 0.03, 0.14, 24)
+    const dishGeo = new THREE.CylinderGeometry(0.20, 0.03, 0.12, 24)
     const dishMat = new THREE.MeshStandardMaterial({
       color: 0xe2e8f0,
       metalness: 0.9,
       roughness: 0.15
     })
     const dish = new THREE.Mesh(dishGeo, dishMat)
-    dish.rotation.x = Math.PI / 3.5
-    dish.position.set(0, -0.22, 0.16)
+    dish.rotation.x = Math.PI / 3.4
+    dish.position.set(0, -0.20, 0.14)
     satGroup.add(dish)
 
-    const coneGeo = new THREE.ConeGeometry(2.1, 3.6, 48, 1, true)
-    coneGeo.translate(0, -1.8, 0)
+    const coneGeo = new THREE.ConeGeometry(1.75, 2.7, 48, 1, true)
+    coneGeo.translate(0, -1.35, 0)
     const coneMat = new THREE.MeshBasicMaterial({
       color: 0x20d7df,
       transparent: true,
-      opacity: 0.17,
+      opacity: 0.18,
       side: THREE.DoubleSide,
       depthWrite: false
     })
     const scanCone = new THREE.Mesh(coneGeo, coneMat)
     satGroup.add(scanCone)
 
-    const scanGroundRingGeo = new THREE.RingGeometry(2.0, 2.08, 48)
+    const scanGroundRingGeo = new THREE.RingGeometry(1.70, 1.76, 48)
     const scanGroundRingMat = new THREE.LineBasicMaterial({
       color: 0x20d7df,
       transparent: true,
@@ -358,7 +367,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
     })
     const scanGroundRing = new THREE.LineSegments(new THREE.EdgesGeometry(scanGroundRingGeo), scanGroundRingMat)
     scanGroundRing.rotation.x = Math.PI / 2
-    scanGroundRing.position.y = -3.6
+    scanGroundRing.position.y = -2.7
     satGroup.add(scanGroundRing)
 
     const telemetryCount = 45
@@ -387,21 +396,21 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       const elapsedTime = clock.getElapsedTime()
 
       if (!isPaused && !reducedMotion) {
-        orbitalRingGroup.rotation.y = elapsedTime * 0.06
+        orbitalRingGroup.rotation.y = elapsedTime * 0.05
 
-        satGroup.position.y = 3.2 + Math.sin(elapsedTime * 0.8) * 0.12
-        satGroup.position.x = 1.4 + Math.cos(elapsedTime * 0.4) * 0.22
-        satGroup.position.z = 0.8 + Math.sin(elapsedTime * 0.35) * 0.15
+        satGroup.position.y = 2.05 + Math.sin(elapsedTime * 0.8) * 0.08
+        satGroup.position.x = 1.35 + Math.cos(elapsedTime * 0.4) * 0.16
+        satGroup.position.z = 0.95 + Math.sin(elapsedTime * 0.35) * 0.10
         satGroup.rotation.y = Math.sin(elapsedTime * 0.28) * 0.1
 
-        const conePulse = 0.15 + Math.sin(elapsedTime * 2.2) * 0.05
+        const conePulse = 0.16 + Math.sin(elapsedTime * 2.2) * 0.05
         coneMat.opacity = conePulse
         scanGroundRingMat.opacity = 0.45 + Math.sin(elapsedTime * 2.6) * 0.22
 
         const positions = telemetryGeo.attributes.position.array as Float32Array
         for (let i = 0; i < telemetryCount; i++) {
           positions[i * 3 + 1] += 0.015
-          if (positions[i * 3 + 1] > 3.2) {
+          if (positions[i * 3 + 1] > 3.0) {
             positions[i * 3 + 1] = 0.1
             positions[i * 3] = (Math.random() - 0.5) * 2.4
             positions[i * 3 + 2] = (Math.random() - 0.5) * 2.4
@@ -451,96 +460,68 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       }
     }
 
-    const handleMouseDown = (e: MouseEvent) => {
-      if (e.button !== 0 || !container) return
+    const handlePointerDown = (e: MouseEvent) => {
       isDragging.current = true
-      const rect = container.getBoundingClientRect()
-      dragStart.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+      dragStart.current = { x: e.clientX, y: e.clientY }
       baseRotation.current = { ...targetRotation.current }
-      container.style.cursor = "grabbing"
     }
 
-    const handleMouseUp = () => {
+    const handlePointerUp = () => {
       isDragging.current = false
-      if (container) container.style.cursor = "grab"
     }
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault()
-      const minD = aspect < 1.0 ? 8.6 : 6.8
-      const maxD = aspect < 1.0 ? 12.0 : 10.2
-      targetCameraDistance.current = Math.max(minD, Math.min(maxD, targetCameraDistance.current + e.deltaY * 0.0035))
-    }
-
-    const handleTouchStart = (e: TouchEvent) => {
-      if (e.touches.length !== 1 || !container) return
-      isDragging.current = true
-      const rect = container.getBoundingClientRect()
-      dragStart.current = { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top }
-      baseRotation.current = { ...targetRotation.current }
-    }
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (!isDragging.current || e.touches.length !== 1 || !container) return
-      const rect = container.getBoundingClientRect()
-      const clientX = e.touches[0].clientX - rect.left
-      const clientY = e.touches[0].clientY - rect.top
-      const deltaX = clientX - dragStart.current.x
-      const deltaY = clientY - dragStart.current.y
-      targetRotation.current.y = baseRotation.current.y + deltaX * 0.008
-      targetRotation.current.x = Math.max(-0.15, Math.min(0.45, baseRotation.current.x + deltaY * 0.008))
-    }
-
-    const handleTouchEnd = () => {
-      isDragging.current = false
+      const zoomDelta = e.deltaY * 0.003
+      const minDist = 4.8
+      const maxDist = 9.8
+      targetCameraDistance.current = Math.max(minDist, Math.min(maxDist, targetCameraDistance.current + zoomDelta))
     }
 
     window.addEventListener("resize", handleResize)
     container.addEventListener("mousemove", handlePointerMove)
-    container.addEventListener("mousedown", handleMouseDown)
-    window.addEventListener("mouseup", handleMouseUp)
+    container.addEventListener("mousedown", handlePointerDown)
+    window.addEventListener("mouseup", handlePointerUp)
     container.addEventListener("wheel", handleWheel, { passive: false })
-    container.addEventListener("touchstart", handleTouchStart, { passive: true })
-    container.addEventListener("touchmove", handleTouchMove, { passive: true })
-    window.addEventListener("touchend", handleTouchEnd)
 
     return () => {
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener("resize", handleResize)
-      container?.removeEventListener("mousemove", handlePointerMove)
-      container?.removeEventListener("mousedown", handleMouseDown)
-      window.removeEventListener("mouseup", handleMouseUp)
-      container?.removeEventListener("wheel", handleWheel)
-      container?.removeEventListener("touchstart", handleTouchStart)
-      container?.removeEventListener("touchmove", handleTouchMove)
-      window.removeEventListener("touchend", handleTouchEnd)
+      container.removeEventListener("mousemove", handlePointerMove)
+      container.removeEventListener("mousedown", handlePointerDown)
+      window.removeEventListener("mouseup", handlePointerUp)
+      container.removeEventListener("wheel", handleWheel)
 
-      basinMeshes.current.clear()
-      if (renderer && renderer.domElement) {
-        container?.removeChild(renderer.domElement)
+      if (renderer) {
         renderer.dispose()
+        if (renderer.domElement.parentNode === container) {
+          container.removeChild(renderer.domElement)
+        }
       }
     }
   }, [isPaused, reducedMotion])
 
   useEffect(() => {
-    basinMeshes.current.forEach((val, id) => {
-      if (id === activeBasin) {
-        val.topMat.emissiveIntensity = 0.52
+    basinMeshes.current.forEach((data, id) => {
+      const isSelected = id === activeBasin
+      if (isSelected) {
+        data.topMat.emissiveIntensity = 0.45
       } else {
-        val.topMat.emissiveIntensity = 0.16
+        data.topMat.emissiveIntensity = 0.16
       }
+      data.topMat.needsUpdate = true
     })
   }, [activeBasin])
 
   return (
     <div
       style={{
-        position: "relative",
-        width: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        position: "relative"
       }}
     >
       <div
@@ -566,9 +547,9 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
             padding: "20px"
           }}
         >
-          <svg viewBox="-2.5 -2.5 5 5" style={{ width: "90%", maxWidth: "420px", height: "auto" }}>
-            <circle cx="0" cy="0" r="2.1" fill="none" stroke="rgba(32, 215, 223, 0.3)" strokeWidth="0.02" strokeDasharray="0.08 0.05" />
-            <circle cx="0" cy="0" r="1.6" fill="none" stroke="rgba(32, 215, 223, 0.18)" strokeWidth="0.015" />
+          <svg viewBox="-2.2 -2.6 4.4 5.2" style={{ width: "90%", maxWidth: "440px", height: "auto" }}>
+            <circle cx="0" cy="0" r="2.2" fill="none" stroke="rgba(32, 215, 223, 0.3)" strokeWidth="0.02" strokeDasharray="0.08 0.05" />
+            <circle cx="0" cy="0" r="1.7" fill="none" stroke="rgba(32, 215, 223, 0.18)" strokeWidth="0.015" />
 
             <polygon
               points={BASIN_POLYGONS.ramis.map(([x, y]) => `${x},${-y}`).join(" ")}
@@ -604,9 +585,15 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
             />
             <polygon
               points={BASIN_POLYGONS.titicaca.map(([x, y]) => `${x},${-y}`).join(" ")}
-              fill="#0369A1"
+              fill="#073F69"
               stroke="#20D7DF"
-              strokeWidth="0.025"
+              strokeWidth="0.02"
+            />
+            <polygon
+              points={BASIN_POLYGONS.titicaca_menor.map(([x, y]) => `${x},${-y}`).join(" ")}
+              fill="#073F69"
+              stroke="#20D7DF"
+              strokeWidth="0.02"
             />
           </svg>
         </div>
@@ -616,7 +603,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
         style={{
           position: "absolute",
           top: "12px",
-          left: "12px",
+          right: "12px",
           display: "flex",
           gap: "8px",
           zIndex: 20
