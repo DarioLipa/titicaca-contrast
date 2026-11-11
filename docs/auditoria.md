@@ -124,4 +124,27 @@
   - 16 pruebas unitarias de frontend con Vitest (100% pasadas).
   - Verificación global limpia con `scripts/check-project.ps1` (0 errores en TypeScript, linting, tests de frontend, compilación y 32 tests de pipeline).
 
+---
+
+## Fase 5 — Auditoría, Verificación y Publicación
+
+- **Fecha:** Noviembre 2026
+- **Responsable:** Antigravity / Pair Programming
+- **Estado general:** Completada y aprobada para publicación
+
+### Verificaciones de auditoría final y entrega
+- [x] Ejecución integral del script de auditoría global `scripts/check-project.ps1`:
+  - Typecheck de TypeScript: 0 errores
+  - Linter de TypeScript: 0 advertencias
+  - Pruebas frontend (Vitest): 16 de 16 pruebas pasadas
+  - Compilación de producción (Vite): `web/dist/` generado con empaquetado optimizado (`manualChunks`)
+  - Pruebas de pipeline (Pytest): 32 de 32 pruebas pasadas
+- [x] Cumplimiento del 100% de la matriz de pruebas del Plan Maestro (T01 a T15) documentado en `docs/verificaciones.md`.
+- [x] Autonomía estática completa: El sitio web opera sin dependencia de APIs dinámicas externas en tiempo de visita; todos los datos se sirven desde archivos estáticos inmutables en `./data/`.
+- [x] Cero credenciales ni secretos en el repositorio o historial de Git.
+- [x] Verificación de ausencia de comentarios en archivos de código fuente (`.py`, `.ts`, `.tsx`).
+- [x] Integridad de datos asegurada mediante hashes SHA-256 en `web/public/data/manifest.json`.
+- [x] Licencia MIT y metadatos de procedencia oficial (ANA y NASA) claramente expuestos en la interfaz.
+
+
 
