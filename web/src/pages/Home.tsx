@@ -15,13 +15,22 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
     <div>
       <section
         style={{
-          background: "radial-gradient(ellipse 90% 80% at 75% 15%, #0B253E 0%, #061525 50%, #030C16 100%)",
-          color: "#FFFFFF",
-          paddingTop: "var(--spacing-2xl)",
-          paddingBottom: "var(--spacing-2xl)",
           position: "relative",
+          backgroundColor: "#061827",
+          backgroundImage: `
+            radial-gradient(ellipse 65% 45% at 88% 10%, rgba(35, 215, 229, 0.18) 0%, rgba(14, 116, 144, 0.08) 45%, transparent 80%),
+            radial-gradient(circle at 18% 45%, rgba(6, 24, 39, 0.96) 0%, rgba(6, 24, 39, 0.8) 50%, transparent 80%),
+            linear-gradient(180deg, #061827 0%, rgba(6, 24, 39, 0.82) 40%, rgba(11, 43, 64, 0.65) 75%, rgba(6, 24, 39, 0.96) 100%),
+            url(/images/titicaca-panorama.jpg)
+          `,
+          backgroundPosition: "center top, left center, center center, center bottom",
+          backgroundSize: "auto, auto, auto, cover",
+          backgroundRepeat: "no-repeat",
+          color: "#F7FAFC",
+          paddingTop: "var(--spacing-xl)",
+          paddingBottom: "var(--spacing-2xl)",
           overflow: "hidden",
-          borderBottom: "1px solid rgba(56, 189, 248, 0.15)"
+          borderBottom: "1px solid rgba(35, 215, 229, 0.2)"
         }}
       >
         <div
@@ -31,73 +40,60 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: "radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle at 50% 50%, rgba(35, 215, 229, 0.05) 1px, transparent 1px)",
             backgroundSize: "32px 32px",
             pointerEvents: "none"
           }}
         />
 
-        <div className="container" style={{ position: "relative", zIndex: 10 }}>
+        <div className="container" style={{ position: "relative", zIndex: 10, maxWidth: "1280px" }}>
           <StatusMessage status={data.status} message={data.errorMessage || data.manifest?.notes} />
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-              alignItems: "center",
-              gap: "var(--spacing-xl)"
-            }}
-          >
-            <div style={{ maxWidth: "560px" }}>
+          <div className="hero-grid">
+            <div style={{ maxWidth: "560px", zIndex: 15 }}>
               <div
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "8px",
-                  padding: "5px 14px",
+                  padding: "6px 16px",
                   borderRadius: "9999px",
-                  background: "rgba(14, 165, 233, 0.12)",
-                  border: "1px solid rgba(56, 189, 248, 0.35)",
-                  color: "#38BDF8",
-                  fontSize: "0.76rem",
+                  background: "rgba(11, 43, 64, 0.85)",
+                  border: "1px solid rgba(35, 215, 229, 0.35)",
+                  color: "#23D7E5",
+                  fontSize: "0.78rem",
                   fontWeight: 700,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  marginBottom: "var(--spacing-md)"
+                  marginBottom: "var(--spacing-md)",
+                  backdropFilter: "blur(12px)"
                 }}
               >
                 <span
                   style={{
-                    width: "6px",
-                    height: "6px",
+                    width: "7px",
+                    height: "7px",
                     borderRadius: "50%",
-                    backgroundColor: "#38BDF8",
-                    boxShadow: "0 0 8px #38BDF8"
+                    backgroundColor: "#23D7E5",
+                    boxShadow: "0 0 10px #23D7E5"
                   }}
                 />
-                Investigación Ambiental • Puno, Perú
+                Investigación Ambiental · Puno, Perú
               </div>
 
               <h1
                 style={{
-                  fontSize: "clamp(2.1rem, 4.2vw, 3.4rem)",
+                  fontSize: "clamp(2.4rem, 4.8vw, 3.8rem)",
                   fontWeight: 800,
-                  lineHeight: 1.15,
-                  letterSpacing: "-0.02em",
+                  lineHeight: 1.12,
+                  letterSpacing: "-0.025em",
                   marginBottom: "var(--spacing-md)",
-                  color: "#FFFFFF"
+                  color: "#F7FAFC"
                 }}
               >
                 Un mismo lago.
                 <br />
-                <span
-                  style={{
-                    background: "linear-gradient(135deg, #38BDF8 0%, #2DD4BF 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    display: "inline-block"
-                  }}
-                >
+                <span style={{ color: "#23D7E5" }}>
                   Diferentes realidades
                 </span>
                 <br />
@@ -107,13 +103,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
               <p
                 style={{
                   fontSize: "1.08rem",
-                  lineHeight: 1.6,
-                  color: "#CBD5E1",
+                  lineHeight: 1.65,
+                  color: "var(--color-text-hero-secondary, #BCD0DC)",
                   marginBottom: "var(--spacing-xl)",
                   maxWidth: "520px"
                 }}
               >
-                Descubre cómo evolucionan las precipitaciones en las cuencas que alimentan el lago Titicaca. Contrasta territorios, observa sus historias y examina la evidencia estadística detrás de cada hallazgo.
+                Descubre cómo evolucionan las precipitaciones en las cuencas que alimentan el lago Titicaca. Contrasta territorios, observa sus historias y examina la evidencia detrás de cada hallazgo.
               </p>
 
               <div
@@ -130,15 +126,17 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "8px",
-                    backgroundColor: "#0284C7",
-                    color: "#FFFFFF",
-                    padding: "13px 26px",
+                    gap: "10px",
+                    backgroundColor: "#0E7490",
+                    border: "1px solid #23D7E5",
+                    color: "#F7FAFC",
+                    padding: "14px 28px",
                     borderRadius: "9999px",
-                    fontSize: "0.95rem",
+                    fontSize: "0.96rem",
                     fontWeight: 700,
-                    boxShadow: "0 0 20px rgba(2, 132, 199, 0.45)",
-                    transition: "transform 0.15s ease, box-shadow 0.15s ease"
+                    boxShadow: "0 0 24px rgba(35, 215, 229, 0.45)",
+                    transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                    cursor: "pointer"
                   }}
                 >
                   Explorar las cuencas →
@@ -150,14 +148,16 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    backgroundColor: "rgba(10, 30, 50, 0.7)",
-                    color: "#FFFFFF",
-                    border: "1px solid rgba(56, 189, 248, 0.4)",
-                    padding: "13px 24px",
+                    backgroundColor: "rgba(11, 43, 64, 0.75)",
+                    color: "#F7FAFC",
+                    border: "1px solid rgba(35, 215, 229, 0.35)",
+                    padding: "14px 26px",
                     borderRadius: "9999px",
-                    fontSize: "0.95rem",
+                    fontSize: "0.96rem",
                     fontWeight: 600,
-                    backdropFilter: "blur(8px)"
+                    backdropFilter: "blur(12px)",
+                    transition: "background 0.15s ease",
+                    cursor: "pointer"
                   }}
                 >
                   Comparar territorios
@@ -169,31 +169,34 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   display: "flex",
                   gap: "var(--spacing-lg)",
                   flexWrap: "wrap",
-                  borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-                  paddingTop: "var(--spacing-md)"
+                  borderTop: "1px solid rgba(35, 215, 229, 0.2)",
+                  paddingTop: "var(--spacing-lg)"
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "8px",
-                      background: "rgba(56, 189, 248, 0.12)",
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "10px",
+                      background: "rgba(35, 215, 229, 0.12)",
+                      border: "1px solid rgba(35, 215, 229, 0.25)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "#38BDF8"
+                      color: "#23D7E5"
                     }}
                   >
-                    🛰️
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
                   </div>
                   <div>
-                    <strong style={{ fontSize: "0.82rem", display: "block", color: "#FFFFFF" }}>
+                    <strong style={{ fontSize: "0.84rem", display: "block", color: "#F7FAFC" }}>
                       Datos satelitales
                     </strong>
-                    <span style={{ fontSize: "0.74rem", color: "#94A3B8" }}>
-                      NASA IMERG V07
+                    <span style={{ fontSize: "0.75rem", color: "#BCD0DC" }}>
+                      NASA IMERG
                     </span>
                   </div>
                 </div>
@@ -201,24 +204,29 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "8px",
-                      background: "rgba(45, 212, 191, 0.12)",
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "10px",
+                      background: "rgba(112, 220, 216, 0.12)",
+                      border: "1px solid rgba(112, 220, 216, 0.25)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "#2DD4BF"
+                      color: "#70DCD8"
                     }}
                   >
-                    🗺️
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                      <polyline points="2 17 12 22 22 17" />
+                      <polyline points="2 12 12 17 22 12" />
+                    </svg>
                   </div>
                   <div>
-                    <strong style={{ fontSize: "0.82rem", display: "block", color: "#FFFFFF" }}>
+                    <strong style={{ fontSize: "0.84rem", display: "block", color: "#F7FAFC" }}>
                       Cartografía oficial
                     </strong>
-                    <span style={{ fontSize: "0.74rem", color: "#94A3B8" }}>
-                      ANA Perú
+                    <span style={{ fontSize: "0.75rem", color: "#BCD0DC" }}>
+                      ANA
                     </span>
                   </div>
                 </div>
@@ -226,61 +234,39 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "8px",
-                      background: "rgba(139, 92, 246, 0.12)",
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "10px",
+                      background: "rgba(32, 216, 161, 0.12)",
+                      border: "1px solid rgba(32, 216, 161, 0.25)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "#A78BFA"
+                      color: "#20D8A1"
                     }}
                   >
-                    📊
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="20" x2="18" y2="10" />
+                      <line x1="12" y1="20" x2="12" y2="4" />
+                      <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
                   </div>
                   <div>
-                    <strong style={{ fontSize: "0.82rem", display: "block", color: "#FFFFFF" }}>
-                      Inferencia HAC / FDR
-                    </strong>
-                    <span style={{ fontSize: "0.74rem", color: "#94A3B8" }}>
+                    <strong style={{ fontSize: "0.84rem", display: "block", color: "#F7FAFC" }}>
                       Análisis reproducible
+                    </strong>
+                    <span style={{ fontSize: "0.75rem", color: "#BCD0DC" }}>
+                      y transparente
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div style={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}>
+            <div style={{ width: "100%", position: "relative", minHeight: "540px" }}>
               <TerritoryHeroVisual onSelectBasin={() => onNavigate("explorer")} />
             </div>
           </div>
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "80px",
-            background: "linear-gradient(to top, rgba(3, 12, 22, 0.95), transparent)",
-            pointerEvents: "none"
-          }}
-        >
-          <svg
-            viewBox="0 0 1440 90"
-            preserveAspectRatio="none"
-            style={{ width: "100%", height: "100%", opacity: 0.35 }}
-          >
-            <path
-              d="M0 90 L0 50 L120 20 L240 60 L380 15 L520 45 L680 10 L820 40 L960 18 L1120 50 L1260 22 L1440 45 L1440 90 Z"
-              fill="#0E2D4A"
-            />
-            <path
-              d="M0 90 L0 65 L180 35 L320 65 L480 25 L640 55 L800 20 L940 50 L1100 30 L1280 60 L1440 40 L1440 90 Z"
-              fill="#061A2D"
-            />
-          </svg>
         </div>
       </section>
 

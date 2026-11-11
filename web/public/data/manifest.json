@@ -23,6 +23,7 @@
     "precipitation-annual.json": "ade2d2eb87dc5876b364a25673b4bd7946fec6c1a966f342c0d6ac71da522aa3",
     "trends.json": "94abf6f729dd0efe794ffd22a7094f0d0d229e70679ea073ff969a7a32843fe7",
     "contrasts.json": "94d6a3ad148fc1d2be101c6ba71609786e57d6ce2782486c8a71af6fd49262b5",
-    "evidence.json": "22df2b128f699bef938ed7227d93687a5ab70de6a60119153d361b84ff5c944c"
+    "evidence.json": "22df2b128f699bef938ed7227d93687a5ab70de6a60119153d361b84ff5c944c",
+    "lake.geojson": "1f5b9c7e96f2369bd6872cf99c0406618c4b7d5f31c8aafb03df1d2e0e4863b1"
   }
 }

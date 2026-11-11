@@ -21,93 +21,119 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
     switch (status) {
       case "ready":
         return (
-          <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "4px 12px",
-            borderRadius: "9999px",
-            background: "rgba(16, 185, 129, 0.15)",
-            border: "1px solid rgba(16, 185, 129, 0.35)",
-            color: "#34D399",
-            fontSize: "0.78rem",
-            fontWeight: 600
-          }}>
-            <span style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              backgroundColor: "#10B981",
-              boxShadow: "0 0 8px #10B981"
-            }} />
-            Datos actualizados (V07)
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 14px",
+              borderRadius: "9999px",
+              background: "rgba(11, 43, 64, 0.8)",
+              border: "1px solid rgba(32, 216, 161, 0.35)",
+              color: "var(--color-indicator-green, #20D8A1)",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              boxShadow: "0 0 16px rgba(32, 216, 161, 0.15)",
+              backdropFilter: "blur(12px)"
+            }}
+          >
+            <span
+              style={{
+                width: "7px",
+                height: "7px",
+                borderRadius: "50%",
+                backgroundColor: "#20D8A1",
+                boxShadow: "0 0 8px #20D8A1"
+              }}
+            />
+            Datos actualizados
           </span>
         )
       case "partial":
         return (
-          <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "4px 12px",
-            borderRadius: "9999px",
-            background: "rgba(245, 158, 11, 0.15)",
-            border: "1px solid rgba(245, 158, 11, 0.35)",
-            color: "#FBBF24",
-            fontSize: "0.78rem",
-            fontWeight: 600
-          }}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 14px",
+              borderRadius: "9999px",
+              background: "rgba(11, 43, 64, 0.8)",
+              border: "1px solid rgba(220, 168, 111, 0.35)",
+              color: "var(--color-accent-amber, #DCA86F)",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              backdropFilter: "blur(12px)"
+            }}
+          >
+            <span
+              style={{
+                width: "7px",
+                height: "7px",
+                borderRadius: "50%",
+                backgroundColor: "#DCA86F"
+              }}
+            />
             Datos parciales
           </span>
         )
       case "loading":
         return (
-          <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "4px 12px",
-            borderRadius: "9999px",
-            background: "rgba(56, 189, 248, 0.15)",
-            border: "1px solid rgba(56, 189, 248, 0.35)",
-            color: "#38BDF8",
-            fontSize: "0.78rem",
-            fontWeight: 600
-          }}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 14px",
+              borderRadius: "9999px",
+              background: "rgba(11, 43, 64, 0.8)",
+              border: "1px solid rgba(35, 215, 229, 0.35)",
+              color: "var(--color-cyan-tech, #23D7E5)",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              backdropFilter: "blur(12px)"
+            }}
+          >
             Cargando catálogo...
           </span>
         )
       case "unavailable":
         return (
-          <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "4px 12px",
-            borderRadius: "9999px",
-            background: "rgba(239, 68, 68, 0.15)",
-            border: "1px solid rgba(239, 68, 68, 0.35)",
-            color: "#F87171",
-            fontSize: "0.78rem",
-            fontWeight: 600
-          }}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 14px",
+              borderRadius: "9999px",
+              background: "rgba(11, 43, 64, 0.8)",
+              border: "1px solid rgba(239, 68, 68, 0.35)",
+              color: "#F87171",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              backdropFilter: "blur(12px)"
+            }}
+          >
             Datos pendientes de procesamiento
           </span>
         )
       default:
         return (
-          <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "4px 12px",
-            borderRadius: "9999px",
-            background: "rgba(239, 68, 68, 0.15)",
-            border: "1px solid rgba(239, 68, 68, 0.35)",
-            color: "#F87171",
-            fontSize: "0.78rem",
-            fontWeight: 600
-          }}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 14px",
+              borderRadius: "9999px",
+              background: "rgba(11, 43, 64, 0.8)",
+              border: "1px solid rgba(239, 68, 68, 0.35)",
+              color: "#F87171",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              backdropFilter: "blur(12px)"
+            }}
+          >
             Datos no disponibles
           </span>
         )
@@ -115,75 +141,103 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
   }
 
   return (
-    <header style={{
-      backgroundColor: "#040D18",
-      borderBottom: "1px solid rgba(56, 189, 248, 0.15)",
-      position: "sticky",
-      top: 0,
-      zIndex: 100,
-      backdropFilter: "blur(16px)"
-    }}>
-      <div className="container" style={{
-        display: "flex",
-        flexWrap: "wrap",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingTop: "14px",
-        paddingBottom: "14px",
-        gap: "var(--spacing-md)"
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer" }} onClick={() => onSelectTab("home")}>
-          <div style={{
-            width: "38px",
-            height: "38px",
-            borderRadius: "10px",
-            background: "linear-gradient(135deg, #0284C7 0%, #0D9488 100%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 0 16px rgba(14, 165, 233, 0.4)"
-          }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 12c3-4 6-4 9 0s6 4 9 0" />
-              <path d="M2 17c3-4 6-4 9 0s6 4 9 0" opacity="0.6" />
+    <header
+      style={{
+        backgroundColor: "rgba(6, 24, 39, 0.85)",
+        borderBottom: "1px solid rgba(35, 215, 229, 0.15)",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)"
+      }}
+    >
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingTop: "14px",
+          paddingBottom: "14px",
+          gap: "var(--spacing-md)"
+        }}
+      >
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer" }}
+          onClick={() => onSelectTab("home")}
+        >
+          <div
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "10px",
+              background: "linear-gradient(135deg, #0B4A6F 0%, #0E7490 100%)",
+              border: "1px solid rgba(35, 215, 229, 0.3)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 0 16px rgba(35, 215, 229, 0.3)"
+            }}
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#23D7E5"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M2 11c3-3.5 6-3.5 9 0s6 3.5 9 0" />
+              <path d="M2 16c3-3.5 6-3.5 9 0s6 3.5 9 0" opacity="0.6" />
             </svg>
           </div>
           <div>
-            <h1 style={{
-              fontSize: "1.15rem",
-              fontWeight: 800,
-              color: "#FFFFFF",
-              letterSpacing: "-0.01em",
-              lineHeight: 1.2,
-              margin: 0
-            }}>
+            <h1
+              style={{
+                fontSize: "1.12rem",
+                fontWeight: 800,
+                color: "var(--color-text-hero-white, #F7FAFC)",
+                letterSpacing: "0.02em",
+                lineHeight: 1.15,
+                margin: 0
+              }}
+            >
               TITICACA CONTRAST
             </h1>
-            <p style={{
-              fontSize: "0.68rem",
-              fontWeight: 600,
-              color: "#38BDF8",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              margin: 0
-            }}>
-              Observatorio de Cuencas • Puno
+            <p
+              style={{
+                fontSize: "0.66rem",
+                fontWeight: 600,
+                color: "var(--color-turquoise, #70DCD8)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                margin: 0
+              }}
+            >
+              Observatorio de Cuencas · Puno
             </p>
           </div>
         </div>
 
         <nav aria-label="Navegación principal">
-          <ul style={{
-            display: "flex",
-            listStyle: "none",
-            gap: "6px",
-            margin: 0,
-            padding: "4px",
-            backgroundColor: "rgba(10, 30, 50, 0.6)",
-            borderRadius: "9999px",
-            border: "1px solid rgba(56, 189, 248, 0.18)",
-            flexWrap: "wrap"
-          }}>
+          <ul
+            style={{
+              display: "flex",
+              listStyle: "none",
+              gap: "4px",
+              margin: 0,
+              padding: "4px",
+              backgroundColor: "rgba(11, 43, 64, 0.65)",
+              borderRadius: "9999px",
+              border: "1px solid rgba(35, 215, 229, 0.2)",
+              backdropFilter: "blur(12px)",
+              flexWrap: "wrap"
+            }}
+          >
             {navItems.map((item) => {
               const isActive = currentTab === item.id
               return (
@@ -193,14 +247,14 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
                     onClick={() => onSelectTab(item.id)}
                     aria-current={isActive ? "page" : undefined}
                     style={{
-                      padding: "6px 14px",
+                      padding: "7px 18px",
                       borderRadius: "9999px",
-                      fontSize: "0.85rem",
+                      fontSize: "0.86rem",
                       fontWeight: isActive ? 700 : 500,
-                      color: isActive ? "#FFFFFF" : "#94A3B8",
-                      backgroundColor: isActive ? "#0284C7" : "transparent",
-                      boxShadow: isActive ? "0 0 14px rgba(2, 132, 199, 0.5)" : "none",
-                      transition: "all 0.2s ease"
+                      color: isActive ? "#F7FAFC" : "#BCD0DC",
+                      backgroundColor: isActive ? "#0E7490" : "transparent",
+                      boxShadow: isActive ? "0 0 16px rgba(35, 215, 229, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2)" : "none",
+                      transition: "all 0.18s ease"
                     }}
                   >
                     {item.label}

@@ -148,3 +148,39 @@
 
 
 
+
+---
+
+## Rediseño Profesional del Hero / Portada (Noviembre 2026)
+
+- **Referencia visual:** Maqueta de observatorio tecnológico de alta fidelidad (`media_1794407865912_deb4a53c.jpg`).
+- **Paleta implementada:**
+  - Fondo azul profundo: `#061827`
+  - Azul petróleo: `#0B2B40`
+  - Azul secundario: `#123E56`
+  - Cian tecnológico: `#23D7E5`
+  - Turquesa: `#70DCD8`
+  - Verde indicador: `#20D8A1`
+  - Texto blanco: `#F7FAFC`
+  - Texto secundario: `#BCD0DC`
+  - Acento ámbar: `#DCA86F`
+- **Fondo panorámico auténtico:**
+  - Fotografía panorámica documental real del lago Titicaca tomada desde la Isla Taquile (Puno, Perú), por Martin St-Amant (Wikimedia Commons, CC-BY-SA).
+  - Superposición con gradiente petróleo y oscurecimiento progresivo lateral para garantizar contraste WCAG AAA en los textos.
+- **Modelo 3D de Cuencas y Lago:**
+  - Geometrías extruidas a partir de cartografía oficial de la Autoridad Nacional del Agua (ANA): Cuenca Ramis, Cuenca Huancané, Cuenca Coata, Cuenca Ilave y Lago Titicaca (`web/public/data/lake.geojson`).
+  - Anillo orbital tecnológico giratorio con marcas radiales, nodos luminosos y ticks cardinales.
+  - Modelo de satélite 3D con cuerpo de manta térmica dorada (MLI), paneles solares fotovoltaicos, antena parabólica y haz cónico de escaneo activo con pulso hacia el territorio.
+  - Microinteracciones de rotación orbital con inercia, zoom con rueda de ratón acotado (5.6 a 10.2), botón de reinicio de ángulo de vista y control de pausa/reanudación respetuoso de `prefers-reduced-motion`.
+- **Tarjetas flotantes HUD de telemetría:**
+  - Monitoreo satelital (NASA IMERG V07, actualización mensual calibrada).
+  - Precipitación (tendencia histórica con minigráfico de barras en cian luminoso: -8.2 mm/año promedio).
+  - Altiplano (3,812 msnm).
+  - Contrastes (Inferencia HAC / FDR).
+- **Fallback WebGL:**
+  - Representación isométrica 2.5D en SVG vectorial con polígonos oficiales interactivos cuando WebGL no está disponible o en entornos de prueba automatizada.
+- **Verificación integral:**
+  - 16/16 pruebas unitarias pasadas en Vitest.
+  - 32/32 pruebas pasadas en Pytest.
+  - 0 errores de TypeScript y 0 advertencias de CSS/Vite.
+  - 0 comentarios de código en archivos de código fuente.

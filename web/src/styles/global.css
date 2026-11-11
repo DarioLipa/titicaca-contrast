@@ -93,3 +93,73 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
   border: 0;
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: var(--spacing-xl);
+  min-height: 560px;
+}
+
+@media (min-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 1fr;
+  }
+}
+
+.hero-visual-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-hud-panel {
+  position: absolute;
+  top: 18px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 210px;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.hero-basin-controls {
+  position: absolute;
+  top: 48px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .hero-visual-wrapper {
+    min-height: 440px;
+  }
+
+  .hero-basin-controls {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
+
+  .hero-hud-panel {
+    position: static;
+    width: 100%;
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}

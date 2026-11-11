@@ -9,7 +9,8 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
   const manifest = data.manifest
 
   const files = [
-    { name: "basins.geojson", desc: "Geometrías simplificadas topológicamente (WGS84 EPSG:4326)", path: "./data/basins.geojson" },
+    { name: "basins.geojson", desc: "Geometrías de cuencas simplificadas topológicamente (WGS84 EPSG:4326)", path: "./data/basins.geojson" },
+    { name: "lake.geojson", desc: "Geometría oficial de la porción peruana del lago Titicaca (ANA)", path: "./data/lake.geojson" },
     { name: "basins.json", desc: "Metadatos, códigos oficiales ANA y áreas en km²", path: "./data/basins.json" },
     { name: "precipitation-monthly.csv", desc: "Serie mensual 2001-2025 (1,200 registros de cuenca/mes)", path: "./data/precipitation-monthly.csv" },
     { name: "precipitation-annual.json", desc: "Series anuales agregadas (2001–2024 completos)", path: "./data/precipitation-annual.json" },
@@ -64,7 +65,7 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
 
       <div className="card" style={{ marginBottom: "var(--spacing-lg)" }}>
         <h3 style={{ fontSize: "1.2rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-sm)" }}>
-          2. Cartografía de cuencas hidrográficas: ANA Perú
+          2. Cartografía de cuencas hidrográficas y lago: ANA Perú
         </h3>
         <dl style={{ display: "grid", gridTemplateColumns: "auto 1fr", rowGap: "var(--spacing-xs)", columnGap: "var(--spacing-md)", fontSize: "0.9rem" }}>
           <dt style={{ fontWeight: 600 }}>Entidad oficial:</dt>
@@ -96,7 +97,30 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
 
       <div className="card" style={{ marginBottom: "var(--spacing-lg)" }}>
         <h3 style={{ fontSize: "1.2rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-sm)" }}>
-          3. Descarga de datos abiertos y comprobación de integridad criptográfica
+          3. Fotografía panorámica del lago Titicaca y atribución
+        </h3>
+        <dl style={{ display: "grid", gridTemplateColumns: "auto 1fr", rowGap: "var(--spacing-xs)", columnGap: "var(--spacing-md)", fontSize: "0.9rem" }}>
+          <dt style={{ fontWeight: 600 }}>Obra:</dt>
+          <dd>Panorámica del Lago Titicaca desde la Isla Taquile, Puno, Perú</dd>
+
+          <dt style={{ fontWeight: 600 }}>Autor:</dt>
+          <dd>Martin St-Amant (Wikimedia Commons)</dd>
+
+          <dt style={{ fontWeight: 600 }}>Licencia:</dt>
+          <dd>Creative Commons Atribución-CompartirIgual (CC-BY-SA 2.5 / 2.0 / 1.0) y GNU Free Documentation License</dd>
+
+          <dt style={{ fontWeight: 600 }}>Fuente documental:</dt>
+          <dd>
+            <a href="https://commons.wikimedia.org/wiki/File:Panorama_Lac_Titicaca_-_D%C3%A9cembre_2006.jpg" target="_blank" rel="noreferrer">
+              Wikimedia Commons: File:Panorama Lac Titicaca - Décembre 2006.jpg
+            </a>
+          </dd>
+        </dl>
+      </div>
+
+      <div className="card" style={{ marginBottom: "var(--spacing-lg)" }}>
+        <h3 style={{ fontSize: "1.2rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-sm)" }}>
+          4. Descarga de datos abiertos y comprobación de integridad criptográfica
         </h3>
         <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "var(--spacing-md)" }}>
           Todos los archivos generados por el pipeline reproducible están disponibles en formato abierto para descarga directa y auditoría:
@@ -148,7 +172,7 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
 
       <div className="card">
         <h3 style={{ fontSize: "1.2rem", color: "var(--color-primary-navy)", marginBottom: "var(--spacing-sm)" }}>
-          4. Licencia y declaración de independencia institucional
+          5. Licencia y declaración de independencia institucional
         </h3>
         <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", lineHeight: 1.6, margin: 0, marginBottom: "var(--spacing-xs)" }}>
           El software y pipeline de TITICACA CONTRAST se publica bajo licencia de código abierto MIT.
