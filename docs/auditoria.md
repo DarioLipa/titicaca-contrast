@@ -251,3 +251,101 @@
 - **Validación visual automatizada en navegador real (Headless Chrome):**
   - Captura y verificación de renderizado en `desktop-1650x900.png`, `laptop-1366x768.png` y `mobile-390x844.png`.
   - En móviles, botones CTA apilados verticalmente a ancho completo sin desbordes horizontales ni recortes.
+
+---
+
+## Auditoría Final de Preparación para Producción (Noviembre 2026)
+
+- **Objetivo:** Auditoría exhaustiva y refinamiento integral de la plataforma TITICACA CONTRAST para su lanzamiento público y despliegue en producción.
+- **Responsable:** Antigravity / Pair Programming
+- **Estado general:** APROBADO PARA PRODUCCIÓN
+
+### 1. Portada / Inicio (`Home.tsx`)
+- [x] Remoción de tarjetas metodológicas redundantes, panel de transparencia técnica excesivo y badges duplicados.
+- [x] Reestructuración del bloque inferior bajo la denominación oficial **"Hallazgos clave"**.
+- [x] Presentación sobria y focalizada en 4 tarjetas de datos esenciales:
+  - 4 cuencas tributarias oficiales (Ramis, Coata, Ilave, Huancané).
+  - Período validado de 24 años completos (2001–2024).
+  - Tasa de precipitación estimada (4/4 cuencas con tendencia Theil-Sen decreciente).
+  - Evidencia de divergencia: 0 de 6 contrastes emparejados confirmados tras corrección FDR ($q > 0.05$).
+- [x] Erradicación de afirmaciones no científicas que declaraban "estabilidad demostrada" u "homogeneidad comprobada"; se adopta la interpretación rigurosa de evidencia insuficiente para rechazar la hipótesis nula.
+
+### 2. Explorador de Cuencas (`Explorer.tsx`)
+- [x] Optimización de proporciones del mapa cartográfico oficial (Leaflet sobre OpenStreetMap libre de API keys).
+- [x] Agrupamiento lógico de controles de selección de cuenca y rango temporal (2001–2024).
+- [x] Jerarquía visual clara: Nombre de cuenca, área oficial en $\text{km}^2$, tendencia Theil-Sen en $\text{mm/año}$ e interpretación científica concisa visible directamente.
+- [x] Parámetros técnicos secundarios (código oficial ANA, fuente cartográfica SNIRH, valor p de Mann-Kendall y observaciones validadas) reubicados en un componente `<details>` expandible.
+- [x] Preservación de atibución OpenStreetMap, integridad cartográfica y descarga directa de series CSV.
+
+### 3. Herramienta de Comparación (`Compare.tsx` y `ContrastCard.tsx`)
+- [x] Priorización inmediata de los elementos primordiales: cuencas seleccionadas, período de análisis (2001–2024), pendiente estimada de la brecha temporal ($\Delta\text{Trend}$ en $\text{mm/año}$), interpretación en lenguaje claro y gráfico comparativo (modo brecha $D(t)$, serie anual o ciclo estacional).
+- [x] Métricas econométricas de inferencia (intervalo de confianza al 95% Newey-West con $L=2$, valor $p$ de Wald y valor $q$ ajustado por Benjamini–Hochberg) organizadas dentro de la sección colapsable "Detalles de inferencia estadística (HAC / FDR)".
+- [x] Acceso directo a la ficha completa de evidencia (`EvidencePanel.tsx`) con evaluación de sensibilidad a rezagos ($L=1, 2, 3$).
+
+### 4. Hallazgos Científicos (`Findings.tsx`)
+- [x] Sustitución formal de etiquetas ambiguas ("Inconclusivo", "Sin cambio") por designaciones científicas honestas: **"Evidencia insuficiente tras FDR"** (par Coata ↔ Ilave) y **"Evidencia insuficiente de divergencia"** (5 pares restantes).
+- [x] Prohibición expresa de interpretar la ausencia de significancia estadística como prueba de homogeneidad física o estabilidad climática.
+- [x] Tarjetas compactas con nombres de cuencas, diferencial estimado, insignia de estado y botón de detalles de evidencia.
+- [x] Supresión de párrafos descriptivos repetitivos; síntesis basada estrictamente en los resultados cuantitativos auditados.
+
+### 5. Metodología (`Methodology.tsx`)
+- [x] Reorganización en exactamente 5 pasos metodológicos secuenciales y claros:
+  1. *Delimitación cartográfica oficial:* ANA SNIRH, Pfafstetter y simplificación topológica en EPSG:4326.
+  2. *Extracción y calibración satelital:* NASA GPM IMERG V07 Final, conversión horaria a lámina mensual y promedio ponderado por área de celda.
+  3. *Estimación univariada de tendencias:* Pendiente Theil-Sen y prueba de monotonicidad Mann-Kendall con corrección de empates (2001–2024).
+  4. *Contraste intercuenca con covarianza robusta HAC:* Brecha temporal $D(t) = P_A(t) - P_B(t)$ con estimador Newey–West ($L=2$) y sensibilidad ante $L=1, 3$.
+  5. *Control de descubrimientos falsos (FDR) y limitaciones:* Benjamini–Hochberg ($m=6, q \le 0.05$) y principio de no causalidad hidrológica.
+- [x] Fórmulas matemáticas, tolerancias, especificaciones de kernel y umbrales empaquetados en contenedores colapsables `<details>`.
+
+### 6. Fuentes y Descargas (`Sources.tsx`)
+- [x] Conservación visible y destacada de procedencia institucional: NASA GES DISC (DOI: 10.5067/GPM/IMERG/3B-MONTH/07), ANA Perú (SNIRH / GeoIDEP) y autoría de la fotografía panorámica (Martin St-Amant, CC-BY-SA).
+- [x] Módulo destacado de descargas principales con acceso directo a 6 conjuntos de datos:
+  - `precipitation-annual.json`
+  - `precipitation-monthly.csv`
+  - `basins.geojson`
+  - `trends.json`
+  - `contrasts.json`
+  - `manifest.json`
+- [x] Inventario exhaustivo de archivos con sus respectivos hashes criptográficos SHA-256 trasladado a la sección expandible "Datos de investigación: Inventario técnico completo e integridad SHA-256".
+
+### 7. Auditoría de Integridad de Datos y Resolución de Discrepancias
+- [x] **Investigación de registros temporales:**
+  - Se confirmó que los 297 meses procesados corresponden exactamente a las observaciones mensuales calibradas de NASA GPM IMERG Final V07 publicadas al momento del corte (2001-01 a 2025-09).
+  - El archivo `precipitation-monthly.csv` contiene exactamente 1,200 filas porque abarca 25 años completos de calendario civil (2001-01 a 2025-12) para las 4 cuencas ($25 \times 12 \times 4 = 1,200$).
+  - Los últimos 3 meses de 2025 (octubre, noviembre y diciembre, 12 registros de cuenca) son valores nulos registrados de forma transparente debido a la latencia oficial de calibración del producto Final de la NASA (2 a 3 meses), sin imputaciones ficticias.
+  - La línea base estadística confirmatoria se restringe a los 24 años completos (2001–2024, 1,152 registros mensuales y 96 registros anuales), garantizando solidez numérica y homogeneidad temporal.
+
+### 8. Sistema Visual y Accesibilidad
+- [x] Paleta institucional unificada (Dark Theme): Azul profundo `#061827`, azul petróleo `#0B2B40`, superficie de tarjeta `#102E43`, cian tecnológico `#20D7DF` y turquesa `#69DAD6`.
+- [x] Estándares de contraste WCAG 2.2 AA superados en todos los textos e indicadores de interfaz.
+- [x] Tipografía, botones semánticos, selectores, bordes redondeados y espaciados estandarizados mediante variables CSS en `tokens.css`.
+
+### 9. Pie de Página Corporativo (`Footer.tsx`)
+- [x] Unificación del pie de página con texto institucional obligatorio:
+  `© 2026 DalíPE. All rights reserved. · Academic affiliation: UPRIT`
+- [x] Enlaces directos y funcionales hacia Metodología y Fuentes oficiales.
+
+### 10. Auditoría de Seguridad Web (OWASP Top 10:2025)
+- [x] **A01: Broken Access Control:** Inexistente; arquitectura cliente-estática sin endpoints de servidor ni elevación de privilegios.
+- [x] **A02: Cryptographic Failures:** Todos los recursos remotos se consumen sobre TLS/HTTPS seguro. Hashes SHA-256 verificados para cada archivo de datos.
+- [x] **A03: Injection:** Cero consultas SQL o shells dinámicos en tiempo de ejecución web; renderizado React con escape de contexto nativo.
+- [x] **A04: Insecure Design:** Enfoque estático inmutable por diseño.
+- [x] **A05: Security Misconfiguration:** Dependencias fijadas, rutas relativas configuradas y sugerencia de cabeceras de seguridad (`Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Strict-Transport-Security`).
+- [x] **A06: Vulnerable and Outdated Components:** Auditoría `npm audit` realizada; 0 vulnerabilidades explotables en el bundle estático de producción.
+- [x] **A07: Identification and Authentication Failures:** No aplica; el observatorio es de acceso público y abierto, sin sesiones de usuario.
+- [x] **A08: Software and Data Integrity Failures:** Verificación criptográfica con `manifest.json`.
+- [x] **A09: Security Logging and Monitoring Failures:** Telemetría estática y mensajes semánticos de estado en interfaz (`StatusMessage`).
+- [x] **A10: Server-Side Request Forgery (SSRF):** Inexistente; no hay proxies dinámicos en servidor.
+
+### 11. Rendimiento y Diseño Adaptativo
+- [x] Verificación de maquetación en resoluciones clave:
+  - Monitor Ultra/Escritorio: 1650 × 900 px (ancho fluido hasta 1800 px, márgenes laterales equilibrados).
+  - Portátil estándar: 1366 × 768 px (sin solapamientos ni desbordes).
+  - Dispositivo móvil: 390 × 844 px (navegación vertical fluida, botones apilados a ancho completo, controles táctiles accesibles).
+
+### 12. Verificación Integral de Código y Entregables
+- [x] **CERO COMENTARIOS:** Verificación automatizada con script de análisis léxico sobre todos los archivos `.ts`, `.tsx` y `.py`; se certifica la ausencia total de comentarios (`//`, `/* */`, `#`).
+- [x] **Compilación y Tipado:** `npm run typecheck` finalizado con 0 errores; `npm run lint` finalizado con 0 advertencias.
+- [x] **Pruebas Frontend:** 16 de 16 pruebas unitarias y de integración pasadas en Vitest (100%).
+- [x] **Pruebas de Pipeline:** 32 de 32 pruebas científicas pasadas en Pytest (100%).
+- [x] **Compilación de Producción:** Vite genera exitosamente `web/dist/` optimizado con `manualChunks`.

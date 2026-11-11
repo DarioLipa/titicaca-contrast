@@ -59,55 +59,123 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
           Explorador de cuencas tributarias
         </h2>
         <p style={{ color: "var(--color-text-secondary)", margin: 0, fontSize: "0.95rem" }}>
-          Visualización de cartografía oficial ANA, series de precipitación satelital y análisis univariado Theil-Sen / Mann-Kendall.
+          Visualización de cartografía oficial ANA, series históricas de precipitación NASA IMERG y análisis univariado Theil-Sen / Mann-Kendall.
         </p>
       </div>
 
       <StatusMessage status={data.status} message={data.errorMessage || data.manifest?.notes} />
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "var(--spacing-lg)", marginBottom: "var(--spacing-xl)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "var(--spacing-lg)", marginBottom: "var(--spacing-xl)" }}>
         <div>
           <BasinMap
             selectedBasin={selectedBasin}
             onSelectBasin={setSelectedBasin}
             geoJsonData={data.geoJson}
             basins={data.basins}
-            height="420px"
+            height="440px"
           />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-md)" }}>
-          <div className="card">
+          <div className="card" style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-md)" }}>
             <BasinSelector
               id="basin-selector-explorer"
-              label="Seleccionar cuenca:"
+              label="Seleccionar cuenca tributaria:"
               selectedBasin={selectedBasin}
               onSelectBasin={setSelectedBasin}
               basins={data.basins}
             />
 
-            <div style={{ marginTop: "var(--spacing-md)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--spacing-sm)", fontSize: "0.85rem" }}>
-              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Código oficial ANA:</span>
-                <strong style={{ color: "var(--color-primary-cyan)", fontSize: "0.95rem" }}>{currentBasin.official_code}</strong>
-              </div>
-              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Área oficial:</span>
-                <strong style={{ color: "var(--color-text-main)", fontSize: "0.95rem" }}>{Number(currentBasin.area_km2).toLocaleString()} km²</strong>
-              </div>
-              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Tendencia Theil-Sen:</span>
-                <strong style={{ color: "var(--color-status-warning)", fontSize: "0.95rem" }}>
-                  {currentTrend ? `${currentTrend.sen_slope_mm_per_year} mm/año` : "Calculando..."}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--color-border-discrete)", paddingBottom: "var(--spacing-xs)" }}>
+              <div>
+                <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em", display: "block" }}>
+                  Cuenca oficial
+                </span>
+                <strong style={{ fontSize: "1.3rem", color: "var(--color-text-main)" }}>
+                  Cuenca {currentBasin.name}
                 </strong>
               </div>
-              <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-                <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Mann-Kendall p:</span>
-                <strong style={{ color: "var(--color-text-main)", fontSize: "0.95rem" }}>
-                  {currentTrend ? `p = ${currentTrend.mann_kendall_p}` : "Calculando..."}
+              <div style={{ textAlign: "right" }}>
+                <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
+                  Superficie hidrográfica
+                </span>
+                <strong style={{ fontSize: "1.1rem", color: "var(--color-primary-cyan)", fontFamily: "var(--font-family-mono)" }}>
+                  {Number(currentBasin.area_km2).toLocaleString()} km²
                 </strong>
               </div>
             </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
+              <div>
+                <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
+                  Tendencia Theil-Sen (2001–2024):
+                </span>
+                <strong style={{ fontSize: "1.15rem", color: "var(--color-status-warning)", fontFamily: "var(--font-family-mono)" }}>
+                  {currentTrend ? `${currentTrend.sen_slope_mm_per_year} mm/año` : "Calculando..."}
+                </strong>
+              </div>
+              <span className="badge" style={{ backgroundColor: "rgba(214, 164, 97, 0.15)", color: "var(--color-status-warning)", border: "1px solid rgba(214, 164, 97, 0.3)" }}>
+                {currentTrend && currentTrend.mann_kendall_p < 0.05 ? "Tendencia significativa" : "Variabilidad interanual"}
+              </span>
+            </div>
+
+            <p style={{ fontSize: "0.88rem", color: "var(--color-text-secondary)", lineHeight: 1.55, margin: 0 }}>
+              {currentTrend
+                ? `La serie anual 2001–2024 presenta una tasa mediana de cambio de ${currentTrend.sen_slope_mm_per_year} mm/año. El contraste no paramétrico de Mann-Kendall reporta p = ${currentTrend.mann_kendall_p}, ${currentTrend.mann_kendall_p < 0.05 ? "confirmando una tendencia decreciente con significancia al 5%." : "reflejando fluctuación interanual con evidencia no concluyente de tendencia monótona."}`
+                : "Cargando serie histórica de precipitación satelital..."}
+            </p>
+
+            <details
+              style={{
+                backgroundColor: "var(--color-surface-elevated)",
+                border: "1px solid var(--color-border-discrete)",
+                borderRadius: "var(--border-radius-sm)",
+                padding: "var(--spacing-xs) var(--spacing-sm)"
+              }}
+            >
+              <summary
+                style={{
+                  cursor: "pointer",
+                  fontSize: "0.82rem",
+                  color: "var(--color-primary-cyan)",
+                  fontWeight: 600,
+                  padding: "4px 0",
+                  userSelect: "none"
+                }}
+              >
+                Parámetros técnicos y metadatos oficiales
+              </summary>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: "var(--spacing-xs)",
+                  paddingTop: "var(--spacing-xs)",
+                  fontSize: "0.8rem",
+                  borderTop: "1px solid var(--color-border-discrete)",
+                  marginTop: "6px"
+                }}
+              >
+                <div>
+                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>Código oficial ANA:</span>
+                  <strong style={{ color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>{currentBasin.official_code}</strong>
+                </div>
+                <div>
+                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>Fuente cartográfica:</span>
+                  <strong style={{ color: "var(--color-text-main)" }}>{currentBasin.source} SNIRH</strong>
+                </div>
+                <div>
+                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>Mann-Kendall p-value:</span>
+                  <strong style={{ color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>
+                    {currentTrend ? currentTrend.mann_kendall_p : "-"}
+                  </strong>
+                </div>
+                <div>
+                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>Período validado:</span>
+                  <strong style={{ color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>24 años (2001–2024)</strong>
+                </div>
+              </div>
+            </details>
           </div>
 
           <PeriodSelector

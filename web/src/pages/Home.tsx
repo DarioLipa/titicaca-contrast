@@ -247,16 +247,12 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
 
       <div className="container" style={{ paddingTop: "var(--spacing-2xl)", paddingBottom: "var(--spacing-2xl)" }}>
         {isReady && (
-          <section
-            className="card"
-            style={{
-              marginBottom: "var(--spacing-2xl)"
-            }}
-          >
+          <section className="card">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--spacing-md)", flexWrap: "wrap", gap: "var(--spacing-sm)" }}>
-              <h2 style={{ fontSize: "1.25rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
-                Resumen de evidencia científica confirmatoria
+              <h2 style={{ fontSize: "1.3rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
+                Hallazgos clave
               </h2>
+              <span className="badge badge-cyan">2001 – 2024 · 24 años validados</span>
             </div>
 
             <div
@@ -276,11 +272,11 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Meses satelitales procesados:
+                  Cuencas monitoreadas:
                 </span>
-                <strong style={{ fontSize: "1.35rem", color: "var(--color-text-main)" }}>297 meses</strong>
+                <strong style={{ fontSize: "1.25rem", color: "var(--color-text-main)" }}>4 cuencas oficiales</strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  2001-01 a 2025-09
+                  Ramis, Coata, Ilave y Huancané
                 </span>
               </div>
 
@@ -293,11 +289,11 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Años completos:
+                  Período validado:
                 </span>
-                <strong style={{ fontSize: "1.35rem", color: "var(--color-text-main)" }}>24 años</strong>
+                <strong style={{ fontSize: "1.25rem", color: "var(--color-text-main)" }}>2001 – 2024</strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  2001 a 2024 (12 meses c/u)
+                  24 años completos (1,152 observaciones)
                 </span>
               </div>
 
@@ -310,13 +306,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Tendencias Theil-Sen:
+                  Tendencias verificadas:
                 </span>
-                <strong style={{ fontSize: "1.35rem", color: "var(--color-status-warning)" }}>
+                <strong style={{ fontSize: "1.25rem", color: "var(--color-status-warning)" }}>
                   4 / 4 decrecientes
                 </strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  p &lt; 0.05
+                  Theil-Sen · -8.2 mm/año promedio
                 </span>
               </div>
 
@@ -329,77 +325,22 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Contrastes emparejados (FDR):
+                  Diferencias confirmadas:
                 </span>
-                <strong style={{ fontSize: "1.35rem", color: "var(--color-primary-cyan)" }}>
-                  5 estables / 1 inconcluso
+                <strong style={{ fontSize: "1.25rem", color: "var(--color-primary-cyan)" }}>
+                  0 de 6 contrastes
                 </strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  Brechas temporales constantes
+                  FDR q &gt; 0.05 · Evidencia insuficiente
                 </span>
               </div>
             </div>
 
             <p style={{ fontSize: "0.92rem", color: "var(--color-text-secondary)", margin: 0, lineHeight: 1.6 }}>
-              <strong style={{ color: "var(--color-text-main)" }}>Hallazgo central:</strong> Aunque las 4 cuencas experimentaron caídas anuales en su precipitación acumulada entre 2001 y 2024, la diferencia relativa entre ellas no mostró divergencia confirmada tras el control estricto de descubrimientos falsos.
+              <strong style={{ color: "var(--color-text-main)" }}>Conclusión:</strong> Si bien las cuatro cuencas experimentaron trayectorias de precipitación anual decreciente durante el período 2001–2024, las pruebas estadísticas emparejadas con ajuste FDR muestran que no existe evidencia estadística suficiente para rechazar la hipótesis nula de pendientes equivalentes entre ellas.
             </p>
           </section>
         )}
-
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "var(--spacing-lg)",
-            marginBottom: "var(--spacing-2xl)"
-          }}
-        >
-          <div className="card">
-            <h3 style={{ fontSize: "1.1rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-sm)" }}>
-              1. Cuatro cuencas oficiales
-            </h3>
-            <p style={{ fontSize: "0.92rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
-              Delimitaciones hidrográficas oficiales de la Autoridad Nacional del Agua (ANA), con validación topológica continua y cálculo de superficie geodésica.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3 style={{ fontSize: "1.1rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-sm)" }}>
-              2. Estimaciones satelitales
-            </h3>
-            <p style={{ fontSize: "0.92rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
-              Producto satelital multifuente calibrado mensual NASA GPM IMERG Final (0.1° × 0.1°), ponderado por área de intersección en cada divisoria de aguas.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3 style={{ fontSize: "1.1rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-sm)" }}>
-              3. Inferencia estadística HAC / FDR
-            </h3>
-            <p style={{ fontSize: "0.92rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
-              Análisis emparejado de brechas temporales con errores estándar robustos a heterocedasticidad y autocorrelación (Newey–West) y control FDR (Benjamini–Hochberg).
-            </p>
-          </div>
-        </section>
-
-        <section className="card">
-          <h3 style={{ fontSize: "1.1rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-sm)" }}>
-            Ficha de transparencia del observatorio
-          </h3>
-          <dl style={{ display: "grid", gridTemplateColumns: "auto 1fr", rowGap: "var(--spacing-xs)", columnGap: "var(--spacing-md)", fontSize: "0.9rem" }}>
-            <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Estado de la colección:</dt>
-            <dd style={{ color: "var(--color-text-main)" }}>{data.status === "ready" ? "Colección verificada y lista para consulta pública" : "Pendiente de procesamiento"}</dd>
-
-            <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Período cubierto:</dt>
-            <dd style={{ color: "var(--color-text-main)" }}>2001-01 a 2024-12 (24 años completos confirmatorios)</dd>
-
-            <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Resolución nativa:</dt>
-            <dd style={{ color: "var(--color-text-main)" }}>NASA IMERG L3 Final 0.1° × 0.1° (~10 km)</dd>
-
-            <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Política de datos:</dt>
-            <dd style={{ color: "var(--color-text-main)" }}>Cero datos simulados presentados como resultados reales. Ausencia de diferencias es un resultado científico válido.</dd>
-          </dl>
-        </section>
       </div>
     </div>
   )

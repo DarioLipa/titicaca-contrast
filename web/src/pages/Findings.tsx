@@ -48,10 +48,10 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
         <h2 style={{ fontSize: "1.75rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
-          Panel de hallazgos y contrastes emparejados
+          Hallazgos científicos y contrastes emparejados
         </h2>
         <p style={{ color: "var(--color-text-secondary)", margin: 0, lineHeight: 1.5, fontSize: "0.95rem" }}>
-          Matriz de las 6 parejas de cuencas posibles con especificación confirmatoria (n = 24 años), control de descubrimientos falsos (Benjamini–Hochberg FDR, q ≤ 0.05) y errores robustos HAC.
+          Matriz confirmatoria de las 6 combinaciones intercuenca (n = 24 años validados), con estimador Newey–West (HAC L=2) y control FDR (q ≤ 0.05).
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             transition: "all 0.15s ease"
           }}
         >
-          Inconcluso tras FDR (1)
+          Evidencia insuficiente tras FDR (1)
         </button>
         <button
           type="button"
@@ -104,7 +104,7 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             transition: "all 0.15s ease"
           }}
         >
-          Sin cambio detectable (5)
+          Evidencia insuficiente de divergencia (5)
         </button>
       </div>
 
@@ -122,20 +122,20 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
 
       <div className="card">
         <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-sm)", fontWeight: 700 }}>
-          Conclusiones y síntesis científica
+          Síntesis e interpretación científica rigurosa
         </h3>
         <ul style={{ paddingLeft: "var(--spacing-lg)", fontSize: "0.92rem", color: "var(--color-text-secondary)", lineHeight: 1.65 }}>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Reducción uniforme general:</strong> Las 4 cuencas oficiales presentan pendientes Theil-Sen negativas y estadísticamente significativas en el acumulado anual 2001–2024 (Ramis: -11.45 mm/año, Huancané: -10.68 mm/año, Coata: -8.13 mm/año, Ilave: -4.88 mm/año).
+            <strong style={{ color: "var(--color-text-main)" }}>Tendencias univariadas estimadas:</strong> Las 4 cuencas oficiales presentan coeficientes Theil-Sen negativos en sus acumulados anuales 2001–2024 (Ramis: -11.45 mm/año, Huancané: -10.68 mm/año, Coata: -8.13 mm/año, Ilave: -4.88 mm/año).
           </li>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Estabilidad en las brechas relativas:</strong> Al analizar las diferencias anuales D(t) = P_A(t) - P_B(t), 5 de las 6 parejas no presentan pendiente significativamente distinta de cero (p &gt; 0.05), lo que demuestra que la reducción pluvial ha sido homogénea a escala de cuenca.
+            <strong style={{ color: "var(--color-text-main)" }}>Evidencia insuficiente de divergencia intercuenca:</strong> Al evaluar la serie de brechas D(t) = P_A(t) - P_B(t), ninguno de los 6 contrastes emparejados muestra evidencia estadísticamente concluyente de divergencia tras la corrección por pruebas múltiples (FDR q &gt; 0.05). Los datos observados no permiten rechazar la hipótesis nula de tendencias paralelas.
           </li>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Rigor en el par Coata ↔ Ilave:</strong> Presenta una pendiente univariada nominal de -2.07 mm/año con p = 0.0443; sin embargo, al corregir por multiplicidad de hipótesis con Benjamini–Hochberg (m = 6), su valor q resulta en 0.2659 (&gt; 0.05), catalogándose honestamente como <em>inconcluso</em> conforme a las directrices del Plan Maestro.
+            <strong style={{ color: "var(--color-text-main)" }}>Tratamiento metodológico del par Coata ↔ Ilave:</strong> Presenta una pendiente univariada nominal de -2.07 mm/año con p = 0.0443; sin embargo, al aplicar el control FDR de Benjamini–Hochberg (m = 6), el valor q resultante es 0.2659 (&gt; 0.05), clasificándose honestamente como evidencia insuficiente.
           </li>
           <li>
-            <strong style={{ color: "var(--color-text-main)" }}>No causalidad:</strong> No debe extrapolarse este resultado como causa única del descenso en el nivel del Lago Titicaca, el cual depende de evaporación neta, balances térmicos y demandas hídricas.
+            <strong style={{ color: "var(--color-text-main)" }}>Principio de no causalidad hidrológica:</strong> Los resultados describen exclusivamente dinámicas de precipitación superficial satelital. No constituyen demostración de estabilidad climática ni explican de forma aislada las fluctuaciones del nivel del Lago Titicaca, las cuales están sujetas al balance hídrico completo.
           </li>
         </ul>
       </div>

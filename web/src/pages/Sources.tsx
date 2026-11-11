@@ -20,6 +20,15 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
     { name: "manifest.json", desc: "Manifiesto de procedencia, parámetros y hashes SHA-256", path: "./data/manifest.json" }
   ]
 
+  const coreDownloads = [
+    { name: "precipitation-annual.json", label: "Series anuales validadas (JSON)", path: "./data/precipitation-annual.json" },
+    { name: "precipitation-monthly.csv", label: "Serie mensual 2001-2025 (CSV)", path: "./data/precipitation-monthly.csv" },
+    { name: "basins.geojson", label: "Geometrías oficiales ANA (GeoJSON)", path: "./data/basins.geojson" },
+    { name: "trends.json", label: "Tendencias Theil-Sen (JSON)", path: "./data/trends.json" },
+    { name: "contrasts.json", label: "Contrastes pareados HAC/FDR (JSON)", path: "./data/contrasts.json" },
+    { name: "manifest.json", label: "Manifiesto de integridad (JSON)", path: "./data/manifest.json" }
+  ]
+
   return (
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
@@ -27,7 +36,7 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
           Fuentes oficiales, metadatos y descargas
         </h2>
         <p style={{ color: "var(--color-text-secondary)", margin: 0, lineHeight: 1.5, fontSize: "0.95rem" }}>
-          Procedencia institucional de los datos, identificadores DOI y hashes criptográficos para verificación de integridad independiente.
+          Procedencia institucional de los datos, identificadores DOI y archivos abiertos para reproducibilidad científica independiente.
         </p>
       </div>
 
@@ -52,14 +61,8 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
           <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Licencia:</dt>
           <dd style={{ color: "var(--color-text-main)" }}>Datos abiertos de NASA Earth Science (acceso público y gratuito)</dd>
 
-          <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Identificador:</dt>
-          <dd style={{ color: "var(--color-text-main)" }}>{manifest ? manifest.dataset_id : "GPM_3IMERGM"}</dd>
-
-          <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Versión procesada:</dt>
+          <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Versión:</dt>
           <dd style={{ color: "var(--color-text-main)" }}>{manifest ? manifest.dataset_version : "07"} (Corrida Final calibrada)</dd>
-
-          <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Fecha de descarga:</dt>
-          <dd style={{ color: "var(--color-text-main)" }}>{manifest?.source_downloaded_at_utc || "Noviembre 2026"}</dd>
         </dl>
       </div>
 
@@ -87,11 +90,6 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
               Repositorio oficial SNIRH - UnidadesHidrograficas.zip
             </a>
           </dd>
-
-          <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Hash SHA-256 fuente:</dt>
-          <dd style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.8rem", color: "var(--color-primary-cyan)", wordBreak: "break-all" }}>
-            {manifest?.boundary_hash_sha256 || "2d5dd3dc4b82f2f0a7e54d99390ab5d39d28787172647cfa911e7e9df623493d"}
-          </dd>
         </dl>
       </div>
 
@@ -107,12 +105,12 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
           <dd style={{ color: "var(--color-text-main)" }}>Martin St-Amant (Wikimedia Commons)</dd>
 
           <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Licencia:</dt>
-          <dd style={{ color: "var(--color-text-main)" }}>Creative Commons Atribución-CompartirIgual (CC-BY-SA 2.5 / 2.0 / 1.0) y GNU Free Documentation License</dd>
+          <dd style={{ color: "var(--color-text-main)" }}>Creative Commons Atribución-CompartirIgual (CC-BY-SA 2.5 / 2.0 / 1.0)</dd>
 
           <dt style={{ fontWeight: 600, color: "var(--color-text-secondary)" }}>Fuente documental:</dt>
           <dd>
             <a href="https://commons.wikimedia.org/wiki/File:Panorama_Lac_Titicaca_-_D%C3%A9cembre_2006.jpg" target="_blank" rel="noreferrer">
-              Wikimedia Commons: File:Panorama Lac Titicaca - Décembre 2006.jpg
+              Wikimedia Commons: Panorama Lac Titicaca - Martin St-Amant
             </a>
           </dd>
         </dl>
@@ -120,56 +118,119 @@ export const Sources: React.FC<SourcesProps> = ({ data }) => {
 
       <div className="card" style={{ marginBottom: "var(--spacing-lg)" }}>
         <h3 style={{ fontSize: "1.15rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-sm)", fontWeight: 700 }}>
-          4. Descarga de datos abiertos y comprobación de integridad criptográfica
+          4. Descarga de conjuntos de datos principales
         </h3>
         <p style={{ fontSize: "0.9rem", color: "var(--color-text-secondary)", marginBottom: "var(--spacing-md)" }}>
-          Todos los archivos generados por el pipeline reproducible están disponibles en formato abierto para descarga directa y auditoría:
+          Acceso directo a las series de precipitación, geometrías vectoriales oficiales y resultados estadísticos para su replicación:
         </p>
-        <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", border: "1px solid var(--color-border-discrete)" }}>
-            <thead>
-              <tr style={{ backgroundColor: "var(--color-surface-elevated)", textAlign: "left", color: "var(--color-text-main)" }}>
-                <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Archivo</th>
-                <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Descripción</th>
-                <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Hash SHA-256</th>
-                <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              {files.map((file) => {
-                const hash = manifest?.integrity ? manifest.integrity[file.name] : ""
-                return (
-                  <tr key={file.name} style={{ borderBottom: "1px solid var(--color-border-discrete)", backgroundColor: "var(--color-surface-card)" }}>
-                    <td style={{ padding: "10px 12px", fontFamily: "var(--font-family-mono)", fontWeight: 600, color: "var(--color-primary-cyan)" }}>{file.name}</td>
-                    <td style={{ padding: "10px 12px", color: "var(--color-text-secondary)" }}>{file.desc}</td>
-                    <td style={{ padding: "10px 12px", fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", color: "var(--color-text-muted)" }}>
-                      {hash ? `${hash.substring(0, 16)}...` : "-"}
-                    </td>
-                    <td style={{ padding: "10px 12px" }}>
-                      <a
-                        href={file.path}
-                        download={file.name}
-                        style={{
-                          display: "inline-block",
-                          padding: "5px 12px",
-                          borderRadius: "var(--border-radius-sm)",
-                          backgroundColor: "var(--color-surface-elevated)",
-                          border: "1px solid var(--color-border-discrete)",
-                          color: "var(--color-primary-cyan)",
-                          fontWeight: 600,
-                          fontSize: "0.8rem"
-                        }}
-                      >
-                        Descargar
-                      </a>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "var(--spacing-sm)" }}>
+          {coreDownloads.map((item) => (
+            <div
+              key={item.name}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "10px 14px",
+                backgroundColor: "var(--color-surface-elevated)",
+                border: "1px solid var(--color-border-discrete)",
+                borderRadius: "var(--border-radius-sm)"
+              }}
+            >
+              <div>
+                <strong style={{ display: "block", fontSize: "0.85rem", color: "var(--color-text-main)" }}>{item.label}</strong>
+                <span style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", color: "var(--color-text-secondary)" }}>{item.name}</span>
+              </div>
+              <a
+                href={item.path}
+                download={item.name}
+                style={{
+                  padding: "5px 12px",
+                  borderRadius: "var(--border-radius-sm)",
+                  backgroundColor: "rgba(35, 215, 229, 0.12)",
+                  border: "1px solid rgba(35, 215, 229, 0.35)",
+                  color: "var(--color-primary-cyan)",
+                  fontWeight: 600,
+                  fontSize: "0.8rem",
+                  textDecoration: "none"
+                }}
+              >
+                Descargar
+              </a>
+            </div>
+          ))}
         </div>
       </div>
+
+      <details
+        className="card"
+        style={{
+          marginBottom: "var(--spacing-lg)",
+          backgroundColor: "var(--color-surface-card)"
+        }}
+      >
+        <summary
+          style={{
+            cursor: "pointer",
+            fontSize: "1rem",
+            color: "var(--color-primary-cyan)",
+            fontWeight: 700,
+            padding: "4px 0",
+            userSelect: "none"
+          }}
+        >
+          Datos de investigación: Inventario técnico completo e integridad SHA-256
+        </summary>
+        <div style={{ paddingTop: "var(--spacing-md)" }}>
+          <p style={{ fontSize: "0.88rem", color: "var(--color-text-secondary)", marginBottom: "var(--spacing-sm)" }}>
+            Catálogo completo de archivos generados por el pipeline de investigación con verificación criptográfica SHA-256:
+          </p>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", border: "1px solid var(--color-border-discrete)" }}>
+              <thead>
+                <tr style={{ backgroundColor: "var(--color-surface-elevated)", textAlign: "left", color: "var(--color-text-main)" }}>
+                  <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Archivo</th>
+                  <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Descripción</th>
+                  <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Hash SHA-256</th>
+                  <th style={{ padding: "10px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                {files.map((file) => {
+                  const hash = manifest?.integrity ? manifest.integrity[file.name] : ""
+                  return (
+                    <tr key={file.name} style={{ borderBottom: "1px solid var(--color-border-discrete)", backgroundColor: "var(--color-surface-card)" }}>
+                      <td style={{ padding: "10px 12px", fontFamily: "var(--font-family-mono)", fontWeight: 600, color: "var(--color-primary-cyan)" }}>{file.name}</td>
+                      <td style={{ padding: "10px 12px", color: "var(--color-text-secondary)" }}>{file.desc}</td>
+                      <td style={{ padding: "10px 12px", fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", color: "var(--color-text-muted)" }}>
+                        {hash ? `${hash.substring(0, 16)}...` : "-"}
+                      </td>
+                      <td style={{ padding: "10px 12px" }}>
+                        <a
+                          href={file.path}
+                          download={file.name}
+                          style={{
+                            display: "inline-block",
+                            padding: "4px 10px",
+                            borderRadius: "var(--border-radius-sm)",
+                            backgroundColor: "var(--color-surface-elevated)",
+                            border: "1px solid var(--color-border-discrete)",
+                            color: "var(--color-primary-cyan)",
+                            fontWeight: 600,
+                            fontSize: "0.78rem"
+                          }}
+                        >
+                          Descargar
+                        </a>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
 
       <div className="card">
         <h3 style={{ fontSize: "1.15rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-sm)", fontWeight: 700 }}>

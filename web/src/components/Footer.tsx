@@ -58,12 +58,9 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
           </div>
         </div>
 
-        <div style={{ lineHeight: 1.6, borderTop: "1px solid rgba(40, 83, 106, 0.4)", paddingTop: "var(--spacing-md)" }}>
+        <div style={{ borderTop: "1px solid rgba(40, 83, 106, 0.4)", paddingTop: "var(--spacing-md)", fontSize: "0.82rem", color: "var(--color-text-muted)" }}>
           <p style={{ margin: 0 }}>
-            Estimaciones satelitales NASA GPM-IMERG Final V07 y cartografía de Unidades Hidrográficas de la Autoridad Nacional del Agua (ANA), Perú.
-          </p>
-          <p style={{ margin: 0, marginTop: "var(--spacing-xs)", fontSize: "0.8rem", color: "var(--color-text-muted)" }}>
-            Iniciativa de investigación científica abierta independiente.
+            © 2026 DalíPE. All rights reserved. · Academic affiliation: UPRIT
           </p>
         </div>
       </div>
