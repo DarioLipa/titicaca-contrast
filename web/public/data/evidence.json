@@ -1,0 +1,308 @@
+[
+  {
+    "basin_a": "ramis",
+    "basin_b": "coata",
+    "basin_a_name": "Ramis",
+    "basin_b_name": "Coata",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_paired_years": 24,
+    "mean_basin_a_mm": 731.18,
+    "mean_basin_b_mm": 620.67,
+    "mean_gap_mm": 110.51,
+    "gap_slope_mm_per_year": -2.42,
+    "gap_slope_ci95": [
+      -6.58,
+      1.74
+    ],
+    "p_value": 0.2545,
+    "q_value_fdr": 0.3165,
+    "evidence_status": "no_change",
+    "sensitivity_lags": {
+      "1": {
+        "slope": -2.42,
+        "ci95": [
+          -6.14,
+          1.31
+        ],
+        "p_value": 0.2032
+      },
+      "2": {
+        "slope": -2.42,
+        "ci95": [
+          -6.58,
+          1.74
+        ],
+        "p_value": 0.2545
+      },
+      "3": {
+        "slope": -2.42,
+        "ci95": [
+          -6.76,
+          1.92
+        ],
+        "p_value": 0.2747
+      }
+    },
+    "autocorrelation_lag1": 0.6201,
+    "interpretation": "Sin cambio detectable en la brecha temporal entre Ramis y Coata (pendiente -2.42 mm/año, p=0.2545, q=0.3165). Las trayectorias no divergen significativamente.",
+    "method_version": "1.0.0",
+    "dataset_version": "07",
+    "dataset_doi": "10.5067/GPM/IMERG/3B-MONTH/07"
+  },
+  {
+    "basin_a": "ramis",
+    "basin_b": "ilave",
+    "basin_a_name": "Ramis",
+    "basin_b_name": "Ilave",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_paired_years": 24,
+    "mean_basin_a_mm": 731.18,
+    "mean_basin_b_mm": 498.46,
+    "mean_gap_mm": 232.72,
+    "gap_slope_mm_per_year": -4.48,
+    "gap_slope_ci95": [
+      -10.54,
+      1.57
+    ],
+    "p_value": 0.1465,
+    "q_value_fdr": 0.293,
+    "evidence_status": "no_change",
+    "sensitivity_lags": {
+      "1": {
+        "slope": -4.48,
+        "ci95": [
+          -9.97,
+          1.01
+        ],
+        "p_value": 0.1094
+      },
+      "2": {
+        "slope": -4.48,
+        "ci95": [
+          -10.54,
+          1.57
+        ],
+        "p_value": 0.1465
+      },
+      "3": {
+        "slope": -4.48,
+        "ci95": [
+          -10.73,
+          1.76
+        ],
+        "p_value": 0.159
+      }
+    },
+    "autocorrelation_lag1": 0.5618,
+    "interpretation": "Sin cambio detectable en la brecha temporal entre Ramis y Ilave (pendiente -4.48 mm/año, p=0.1465, q=0.2930). Las trayectorias no divergen significativamente.",
+    "method_version": "1.0.0",
+    "dataset_version": "07",
+    "dataset_doi": "10.5067/GPM/IMERG/3B-MONTH/07"
+  },
+  {
+    "basin_a": "ramis",
+    "basin_b": "huancane",
+    "basin_a_name": "Ramis",
+    "basin_b_name": "Huancané",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_paired_years": 24,
+    "mean_basin_a_mm": 731.18,
+    "mean_basin_b_mm": 629.53,
+    "mean_gap_mm": 101.65,
+    "gap_slope_mm_per_year": -1.13,
+    "gap_slope_ci95": [
+      -3.32,
+      1.05
+    ],
+    "p_value": 0.308,
+    "q_value_fdr": 0.3165,
+    "evidence_status": "no_change",
+    "sensitivity_lags": {
+      "1": {
+        "slope": -1.13,
+        "ci95": [
+          -3.13,
+          0.86
+        ],
+        "p_value": 0.2643
+      },
+      "2": {
+        "slope": -1.13,
+        "ci95": [
+          -3.32,
+          1.05
+        ],
+        "p_value": 0.308
+      },
+      "3": {
+        "slope": -1.13,
+        "ci95": [
+          -3.36,
+          1.09
+        ],
+        "p_value": 0.3169
+      }
+    },
+    "autocorrelation_lag1": 0.4464,
+    "interpretation": "Sin cambio detectable en la brecha temporal entre Ramis y Huancané (pendiente -1.13 mm/año, p=0.3080, q=0.3165). Las trayectorias no divergen significativamente.",
+    "method_version": "1.0.0",
+    "dataset_version": "07",
+    "dataset_doi": "10.5067/GPM/IMERG/3B-MONTH/07"
+  },
+  {
+    "basin_a": "coata",
+    "basin_b": "ilave",
+    "basin_a_name": "Coata",
+    "basin_b_name": "Ilave",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_paired_years": 24,
+    "mean_basin_a_mm": 620.67,
+    "mean_basin_b_mm": 498.46,
+    "mean_gap_mm": 122.21,
+    "gap_slope_mm_per_year": -2.07,
+    "gap_slope_ci95": [
+      -4.08,
+      -0.05
+    ],
+    "p_value": 0.0443,
+    "q_value_fdr": 0.2659,
+    "evidence_status": "inconclusive",
+    "sensitivity_lags": {
+      "1": {
+        "slope": -2.07,
+        "ci95": [
+          -3.96,
+          -0.17
+        ],
+        "p_value": 0.0323
+      },
+      "2": {
+        "slope": -2.07,
+        "ci95": [
+          -4.08,
+          -0.05
+        ],
+        "p_value": 0.0443
+      },
+      "3": {
+        "slope": -2.07,
+        "ci95": [
+          -4.06,
+          -0.07
+        ],
+        "p_value": 0.0422
+      }
+    },
+    "autocorrelation_lag1": -0.017,
+    "interpretation": "Contraste observado no concluyente: se observa una variacion de brecha de -2.07 mm/año con significancia marginal univariada (p=0.0443), pero no supera el control de descubrimientos falsos (FDR q=0.2659).",
+    "method_version": "1.0.0",
+    "dataset_version": "07",
+    "dataset_doi": "10.5067/GPM/IMERG/3B-MONTH/07"
+  },
+  {
+    "basin_a": "coata",
+    "basin_b": "huancane",
+    "basin_a_name": "Coata",
+    "basin_b_name": "Huancané",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_paired_years": 24,
+    "mean_basin_a_mm": 620.67,
+    "mean_basin_b_mm": 629.53,
+    "mean_gap_mm": -8.86,
+    "gap_slope_mm_per_year": 1.28,
+    "gap_slope_ci95": [
+      -1.23,
+      3.8
+    ],
+    "p_value": 0.3165,
+    "q_value_fdr": 0.3165,
+    "evidence_status": "no_change",
+    "sensitivity_lags": {
+      "1": {
+        "slope": 1.28,
+        "ci95": [
+          -1.08,
+          3.65
+        ],
+        "p_value": 0.2876
+      },
+      "2": {
+        "slope": 1.28,
+        "ci95": [
+          -1.23,
+          3.8
+        ],
+        "p_value": 0.3165
+      },
+      "3": {
+        "slope": 1.28,
+        "ci95": [
+          -1.27,
+          3.84
+        ],
+        "p_value": 0.3242
+      }
+    },
+    "autocorrelation_lag1": 0.4368,
+    "interpretation": "Sin cambio detectable en la brecha temporal entre Coata y Huancané (pendiente +1.28 mm/año, p=0.3165, q=0.3165). Las trayectorias no divergen significativamente.",
+    "method_version": "1.0.0",
+    "dataset_version": "07",
+    "dataset_doi": "10.5067/GPM/IMERG/3B-MONTH/07"
+  },
+  {
+    "basin_a": "ilave",
+    "basin_b": "huancane",
+    "basin_a_name": "Ilave",
+    "basin_b_name": "Huancané",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_paired_years": 24,
+    "mean_basin_a_mm": 498.46,
+    "mean_basin_b_mm": 629.53,
+    "mean_gap_mm": -131.07,
+    "gap_slope_mm_per_year": 3.35,
+    "gap_slope_ci95": [
+      -0.91,
+      7.61
+    ],
+    "p_value": 0.123,
+    "q_value_fdr": 0.293,
+    "evidence_status": "no_change",
+    "sensitivity_lags": {
+      "1": {
+        "slope": 3.35,
+        "ci95": [
+          -0.61,
+          7.31
+        ],
+        "p_value": 0.097
+      },
+      "2": {
+        "slope": 3.35,
+        "ci95": [
+          -0.91,
+          7.61
+        ],
+        "p_value": 0.123
+      },
+      "3": {
+        "slope": 3.35,
+        "ci95": [
+          -0.96,
+          7.66
+        ],
+        "p_value": 0.1276
+      }
+    },
+    "autocorrelation_lag1": 0.3677,
+    "interpretation": "Sin cambio detectable en la brecha temporal entre Ilave y Huancané (pendiente +3.35 mm/año, p=0.1230, q=0.2930). Las trayectorias no divergen significativamente.",
+    "method_version": "1.0.0",
+    "dataset_version": "07",
+    "dataset_doi": "10.5067/GPM/IMERG/3B-MONTH/07"
+  }
+]

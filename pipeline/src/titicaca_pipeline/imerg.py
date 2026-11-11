@@ -54,18 +54,32 @@ def precompute_basin_weights(basins_geojson_path: Path) -> Dict[str, Dict[str, A
         }
     return weights_by_basin
 
-def read_imerg_precipitation_grid(hdf5_path: Path) -> Tuple[np.ndarray, Dict[str, Any]]:
-    with h5py.File(hdf5_path, "r") as f:
-        grid_group = f["Grid"]
-        precip_ds = grid_group["precipitation"]
-        data = np.array(precip_ds)
-        if data.ndim == 3:
-            data = data[0]
-        units = precip_ds.attrs.get("units", b"").decode("utf-8") if isinstance(precip_ds.attrs.get("units"), bytes) else str(precip_ds.attrs.get("units", ""))
-        metadata = {
-            "units": units or "mm/hr",
-            "shape": list(data.shape)
-        }
+def read_imerg_precipitation_grid(file_path: Path) -> Tuple[np.ndarray, Dict[str, Any]]:
+    with h5py.File(file_path, "r") as f:
+        if "Grid" in f:
+            precip_ds = f["Grid"]["precipitation"]
+            data = np.array(precip_ds)
+            if data.ndim == 3:
+                data = data[0]
+            units = precip_ds.attrs.get("units", b"").decode("utf-8") if isinstance(precip_ds.attrs.get("units"), bytes) else str(precip_ds.attrs.get("units", ""))
+            metadata = {
+                "units": units or "mm/hr",
+                "shape": list(data.shape),
+                "lon_offset": 0,
+                "lat_offset": 0
+            }
+        else:
+            precip_ds = f["precipitation"]
+            data = np.array(precip_ds)
+            if data.ndim == 3:
+                data = data[0]
+            units = precip_ds.attrs.get("units", b"").decode("utf-8") if isinstance(precip_ds.attrs.get("units"), bytes) else str(precip_ds.attrs.get("units", ""))
+            metadata = {
+                "units": units or "mm/hr",
+                "shape": list(data.shape),
+                "lon_offset": 1085,
+                "lat_offset": 725
+            }
     return data, metadata
 
 def aggregate_basin_precipitation(
@@ -73,14 +87,18 @@ def aggregate_basin_precipitation(
     basin_weight_info: Dict[str, Any],
     year: int,
     month: int,
-    min_area_fraction: float = 0.95
+    min_area_fraction: float = 0.95,
+    lon_offset: int = 0,
+    lat_offset: int = 0
 ) -> Tuple[Optional[float], float]:
     entries = basin_weight_info["entries"]
     valid_weight_sum = 0.0
     weighted_rate_sum = 0.0
 
     for lon_i, lat_j, weight in entries:
-        val = precip_grid[lon_i, lat_j]
+        grid_i = lon_i - lon_offset
+        grid_j = lat_j - lat_offset
+        val = precip_grid[grid_i, grid_j]
         if val >= 0 and not np.isnan(val):
             valid_weight_sum += weight
             weighted_rate_sum += val * weight

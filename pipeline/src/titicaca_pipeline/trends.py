@@ -1,5 +1,5 @@
 import math
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 from scipy import stats
 
 def compute_theil_sen_slope(years: List[int], values: List[float]) -> float:
@@ -34,3 +34,33 @@ def compute_mann_kendall(values: List[float]) -> Tuple[float, float, str]:
         direction = "no_trend"
     return float(z), float(p_value), direction
 
+def compute_all_basin_trends(annual_records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    valid_records = [r for r in annual_records if r.get("valid_year")]
+    by_basin = {}
+    for r in valid_records:
+        b = r["basin_id"]
+        if b not in by_basin:
+            by_basin[b] = []
+        by_basin[b].append(r)
+
+    trend_items = []
+    for b_id in ["ramis", "coata", "ilave", "huancane"]:
+        recs = by_basin.get(b_id, [])
+        recs.sort(key=lambda x: x["year"])
+        years = [r["year"] for r in recs]
+        vals = [float(r["annual_precip_mm"]) for r in recs]
+        if len(years) >= 3:
+            slope = compute_theil_sen_slope(years, vals)
+            _, p_val, direction = compute_mann_kendall(vals)
+            trend_items.append({
+                "basin_id": b_id,
+                "start_year": int(min(years)),
+                "end_year": int(max(years)),
+                "n_years": int(len(years)),
+                "sen_slope_mm_per_year": round(float(slope), 2),
+                "mann_kendall_p": round(float(p_val), 4),
+                "trend_direction": direction,
+                "data_quality": "complete" if len(years) >= 20 else "partial",
+                "method_version": "1.0.0"
+            })
+    return trend_items

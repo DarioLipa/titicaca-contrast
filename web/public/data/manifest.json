@@ -15,11 +15,14 @@
   "boundary_hash_sha256": "2d5dd3dc4b82f2f0a7e54d99390ab5d39d28787172647cfa911e7e9df623493d",
   "processing_version": "0.1.0",
   "method_version": "1.0.0",
-  "notes": "Fase 2 completada: 24 años completos (2001-2024) y 9 meses de 2025 (disponibilidad oficial NASA GPM IMERG V07 Final). 1,200 filas mensuales y 100 registros anuales validados.",
+  "notes": "Fases 1, 2 y 3 completadas: Cuencas ANA oficiales, series NASA IMERG V07 2001-2024, tendencias individuales y detector de contrastes con errores robustos HAC y control FDR calculados.",
   "integrity": {
     "basins.geojson": "9ad6d12c4dc37d63c070228a823cf427db9f63eab968a787c7cde7470cea0bfe",
     "basins.json": "42dcbcc00c639cf0c505dd04d809b09ecbc2c07c6ac71709aefddc0ed1961f18",
     "precipitation-monthly.csv": "f6f600712c355e831631e4f9511d578bec7358ff62f443f8ef43c1bd36ec0537",
-    "precipitation-annual.json": "ade2d2eb87dc5876b364a25673b4bd7946fec6c1a966f342c0d6ac71da522aa3"
+    "precipitation-annual.json": "ade2d2eb87dc5876b364a25673b4bd7946fec6c1a966f342c0d6ac71da522aa3",
+    "trends.json": "94abf6f729dd0efe794ffd22a7094f0d0d229e70679ea073ff969a7a32843fe7",
+    "contrasts.json": "94d6a3ad148fc1d2be101c6ba71609786e57d6ce2782486c8a71af6fd49262b5",
+    "evidence.json": "22df2b128f699bef938ed7227d93687a5ab70de6a60119153d361b84ff5c944c"
   }
 }

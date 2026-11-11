@@ -1,0 +1,46 @@
+[
+  {
+    "basin_id": "ramis",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_years": 24,
+    "sen_slope_mm_per_year": -11.45,
+    "mann_kendall_p": 0.0051,
+    "trend_direction": "decreasing",
+    "data_quality": "complete",
+    "method_version": "1.0.0"
+  },
+  {
+    "basin_id": "coata",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_years": 24,
+    "sen_slope_mm_per_year": -8.13,
+    "mann_kendall_p": 0.0014,
+    "trend_direction": "decreasing",
+    "data_quality": "complete",
+    "method_version": "1.0.0"
+  },
+  {
+    "basin_id": "ilave",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_years": 24,
+    "sen_slope_mm_per_year": -4.88,
+    "mann_kendall_p": 0.0106,
+    "trend_direction": "decreasing",
+    "data_quality": "complete",
+    "method_version": "1.0.0"
+  },
+  {
+    "basin_id": "huancane",
+    "start_year": 2001,
+    "end_year": 2024,
+    "n_years": 24,
+    "sen_slope_mm_per_year": -10.68,
+    "mann_kendall_p": 0.0037,
+    "trend_direction": "decreasing",
+    "data_quality": "complete",
+    "method_version": "1.0.0"
+  }
+]

@@ -91,3 +91,34 @@ export const ContrastItemSchema = z.object({
 
 export type ContrastItem = z.infer<typeof ContrastItemSchema>
 
+export const EvidenceSensitivitySchema = z.object({
+  slope: z.number(),
+  ci95: z.tuple([z.number(), z.number()]),
+  p_value: z.number()
+})
+
+export const EvidenceItemSchema = z.object({
+  basin_a: z.enum(["ramis", "coata", "ilave", "huancane"]),
+  basin_b: z.enum(["ramis", "coata", "ilave", "huancane"]),
+  basin_a_name: z.string(),
+  basin_b_name: z.string(),
+  start_year: z.number().int(),
+  end_year: z.number().int(),
+  n_paired_years: z.number().int(),
+  mean_basin_a_mm: z.number(),
+  mean_basin_b_mm: z.number(),
+  mean_gap_mm: z.number(),
+  gap_slope_mm_per_year: z.number(),
+  gap_slope_ci95: z.tuple([z.number(), z.number()]),
+  p_value: z.number(),
+  q_value_fdr: z.number(),
+  evidence_status: z.enum(["supported", "inconclusive", "no_change", "insufficient_data"]),
+  sensitivity_lags: z.record(EvidenceSensitivitySchema),
+  autocorrelation_lag1: z.number(),
+  interpretation: z.string(),
+  method_version: z.string(),
+  dataset_version: z.string(),
+  dataset_doi: z.string()
+})
+
+export type EvidenceItem = z.infer<typeof EvidenceItemSchema>

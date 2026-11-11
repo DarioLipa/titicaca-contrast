@@ -63,3 +63,31 @@
 - [x] Hashes SHA-256 calculados e integrados en `manifest.json` (`data_status: "ready"`)
 - [x] Pruebas unitarias de pipeline ampliadas a 27 tests (100% pasados)
 - [x] Pruebas de frontend Vitest (11 tests pasados) y compilación limpia `npm run build`
+
+---
+
+## Fase 3 — Motor Estadístico e Inferencial
+
+- **Fecha:** Noviembre 2026
+- **Responsable:** Antigravity / Pair Programming
+- **Estado general:** Completada y aprobada
+
+### Métodos implementados y verificaciones
+- [x] Estimador de pendientes no paramétrico Theil-Sen para series univariadas de precipitación anual
+- [x] Prueba no paramétrica de Mann-Kendall con corrección de empates para detección de tendencias
+- [x] Modelado de contrastes emparejados mediante series de brechas: $D(t) = P_A(t) - P_B(t)$
+- [x] Estimación de varianza robusta a heterocedasticidad y autocorrelación temporal (HAC / Newey-West) con ventana de rezago primaria $L=2$
+- [x] Evaluación de sensibilidad a rezagos alternativos ($L=1, 2, 3$) registrada para cada par
+- [x] Cálculo de autocorrelación serial de orden 1 (lag-1) en los residuales de cada contraste
+- [x] Control estricto de multiplicidad mediante el procedimiento de Benjamini-Hochberg (FDR, $m=6$, $q \le 0.05$)
+- [x] Clasificación honesta según matriz de evidencia (Sección 8.4 del Plan Maestro):
+  - Coata vs Ilave: $p=0.0443$ pero $q=0.2659 > 0.05$ -> clasificado estrictamente como `inconclusive`
+  - 5 parejas restantes: $p > 0.05$ -> clasificadas como `no_change`
+  - Cero resultados forzados ni conclusiones artificiales
+- [x] Generación de productos estáticos validados:
+  - `web/public/data/trends.json` (4 cuencas oficiales, 2001-2024)
+  - `web/public/data/contrasts.json` (6 pares de cuencas, 2001-2024)
+  - `web/public/data/evidence.json` (6 fichas de evidencia reproducibles completas)
+- [x] Esquemas de validación Zod actualizados en `web/src/app/schemas.ts`
+- [x] Pruebas estadísticas y de integridad ampliadas a 32 tests (100% pasados: T09, T10, T11, T12, T13, T14)
+
