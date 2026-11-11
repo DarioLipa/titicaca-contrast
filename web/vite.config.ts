@@ -11,6 +11,7 @@ export default defineConfig({
         manualChunks: {
           "vendor-echarts": ["echarts"],
           "vendor-leaflet": ["leaflet"],
+          "vendor-three": ["three"],
           "vendor-react": ["react", "react-dom"]
         }
       }

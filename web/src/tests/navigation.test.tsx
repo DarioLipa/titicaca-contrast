@@ -21,7 +21,7 @@ describe("Header navigation", () => {
       render(<App />)
     })
 
-    expect(screen.getByRole("heading", { name: /¿Evolucionan igual las lluvias en las cuencas del lago Titicaca\?/i })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: /Un mismo lago/i })).toBeInTheDocument()
 
     const navButtons = screen.getAllByRole("button", { name: /Metodología/i })
     await act(async () => {
