@@ -1,0 +1,17 @@
+basins:
+  - id: ramis
+    name: Ramis
+    official_code: "0154"
+    source: ANA
+  - id: coata
+    name: Coata
+    official_code: "0156"
+    source: ANA
+  - id: ilave
+    name: Ilave
+    official_code: "0160"
+    source: ANA
+  - id: huancane
+    name: Huancané
+    official_code: "0152"
+    source: ANA

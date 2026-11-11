@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "titicaca-pipeline"
+version = "0.1.0"
+description = "Pipeline cientifico para procesamiento de datos NASA IMERG y cuencas ANA en TITICACA CONTRAST"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "TITICACA CONTRAST Contributors" }
+]
+dependencies = [
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+    "scipy>=1.12.0",
+    "statsmodels>=0.14.0",
+    "shapely>=2.0.0",
+    "pyyaml>=6.0.0",
+    "jsonschema>=4.21.0",
+    "requests>=2.31.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.3.0"
+]
+
+[project.scripts]
+titicaca-cli = "titicaca_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

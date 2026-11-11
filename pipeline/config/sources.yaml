@@ -1,0 +1,13 @@
+nasa:
+  dataset_id: GPM_3IMERGM
+  version: "07"
+  doi: "10.5067/GPM/IMERG/3B-MONTH/07"
+  processing_level: L3
+  run: Final
+  variable: precipitation
+  unit: mm/h
+
+ana:
+  collection: Unidades Hidrográficas del Perú
+  source_url: https://geosnirh.ana.gob.pe/Repositorio/Shape/UnidadesHidrograficas.zip
+  metadata_url: https://catalogo.geoidep.gob.pe/metadatos/srv/api/records/7479fd98-28a4-4a33-8ee8-01b55dfc1108

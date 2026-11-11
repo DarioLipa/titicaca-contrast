@@ -1,0 +1,12 @@
+temporal_extent:
+  start_year: 2001
+  end_year: 2025
+  min_complete_months_per_year: 12
+  min_paired_years: 20
+
+statistics:
+  alpha: 0.05
+  fdr_q_threshold: 0.05
+  hac_primary_lags: 2
+  hac_sensitivity_lags: [1, 2, 3]
+  min_valid_area_fraction: 0.95

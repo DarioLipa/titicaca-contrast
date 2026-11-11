@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-11-10T18:00:00Z",
+  "data_status": "unavailable",
+  "dataset_id": "GPM_3IMERGM",
+  "dataset_doi": "10.5067/GPM/IMERG/3B-MONTH/07",
+  "dataset_version": "07",
+  "dataset_processing_level": "L3",
+  "dataset_run": "Final",
+  "start_month": "2001-01",
+  "end_month": "2025-12",
+  "source_downloaded_at_utc": null,
+  "boundary_source": "ANA GeoIDEP Unidades Hidrograficas",
+  "boundary_downloaded_at_utc": null,
+  "boundary_hash_sha256": null,
+  "processing_version": "0.1.0",
+  "method_version": "1.0.0",
+  "notes": "Fase 0: Repositorio preparado. Datos pendientes de descarga y agregacion en Fases 1 y 2.",
+  "integrity": {}
+}
