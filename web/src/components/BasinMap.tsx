@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import L from "leaflet"
 import type { Basin } from "../app/schemas"
 
@@ -29,6 +29,8 @@ export const BasinMap: React.FC<BasinMapProps> = ({
   const mapContainerRef = useRef<HTMLDivElement | null>(null)
   const mapInstanceRef = useRef<L.Map | null>(null)
   const geoJsonLayerRef = useRef<L.GeoJSON | null>(null)
+  const tileLayerRef = useRef<L.TileLayer | null>(null)
+  const [showBasemap, setShowBasemap] = useState<boolean>(true)
 
   useEffect(() => {
     if (!mapContainerRef.current) return
@@ -42,13 +44,14 @@ export const BasinMap: React.FC<BasinMapProps> = ({
         attributionControl: true
       })
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: "abcd",
-        maxZoom: 14,
+      const tileLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors',
+        maxZoom: 18,
         minZoom: 6
-      }).addTo(map)
+      })
 
+      tileLayer.addTo(map)
+      tileLayerRef.current = tileLayer
       mapInstanceRef.current = map
     } catch {
       return
@@ -61,6 +64,26 @@ export const BasinMap: React.FC<BasinMapProps> = ({
       }
     }
   }, [])
+
+  useEffect(() => {
+    const map = mapInstanceRef.current
+    if (!map) return
+
+    if (showBasemap) {
+      if (!tileLayerRef.current) {
+        tileLayerRef.current = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors',
+          maxZoom: 18,
+          minZoom: 6
+        })
+      }
+      tileLayerRef.current.addTo(map)
+    } else {
+      if (tileLayerRef.current) {
+        map.removeLayer(tileLayerRef.current)
+      }
+    }
+  }, [showBasemap])
 
   useEffect(() => {
     const map = mapInstanceRef.current
@@ -141,24 +164,40 @@ export const BasinMap: React.FC<BasinMapProps> = ({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-xs)" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-xs)" }}>
         <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)" }}>
           Mapa hidrográfico oficial (clic en un polígono para seleccionar)
         </span>
-        <button
-          type="button"
-          onClick={handleResetView}
-          style={{
-            fontSize: "0.8rem",
-            padding: "4px 8px",
-            borderRadius: "var(--border-radius-sm)",
-            backgroundColor: "var(--color-surface-muted)",
-            color: "var(--color-primary-navy)",
-            fontWeight: 500
-          }}
-        >
-          Restablecer vista
-        </button>
+        <div style={{ display: "flex", gap: "var(--spacing-xs)" }}>
+          <button
+            type="button"
+            onClick={() => setShowBasemap(!showBasemap)}
+            style={{
+              fontSize: "0.8rem",
+              padding: "4px 8px",
+              borderRadius: "var(--border-radius-sm)",
+              backgroundColor: "var(--color-surface-muted)",
+              color: "var(--color-primary-navy)",
+              fontWeight: 500
+            }}
+          >
+            {showBasemap ? "Ocultar mapa base OSM" : "Mostrar mapa base OSM"}
+          </button>
+          <button
+            type="button"
+            onClick={handleResetView}
+            style={{
+              fontSize: "0.8rem",
+              padding: "4px 8px",
+              borderRadius: "var(--border-radius-sm)",
+              backgroundColor: "var(--color-surface-muted)",
+              color: "var(--color-primary-navy)",
+              fontWeight: 500
+            }}
+          >
+            Restablecer vista
+          </button>
+        </div>
       </div>
 
       <div
@@ -229,4 +268,3 @@ export const BasinMap: React.FC<BasinMapProps> = ({
     </div>
   )
 }
-
