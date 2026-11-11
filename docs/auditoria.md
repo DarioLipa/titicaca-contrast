@@ -42,4 +42,24 @@
 - [x] Comprobación de solapamiento nulo entre pares (área de intersección = 0.0)
 - [x] Generación de `web/public/data/basins.geojson` y `web/public/data/basins.json`
 - [x] Integración en `web/public/data/manifest.json` con hashes criptográficos
-- [x] Pruebas unitarias ampliadas a 24 tests de Python (todas pasadas)
+
+---
+
+## Fase 2 — NASA IMERG V07 Final
+
+- **Fecha:** Noviembre 2026
+- **Fuente oficial:** NASA GES DISC / GPM IMERG Final Precipitation L3 1 month 0.1 degree V07 (`GPM_3IMERGM_07`)
+- **DOI:** 10.5067/GPM/IMERG/3B-MONTH/07
+- **Estado general:** Completada y aprobada
+
+### Verificaciones científicas y de completitud
+- [x] Descarga autenticada privada conectada mediante sesión segura Earthdata
+- [x] Subconjunto espacial exacto vía OPeNDAP para el rectángulo envolvente de las cuencas
+- [x] Validación piloto (2020-01) con comprobación manual independiente de 62 celdas en Coata (< 0.01 mm de diferencia)
+- [x] Serie histórica descargada: 297 meses disponibles oficialmente en NASA (2001-01 a 2025-09)
+- [x] Meses 2025-10, 2025-11 y 2025-12 ausentes en catálogo por latencia oficial del producto Final; registrados honestamente como valores nulos sin interpolaciones falsas
+- [x] Generación de `precipitation-monthly.csv` (1,200 filas exactas: 4 cuencas x 300 meses)
+- [x] Generación de `precipitation-annual.json` (100 registros: 24 años completos 2001-2024 con 12 meses; 2025 marcado como no válido para tendencias)
+- [x] Hashes SHA-256 calculados e integrados en `manifest.json` (`data_status: "ready"`)
+- [x] Pruebas unitarias de pipeline ampliadas a 27 tests (100% pasados)
+- [x] Pruebas de frontend Vitest (11 tests pasados) y compilación limpia `npm run build`

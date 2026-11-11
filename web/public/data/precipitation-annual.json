@@ -1,0 +1,802 @@
+[
+  {
+    "year": 2001,
+    "basin_id": "coata",
+    "annual_precip_mm": 892.76,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2001,
+    "basin_id": "huancane",
+    "annual_precip_mm": 923.03,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2001,
+    "basin_id": "ilave",
+    "annual_precip_mm": 751.44,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2001,
+    "basin_id": "ramis",
+    "annual_precip_mm": 1040.87,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2002,
+    "basin_id": "coata",
+    "annual_precip_mm": 862.13,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2002,
+    "basin_id": "huancane",
+    "annual_precip_mm": 861.73,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2002,
+    "basin_id": "ilave",
+    "annual_precip_mm": 702.01,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2002,
+    "basin_id": "ramis",
+    "annual_precip_mm": 1030.02,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2003,
+    "basin_id": "coata",
+    "annual_precip_mm": 697.44,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2003,
+    "basin_id": "huancane",
+    "annual_precip_mm": 773.92,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2003,
+    "basin_id": "ilave",
+    "annual_precip_mm": 494.14,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2003,
+    "basin_id": "ramis",
+    "annual_precip_mm": 930.5,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2004,
+    "basin_id": "coata",
+    "annual_precip_mm": 689.16,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2004,
+    "basin_id": "huancane",
+    "annual_precip_mm": 768.23,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2004,
+    "basin_id": "ilave",
+    "annual_precip_mm": 513.51,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2004,
+    "basin_id": "ramis",
+    "annual_precip_mm": 903.57,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2005,
+    "basin_id": "coata",
+    "annual_precip_mm": 656.54,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2005,
+    "basin_id": "huancane",
+    "annual_precip_mm": 725.32,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2005,
+    "basin_id": "ilave",
+    "annual_precip_mm": 513.08,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2005,
+    "basin_id": "ramis",
+    "annual_precip_mm": 808.79,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2006,
+    "basin_id": "coata",
+    "annual_precip_mm": 648.3,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2006,
+    "basin_id": "huancane",
+    "annual_precip_mm": 664.19,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2006,
+    "basin_id": "ilave",
+    "annual_precip_mm": 561.91,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2006,
+    "basin_id": "ramis",
+    "annual_precip_mm": 761.31,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2007,
+    "basin_id": "coata",
+    "annual_precip_mm": 532.86,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2007,
+    "basin_id": "huancane",
+    "annual_precip_mm": 554.65,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2007,
+    "basin_id": "ilave",
+    "annual_precip_mm": 394.95,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2007,
+    "basin_id": "ramis",
+    "annual_precip_mm": 620.64,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2008,
+    "basin_id": "coata",
+    "annual_precip_mm": 577.2,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2008,
+    "basin_id": "huancane",
+    "annual_precip_mm": 561.99,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2008,
+    "basin_id": "ilave",
+    "annual_precip_mm": 475.64,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2008,
+    "basin_id": "ramis",
+    "annual_precip_mm": 640.34,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2009,
+    "basin_id": "coata",
+    "annual_precip_mm": 528.67,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2009,
+    "basin_id": "huancane",
+    "annual_precip_mm": 527.28,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2009,
+    "basin_id": "ilave",
+    "annual_precip_mm": 452.48,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2009,
+    "basin_id": "ramis",
+    "annual_precip_mm": 601.9,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2010,
+    "basin_id": "coata",
+    "annual_precip_mm": 565.14,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2010,
+    "basin_id": "huancane",
+    "annual_precip_mm": 555.56,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2010,
+    "basin_id": "ilave",
+    "annual_precip_mm": 462.06,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2010,
+    "basin_id": "ramis",
+    "annual_precip_mm": 625.21,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2011,
+    "basin_id": "coata",
+    "annual_precip_mm": 664.13,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2011,
+    "basin_id": "huancane",
+    "annual_precip_mm": 623.39,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2011,
+    "basin_id": "ilave",
+    "annual_precip_mm": 531.27,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2011,
+    "basin_id": "ramis",
+    "annual_precip_mm": 760.25,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2012,
+    "basin_id": "coata",
+    "annual_precip_mm": 685.96,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2012,
+    "basin_id": "huancane",
+    "annual_precip_mm": 586.53,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2012,
+    "basin_id": "ilave",
+    "annual_precip_mm": 534.01,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2012,
+    "basin_id": "ramis",
+    "annual_precip_mm": 689.09,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2013,
+    "basin_id": "coata",
+    "annual_precip_mm": 619.37,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2013,
+    "basin_id": "huancane",
+    "annual_precip_mm": 616.96,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2013,
+    "basin_id": "ilave",
+    "annual_precip_mm": 510.4,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2013,
+    "basin_id": "ramis",
+    "annual_precip_mm": 725.6,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2014,
+    "basin_id": "coata",
+    "annual_precip_mm": 615.42,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2014,
+    "basin_id": "huancane",
+    "annual_precip_mm": 628.82,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2014,
+    "basin_id": "ilave",
+    "annual_precip_mm": 468.76,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2014,
+    "basin_id": "ramis",
+    "annual_precip_mm": 722.42,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2015,
+    "basin_id": "coata",
+    "annual_precip_mm": 567.72,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2015,
+    "basin_id": "huancane",
+    "annual_precip_mm": 598.42,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2015,
+    "basin_id": "ilave",
+    "annual_precip_mm": 501.76,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2015,
+    "basin_id": "ramis",
+    "annual_precip_mm": 666.78,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2016,
+    "basin_id": "coata",
+    "annual_precip_mm": 557.39,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2016,
+    "basin_id": "huancane",
+    "annual_precip_mm": 548.47,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2016,
+    "basin_id": "ilave",
+    "annual_precip_mm": 442.28,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2016,
+    "basin_id": "ramis",
+    "annual_precip_mm": 649.22,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2017,
+    "basin_id": "coata",
+    "annual_precip_mm": 605.87,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2017,
+    "basin_id": "huancane",
+    "annual_precip_mm": 558.26,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2017,
+    "basin_id": "ilave",
+    "annual_precip_mm": 494.49,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2017,
+    "basin_id": "ramis",
+    "annual_precip_mm": 665.51,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2018,
+    "basin_id": "coata",
+    "annual_precip_mm": 659.49,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2018,
+    "basin_id": "huancane",
+    "annual_precip_mm": 683.31,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2018,
+    "basin_id": "ilave",
+    "annual_precip_mm": 567.11,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2018,
+    "basin_id": "ramis",
+    "annual_precip_mm": 755.23,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2019,
+    "basin_id": "coata",
+    "annual_precip_mm": 640.47,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2019,
+    "basin_id": "huancane",
+    "annual_precip_mm": 653.83,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2019,
+    "basin_id": "ilave",
+    "annual_precip_mm": 498.98,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2019,
+    "basin_id": "ramis",
+    "annual_precip_mm": 726.94,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2020,
+    "basin_id": "coata",
+    "annual_precip_mm": 534.54,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2020,
+    "basin_id": "huancane",
+    "annual_precip_mm": 510.79,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2020,
+    "basin_id": "ilave",
+    "annual_precip_mm": 481.97,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2020,
+    "basin_id": "ramis",
+    "annual_precip_mm": 605.76,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2021,
+    "basin_id": "coata",
+    "annual_precip_mm": 628.16,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2021,
+    "basin_id": "huancane",
+    "annual_precip_mm": 627.26,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2021,
+    "basin_id": "ilave",
+    "annual_precip_mm": 490.73,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2021,
+    "basin_id": "ramis",
+    "annual_precip_mm": 734.84,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2022,
+    "basin_id": "coata",
+    "annual_precip_mm": 406.73,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2022,
+    "basin_id": "huancane",
+    "annual_precip_mm": 438.78,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2022,
+    "basin_id": "ilave",
+    "annual_precip_mm": 312.47,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2022,
+    "basin_id": "ramis",
+    "annual_precip_mm": 557.07,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2023,
+    "basin_id": "coata",
+    "annual_precip_mm": 515.8,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2023,
+    "basin_id": "huancane",
+    "annual_precip_mm": 566.27,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2023,
+    "basin_id": "ilave",
+    "annual_precip_mm": 385.25,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2023,
+    "basin_id": "ramis",
+    "annual_precip_mm": 664.9,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2024,
+    "basin_id": "coata",
+    "annual_precip_mm": 544.72,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2024,
+    "basin_id": "huancane",
+    "annual_precip_mm": 551.67,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2024,
+    "basin_id": "ilave",
+    "annual_precip_mm": 422.32,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2024,
+    "basin_id": "ramis",
+    "annual_precip_mm": 661.45,
+    "complete_months": 12,
+    "valid_year": true,
+    "source_version": "07"
+  },
+  {
+    "year": 2025,
+    "basin_id": "coata",
+    "annual_precip_mm": null,
+    "complete_months": 9,
+    "valid_year": false,
+    "source_version": "07"
+  },
+  {
+    "year": 2025,
+    "basin_id": "huancane",
+    "annual_precip_mm": null,
+    "complete_months": 9,
+    "valid_year": false,
+    "source_version": "07"
+  },
+  {
+    "year": 2025,
+    "basin_id": "ilave",
+    "annual_precip_mm": null,
+    "complete_months": 9,
+    "valid_year": false,
+    "source_version": "07"
+  },
+  {
+    "year": 2025,
+    "basin_id": "ramis",
+    "annual_precip_mm": null,
+    "complete_months": 9,
+    "valid_year": false,
+    "source_version": "07"
+  }
+]
