@@ -106,7 +106,7 @@ Los datos satelitales analizados durante los 24 años completos (2001–2024) de
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/<usuario>/titicaca-contrast.git
+git clone https://github.com/DarioLipa/titicaca-contrast.git
 cd titicaca-contrast
 ```
 
