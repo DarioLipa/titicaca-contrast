@@ -1,5 +1,11 @@
 <div align="center">
 
+<p align="right">
+  <strong>Idioma / Language:</strong>
+  <a href="README.md">🇪🇸 Español</a> |
+  <a href="README_en.md">🇺🇸 English</a>
+</p>
+
 <img src="docs/assets/logo.jpg" alt="TITICACA CONTRAST Logo" width="680" style="border-radius: 14px; max-width: 100%; height: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.4);" />
 
 # TITICACA CONTRAST
