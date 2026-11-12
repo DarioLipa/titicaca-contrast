@@ -160,13 +160,7 @@ TITICACA-CONTRAST/
 │       └── deploy.yml              # Automated GitHub Pages CI/CD workflow
 ├── docs/
 │   ├── assets/                     # Official brand logos and graphics
-│   ├── screenshots/                # Multi-device responsive captures
-│   ├── arquitectura.md             # System architecture specification
-│   ├── auditoria.md                # Quality, security and audit logs
-│   ├── metodologia.md              # Mathematical methods, HAC and FDR
-│   ├── diccionario-datos.md        # Data schema dictionary
-│   ├── fuentes-y-licencias.md      # Institutional provenance and copyright
-│   └── plan-maestro.md             # Foundational technical master plan
+│   └── screenshots/                # Multi-device responsive captures (1920 to 390px)
 ├── pipeline/
 │   ├── src/titicaca_contrast/      # Core Python data engine
 │   ├── tests/                      # 32 mathematical & pipeline tests (Pytest)
