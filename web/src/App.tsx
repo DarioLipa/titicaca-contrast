@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { LanguageProvider } from "./app/i18n"
 import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { Home } from "./pages/Home"
@@ -56,12 +57,14 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <Header currentTab={currentTab} onSelectTab={setCurrentTab} status={dataPayload.status} />
-      <main style={{ flex: 1 }}>
-        {renderContent()}
-      </main>
-      <Footer onSelectTab={setCurrentTab} />
-    </div>
+    <LanguageProvider>
+      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <Header currentTab={currentTab} onSelectTab={setCurrentTab} status={dataPayload.status} />
+        <main style={{ flex: 1 }}>
+          {renderContent()}
+        </main>
+        <Footer onSelectTab={setCurrentTab} />
+      </div>
+    </LanguageProvider>
   )
 }

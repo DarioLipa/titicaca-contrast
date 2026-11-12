@@ -73,10 +73,10 @@ describe("ContrastCard and EvidencePanel components", () => {
     )
 
     expect(screen.getByText("Coata ↔ Ilave")).toBeInTheDocument()
-    expect(screen.getByText(/Inconcluso/i)).toBeInTheDocument()
-    expect(screen.getByText("-2.07 mm/año")).toBeInTheDocument()
+    expect(screen.getByText(/Inconclusive|Inconcluso/i)).toBeInTheDocument()
+    expect(screen.getByText(/-2\.07 mm\/(yr|año)/i)).toBeInTheDocument()
 
-    const btn = screen.getByRole("button", { name: /Ver ficha de evidencia completa/i })
+    const btn = screen.getByRole("button", { name: /evidence sheet|ficha de evidencia/i })
     fireEvent.click(btn)
     expect(handleOpen).toHaveBeenCalledWith("coata", "ilave")
   })
@@ -91,7 +91,7 @@ describe("ContrastCard and EvidencePanel components", () => {
     )
 
     expect(screen.getByRole("dialog")).toBeInTheDocument()
-    expect(screen.getByText(/Ficha de Evidencia: Coata ↔ Ilave/i)).toBeInTheDocument()
+    expect(screen.getByText(/Coata ↔ Ilave/i)).toBeInTheDocument()
     expect(screen.getByText("L = 1")).toBeInTheDocument()
     expect(screen.getByText("L = 2")).toBeInTheDocument()
     expect(screen.getByText("L = 3")).toBeInTheDocument()

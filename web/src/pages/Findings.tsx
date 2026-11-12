@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import type { HydrologyData } from "../app/dataLoader"
+import { useLanguage } from "../app/i18n"
 import { StatusMessage } from "../components/StatusMessage"
 import { ContrastCard } from "../components/ContrastCard"
 import { EvidencePanel } from "../components/EvidencePanel"
@@ -10,14 +11,15 @@ export interface FindingsProps {
 }
 
 export const Findings: React.FC<FindingsProps> = ({ data }) => {
+  const { t, lang } = useLanguage()
   const [filter, setFilter] = useState<"all" | "inconclusive" | "no_change">("all")
   const [selectedEvidencePair, setSelectedEvidencePair] = useState<{ a: string; b: string } | null>(null)
 
   const basinsMap: Record<string, string> = {
-    ramis: "Ramis",
-    coata: "Coata",
-    ilave: "Ilave",
-    huancane: "Huancané"
+    ramis: lang === "es" ? "Cuenca Ramis" : "Ramis Basin",
+    coata: lang === "es" ? "Cuenca Coata" : "Coata Basin",
+    ilave: lang === "es" ? "Cuenca Ilave" : "Ilave Basin",
+    huancane: lang === "es" ? "Cuenca Huancané" : "Huancané Basin"
   }
 
   const contrasts: ContrastItem[] = data.contrasts.length > 0
@@ -48,10 +50,10 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
         <h2 style={{ fontSize: "1.75rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
-          Hallazgos científicos y contrastes emparejados
+          {t("findings_title")}
         </h2>
         <p style={{ color: "var(--color-text-secondary)", margin: 0, lineHeight: 1.5, fontSize: "0.95rem" }}>
-          Matriz confirmatoria de las 6 combinaciones intercuenca (n = 24 años validados), con estimador Newey–West (HAC L=2) y control FDR (q ≤ 0.05).
+          {t("findings_subtitle")}
         </p>
       </div>
 
@@ -72,7 +74,7 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             transition: "all 0.15s ease"
           }}
         >
-          Todas las parejas (6)
+          {t("findings_filter_all")}
         </button>
         <button
           type="button"
@@ -88,7 +90,7 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             transition: "all 0.15s ease"
           }}
         >
-          Variación local evaluada (1)
+          {t("findings_filter_inconclusive")}
         </button>
         <button
           type="button"
@@ -104,7 +106,7 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
             transition: "all 0.15s ease"
           }}
         >
-          Evolución sincrónica regional (5)
+          {t("findings_filter_synchronous")}
         </button>
       </div>
 
@@ -122,20 +124,24 @@ export const Findings: React.FC<FindingsProps> = ({ data }) => {
 
       <div className="card">
         <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-sm)", fontWeight: 700 }}>
-          Síntesis e interpretación científica rigurosa
+          {t("findings_synthesis_title")}
         </h3>
         <ul style={{ paddingLeft: "var(--spacing-lg)", fontSize: "0.92rem", color: "var(--color-text-secondary)", lineHeight: 1.65 }}>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Tendencias univariadas estimadas:</strong> Las 4 cuencas oficiales presentan coeficientes Theil-Sen negativos en sus acumulados anuales 2001–2024 (Ramis: -11.45 mm/año, Huancané: -10.68 mm/año, Coata: -8.13 mm/año, Ilave: -4.88 mm/año).
+            <strong style={{ color: "var(--color-text-main)" }}>{t("findings_synth_trends_label")} </strong>
+            {t("findings_synth_trends_text")}
           </li>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Dinámica regional sincrónica intercuenca:</strong> Al evaluar las series emparejadas entre cuencas, los 6 contrastes confirman que el sistema hidrográfico responde de manera acoplada al mismo régimen climático regional andino, sin quiebres ni divergencias territoriales anómalas tras control FDR (q &gt; 0.05).
+            <strong style={{ color: "var(--color-text-main)" }}>{t("findings_synth_sync_label")} </strong>
+            {t("findings_synth_sync_text")}
           </li>
           <li style={{ marginBottom: "6px" }}>
-            <strong style={{ color: "var(--color-text-main)" }}>Tratamiento metodológico del par Coata ↔ Ilave:</strong> Registra una fluctuación microclimática nominal de -2.07 mm/año (p = 0.0443); bajo el control múltiple FDR de Benjamini–Hochberg (m = 6, q = 0.2659 &gt; 0.05), esta variación se clasifica como variabilidad natural moderada dentro de la dinámica altiplánica compartida.
+            <strong style={{ color: "var(--color-text-main)" }}>{t("findings_synth_pair_label")} </strong>
+            {t("findings_synth_pair_text")}
           </li>
           <li>
-            <strong style={{ color: "var(--color-text-main)" }}>Principio de no causalidad hidrológica:</strong> Los resultados describen exclusivamente dinámicas de precipitación superficial satelital. No constituyen demostración de estabilidad climática ni explican de forma aislada las fluctuaciones del nivel del Lago Titicaca, las cuales están sujetas al balance hídrico completo.
+            <strong style={{ color: "var(--color-text-main)" }}>{t("findings_synth_causality_label")} </strong>
+            {t("findings_synth_causality_text")}
           </li>
         </ul>
       </div>

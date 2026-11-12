@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import L from "leaflet"
 import type { Basin } from "../app/schemas"
+import { useLanguage } from "../app/i18n"
 
 export interface BasinMapProps {
   selectedBasin?: string
@@ -26,6 +27,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
   basins = [],
   height = "420px"
 }) => {
+  const { t, lang } = useLanguage()
   const mapContainerRef = useRef<HTMLDivElement | null>(null)
   const mapInstanceRef = useRef<L.Map | null>(null)
   const geoJsonLayerRef = useRef<L.GeoJSON | null>(null)
@@ -186,7 +188,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-xs)" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-xs)" }}>
         <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>
-          Mapa hidrográfico oficial (clic en un polígono para seleccionar)
+          {t("map_title")}
         </span>
         <div style={{ display: "flex", gap: "var(--spacing-xs)" }}>
           <button
@@ -202,7 +204,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
               fontWeight: 500
             }}
           >
-            {showBasemap ? "Ocultar mapa OSM" : "Mostrar mapa OSM"}
+            {showBasemap ? t("map_btn_hide_osm") : t("map_btn_show_osm")}
           </button>
           <button
             type="button"
@@ -217,7 +219,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
               fontWeight: 600
             }}
           >
-            Restablecer vista
+            {t("map_btn_reset")}
           </button>
         </div>
       </div>
@@ -225,7 +227,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
       <div
         ref={mapContainerRef}
         role="region"
-        aria-label="Mapa interactivo de cuencas del Lago Titicaca"
+        aria-label={lang === "es" ? "Mapa interactivo de cuencas del Lago Titicaca" : "Interactive Lake Titicaca watersheds map"}
         style={{
           width: "100%",
           height,
@@ -286,7 +288,7 @@ export const BasinMap: React.FC<BasinMapProps> = ({
                   display: "inline-block"
                 }}
               />
-              Cuenca {b.name} ({b.area_km2.toLocaleString()} km²)
+              {lang === "es" ? `Cuenca ${b.name}` : `${b.name} Basin`} ({b.area_km2.toLocaleString()} km²)
             </button>
           )
         })}

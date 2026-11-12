@@ -20,16 +20,16 @@ describe("Compare selector validation", () => {
 
   it("shows validation alert when same basin is chosen in both selectors", () => {
     render(<Compare data={dummyPayload} />)
-    const selectB = screen.getByLabelText(/Segunda cuenca/i)
+    const selectB = screen.getByLabelText(/Second watershed|Segunda cuenca/i)
     fireEvent.change(selectB, { target: { value: "ramis" } })
 
-    expect(screen.getByRole("alert")).toHaveTextContent(/Selecciona cuencas distintas/i)
+    expect(screen.getByRole("alert")).toHaveTextContent(/Select different watersheds|Selecciona cuencas distintas/i)
   })
 
   it("hides validation alert when different basins are chosen", () => {
     render(<Compare data={dummyPayload} />)
-    const selectA = screen.getByLabelText(/Primera cuenca/i)
-    const selectB = screen.getByLabelText(/Segunda cuenca/i)
+    const selectA = screen.getByLabelText(/First watershed|Primera cuenca/i)
+    const selectB = screen.getByLabelText(/Second watershed|Segunda cuenca/i)
 
     fireEvent.change(selectA, { target: { value: "ramis" } })
     fireEvent.change(selectB, { target: { value: "coata" } })
@@ -49,7 +49,7 @@ describe("PeriodSelector component", () => {
       />
     )
 
-    const presetBtn = screen.getByRole("button", { name: /2001–2020 \(Referencia\)/i })
+    const presetBtn = screen.getByRole("button", { name: /2001–2020/i })
     fireEvent.click(presetBtn)
     expect(handleChange).toHaveBeenCalledWith(2001, 2020)
   })
@@ -65,7 +65,7 @@ describe("BasinMap component", () => {
       />
     )
 
-    const coataBtn = screen.getByRole("button", { name: /Cuenca Coata/i })
+    const coataBtn = screen.getByRole("button", { name: /Coata/i })
     expect(coataBtn).toBeInTheDocument()
     fireEvent.click(coataBtn)
     expect(handleSelect).toHaveBeenCalledWith("coata")

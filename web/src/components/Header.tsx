@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import type { DataStatus } from "../app/dataLoader"
+import { useLanguage } from "../app/i18n"
 import { Logo } from "./Logo"
 
 export interface HeaderProps {
@@ -10,14 +11,15 @@ export interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
+  const { lang, setLang, t } = useLanguage()
 
   const navItems = [
-    { id: "home", label: "Inicio" },
-    { id: "explorer", label: "Explorador" },
-    { id: "compare", label: "Comparar" },
-    { id: "findings", label: "Hallazgos" },
-    { id: "methodology", label: "Metodología" },
-    { id: "sources", label: "Fuentes" }
+    { id: "home", label: t("nav_home") },
+    { id: "explorer", label: t("nav_explorer") },
+    { id: "compare", label: t("nav_compare") },
+    { id: "findings", label: t("nav_findings") },
+    { id: "methodology", label: t("nav_methodology") },
+    { id: "sources", label: t("nav_sources") }
   ]
 
   const getStatusBadge = () => {
@@ -49,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
                 boxShadow: "0 0 8px #20D6A0"
               }}
             />
-            Datos disponibles
+            {t("nav_status_ready")}
           </span>
         )
       case "partial":
@@ -70,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
             }}
           >
             <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "#D6A461" }} />
-            Datos parciales
+            {t("nav_status_partial")}
           </span>
         )
       case "loading":
@@ -90,7 +92,7 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               backdropFilter: "blur(12px)"
             }}
           >
-            Cargando catálogo...
+            {t("nav_status_loading")}
           </span>
         )
       case "unavailable":
@@ -110,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               backdropFilter: "blur(12px)"
             }}
           >
-            Datos pendientes de procesamiento
+            {t("nav_status_unavailable")}
           </span>
         )
       default:
@@ -130,7 +132,7 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
               backdropFilter: "blur(12px)"
             }}
           >
-            Datos no disponibles
+            {t("nav_status_unavailable")}
           </span>
         )
     }
@@ -215,7 +217,34 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
           </ul>
         </nav>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <button
+            type="button"
+            onClick={() => setLang(lang === "en" ? "es" : "en")}
+            aria-label={lang === "en" ? "Switch to Spanish" : "Switch to English"}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              padding: "6px 14px",
+              borderRadius: "9999px",
+              background: "rgba(16, 46, 67, 0.85)",
+              border: "1px solid var(--color-border-discrete)",
+              color: "var(--color-primary-cyan)",
+              fontSize: "0.82rem",
+              fontWeight: 700,
+              cursor: "pointer",
+              backdropFilter: "blur(12px)",
+              transition: "all 0.15s ease"
+            }}
+          >
+            <span>🌐</span>
+            <span>{lang.toUpperCase()}</span>
+            <span style={{ fontSize: "0.7rem", color: "var(--color-text-secondary)" }}>
+              {lang === "en" ? "EN | es" : "ES | en"}
+            </span>
+          </button>
+
           <div className="desktop-status">
             {getStatusBadge()}
           </div>
@@ -224,7 +253,7 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
             type="button"
             className="mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             style={{
               width: "40px",
               height: "40px",
@@ -265,6 +294,31 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, status 
             gap: "12px"
           }}
         >
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              type="button"
+              onClick={() => setLang(lang === "en" ? "es" : "en")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "6px 12px",
+                borderRadius: "9999px",
+                background: "rgba(16, 46, 67, 0.85)",
+                border: "1px solid var(--color-border-discrete)",
+                color: "var(--color-primary-cyan)",
+                fontSize: "0.82rem",
+                fontWeight: 700
+              }}
+            >
+              <span>🌐</span>
+              <span>{lang.toUpperCase()}</span>
+              <span style={{ fontSize: "0.7rem", color: "var(--color-text-secondary)" }}>
+                {lang === "en" ? "EN | es" : "ES | en"}
+              </span>
+            </button>
+          </div>
+
           <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
             {navItems.map((item) => {
               const isActive = currentTab === item.id

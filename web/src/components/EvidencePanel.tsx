@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import type { EvidenceItem } from "../app/schemas"
+import { useLanguage } from "../app/i18n"
 
 export interface EvidencePanelProps {
   evidence: EvidenceItem | null
@@ -12,6 +13,8 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
   onClose,
   onDownloadCsv
 }) => {
+  const { t, lang } = useLanguage()
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -27,12 +30,12 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "supported":
-        return <span className="badge badge-success">Cambio sustentado</span>
+        return <span className="badge badge-success">{t("contrast_badge_supported")}</span>
       case "inconclusive":
-        return <span className="badge badge-alert">Inconcluso (q &gt; 0.05)</span>
+        return <span className="badge badge-alert">{t("contrast_badge_inconclusive")}</span>
       case "no_change":
       default:
-        return <span className="badge">Sin cambio detectable</span>
+        return <span className="badge">{t("contrast_badge_synchronous")}</span>
     }
   }
 
@@ -76,18 +79,18 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "var(--spacing-sm)", marginBottom: "var(--spacing-xs)", flexWrap: "wrap" }}>
               <h2 id="evidence-modal-title" style={{ fontSize: "1.35rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
-                Ficha de Evidencia: {evidence.basin_a_name} ↔ {evidence.basin_b_name}
+                {t("evidence_title")} {evidence.basin_a_name} ↔ {evidence.basin_b_name}
               </h2>
               {getStatusBadge(evidence.evidence_status)}
             </div>
             <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>
-              Evaluación estadística reproducible de contraste climático
+              {t("evidence_subtitle")}
             </span>
           </div>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Cerrar ficha de evidencia"
+            aria-label={t("evidence_btn_close")}
             style={{
               padding: "6px 14px",
               borderRadius: "var(--border-radius-sm)",
@@ -104,31 +107,31 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
 
         <section>
           <h3 style={{ fontSize: "1rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-sm)", borderBottom: "1px solid var(--color-border-discrete)", paddingBottom: "6px", fontWeight: 700 }}>
-            1. Especificación confirmatoria principal
+            {t("evidence_sec1_title")}
           </h3>
           <dl style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "var(--spacing-sm)", fontSize: "0.9rem" }}>
             <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Años analizados:</dt>
-              <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-text-main)" }}>{evidence.n_paired_years} años ({evidence.start_year} – {evidence.end_year})</dd>
+              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>{t("evidence_sec1_years")}</dt>
+              <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-text-main)" }}>{evidence.n_paired_years} {lang === "es" ? "años" : "years"} ({evidence.start_year} – {evidence.end_year})</dd>
             </div>
             <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Brecha anual media D(t):</dt>
+              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>{t("evidence_sec1_mean_gap")}</dt>
               <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-text-main)" }}>{evidence.mean_gap_mm} mm</dd>
             </div>
             <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Pendiente brecha OLS (HAC L=2):</dt>
-              <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-primary-cyan)" }}>{evidence.gap_slope_mm_per_year} mm/año</dd>
+              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>{t("evidence_sec1_slope")}</dt>
+              <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-primary-cyan)" }}>{evidence.gap_slope_mm_per_year} {lang === "es" ? "mm/año" : "mm/yr"}</dd>
             </div>
             <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Inferencia y control FDR:</dt>
+              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>{t("evidence_sec1_inference")}</dt>
               <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-text-main)" }}>p = {evidence.p_value} | q (FDR) = {evidence.q_value_fdr}</dd>
             </div>
             <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Autocorrelación serial lag-1 (r):</dt>
+              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>{t("evidence_sec1_autocorr")}</dt>
               <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-text-main)" }}>{evidence.autocorrelation_lag1}</dd>
             </div>
             <div style={{ padding: "10px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
-              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>Conjunto satelital oficial:</dt>
+              <dt style={{ color: "var(--color-text-secondary)", fontSize: "0.75rem" }}>{t("evidence_sec1_dataset")}</dt>
               <dd style={{ fontWeight: 600, margin: 0, color: "var(--color-text-main)" }}>NASA IMERG V{evidence.dataset_version} Final</dd>
             </div>
           </dl>
@@ -136,24 +139,24 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
 
         <section>
           <h3 style={{ fontSize: "1rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-sm)", borderBottom: "1px solid var(--color-border-discrete)", paddingBottom: "6px", fontWeight: 700 }}>
-            2. Análisis de robustez y sensibilidad a rezagos temporales (HAC / Newey–West)
+            {t("evidence_sec2_title")}
           </h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", border: "1px solid var(--color-border-discrete)" }}>
               <thead>
                 <tr style={{ backgroundColor: "var(--color-surface-elevated)", textAlign: "left", color: "var(--color-text-main)" }}>
-                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Rezago (L)</th>
-                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Rol en metodología</th>
-                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Pendiente (mm/año)</th>
-                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>IC 95%</th>
-                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>Valor p</th>
+                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>{t("evidence_sec2_th_lag")}</th>
+                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>{t("evidence_sec2_th_role")}</th>
+                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>{t("evidence_sec2_th_slope")}</th>
+                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>{t("evidence_sec2_th_ci95")}</th>
+                  <th style={{ padding: "8px 12px", borderBottom: "1px solid var(--color-border-discrete)" }}>{t("evidence_sec2_th_pvalue")}</th>
                 </tr>
               </thead>
               <tbody>
                 {Object.entries(evidence.sensitivity_lags).map(([lag, res]) => (
                   <tr key={lag} style={{ borderBottom: "1px solid var(--color-border-discrete)", backgroundColor: lag === "2" ? "rgba(32, 215, 223, 0.08)" : "transparent" }}>
                     <td style={{ padding: "8px 12px", fontWeight: lag === "2" ? 700 : 500, color: lag === "2" ? "var(--color-primary-cyan)" : "var(--color-text-main)" }}>L = {lag}</td>
-                    <td style={{ padding: "8px 12px", color: "var(--color-text-secondary)" }}>{lag === "2" ? "Especificación primaria confirmatoria" : "Comprobación de sensibilidad"}</td>
+                    <td style={{ padding: "8px 12px", color: "var(--color-text-secondary)" }}>{lag === "2" ? t("evidence_sec2_primary") : t("evidence_sec2_sensitivity")}</td>
                     <td style={{ padding: "8px 12px", fontWeight: 600, color: "var(--color-text-main)" }}>{res.slope}</td>
                     <td style={{ padding: "8px 12px", color: "var(--color-text-secondary)" }}>[{res.ci95[0]}, {res.ci95[1]}]</td>
                     <td style={{ padding: "8px 12px", fontWeight: 600, color: "var(--color-text-main)" }}>{res.p_value}</td>
@@ -166,13 +169,13 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
 
         <section style={{ backgroundColor: "var(--color-surface-elevated)", padding: "var(--spacing-md)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
           <h3 style={{ fontSize: "0.95rem", color: "var(--color-primary-cyan)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
-            3. Interpretación y límites científicos
+            {t("evidence_sec3_title")}
           </h3>
           <p style={{ fontSize: "0.88rem", color: "var(--color-text-main)", lineHeight: 1.55, margin: 0, marginBottom: "var(--spacing-xs)" }}>
             {evidence.interpretation}
           </p>
           <p style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", lineHeight: 1.45, margin: 0 }}>
-            <strong>Aviso de no causalidad:</strong> Este resultado describe la relación lineal empírica entre las precipitaciones satelitales estimadas. No demuestra causalidad hidrológica ni fluctuaciones en el nivel del Lago Titicaca.
+            <strong>{t("evidence_sec3_notice_label")} </strong> {t("evidence_sec3_notice_text")}
           </p>
         </section>
 
@@ -191,7 +194,7 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
                 fontWeight: 600
               }}
             >
-              Descargar serie temporal (CSV)
+              {t("evidence_btn_download_csv")}
             </button>
           )}
           <button
@@ -207,7 +210,7 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
               fontWeight: 700
             }}
           >
-            Cerrar ficha
+            {t("evidence_btn_close")}
           </button>
         </div>
       </div>

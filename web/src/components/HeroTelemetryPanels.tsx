@@ -1,4 +1,5 @@
 import React from "react"
+import { useLanguage } from "../app/i18n"
 
 export interface HeroTelemetryPanelsProps {
   className?: string
@@ -6,6 +7,8 @@ export interface HeroTelemetryPanelsProps {
 }
 
 export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ className, style }) => {
+  const { t, lang } = useLanguage()
+
   return (
     <div
       className={className ? `hero-telemetry-panels ${className}` : "hero-telemetry-panels"}
@@ -48,7 +51,7 @@ export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ classN
             </svg>
           </div>
           <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "var(--color-primary-cyan, #20D7DF)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-            Monitoreo satelital
+            {t("hero_telemetry_monitoring")}
           </span>
         </div>
         <strong style={{ fontSize: "0.88rem", color: "#F7FAFC", display: "block" }}>
@@ -57,7 +60,7 @@ export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ classN
         <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "4px" }}>
           <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--color-status-positive, #20D6A0)", boxShadow: "0 0 6px #20D6A0" }} />
           <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary, #BED1DD)" }}>
-            Actualización mensual
+            {t("hero_telemetry_calibrated")}
           </span>
         </div>
       </div>
@@ -74,10 +77,10 @@ export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ classN
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px" }}>
           <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "var(--color-text-secondary, #BED1DD)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-            Precipitación
+            {lang === "en" ? "Precipitation" : "Precipitación"}
           </span>
           <span style={{ fontSize: "0.68rem", color: "var(--color-secondary-turquoise, #69DAD6)", fontWeight: 600 }}>
-            Tendencia
+            {lang === "en" ? "Trend" : "Tendencia"}
           </span>
         </div>
 
@@ -99,7 +102,7 @@ export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ classN
         </div>
 
         <span style={{ fontSize: "0.74rem", color: "var(--color-primary-cyan, #20D7DF)", fontWeight: 700 }}>
-          -8.2 mm/año promedio
+          {lang === "en" ? "-8.2 mm/yr average" : "-8.2 mm/año promedio"}
         </span>
       </div>
 
@@ -115,7 +118,7 @@ export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ classN
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px" }}>
           <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "var(--color-text-secondary, #BED1DD)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-            Contrastes
+            {lang === "en" ? "Contrasts" : "Contrastes"}
           </span>
           <span
             style={{
@@ -131,10 +134,10 @@ export const HeroTelemetryPanels: React.FC<HeroTelemetryPanelsProps> = ({ classN
           </span>
         </div>
         <strong style={{ fontSize: "0.85rem", color: "#F7FAFC", display: "block" }}>
-          Diferencias intercuenca
+          {t("hero_telemetry_contrasts")}
         </strong>
         <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary, #BED1DD)", display: "block", marginTop: "2px" }}>
-          6 contrastes · Dinámica regional sincrónica
+          {t("hero_telemetry_synchronous")}
         </span>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react"
+import { useLanguage } from "../app/i18n"
 import { Logo } from "./Logo"
 
 export interface FooterProps {
@@ -6,6 +7,8 @@ export interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
+  const { t } = useLanguage()
+
   return (
     <footer
       style={{
@@ -46,21 +49,21 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
               onClick={() => onSelectTab("methodology")}
               style={{ color: "var(--color-primary-cyan)", fontSize: "0.85rem" }}
             >
-              Metodología
+              {t("footer_link_methodology")}
             </button>
             <button
               type="button"
               onClick={() => onSelectTab("sources")}
               style={{ color: "var(--color-primary-cyan)", fontSize: "0.85rem" }}
             >
-              Fuentes y licencias
+              {t("footer_link_sources")}
             </button>
           </div>
         </div>
 
         <div style={{ borderTop: "1px solid rgba(40, 83, 106, 0.4)", paddingTop: "var(--spacing-md)", fontSize: "0.82rem", color: "var(--color-text-muted)" }}>
           <p style={{ margin: 0 }}>
-            © 2026 DalíPE. All rights reserved. · Academic affiliation: UPRIT
+            © 2026 DalíPE. {t("footer_rights")} · {t("footer_affiliation")}
           </p>
         </div>
       </div>

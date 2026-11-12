@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import type { HydrologyData } from "../app/dataLoader"
+import { useLanguage } from "../app/i18n"
 import { StatusMessage } from "../components/StatusMessage"
 import { BasinMap } from "../components/BasinMap"
 import { BasinSelector } from "../components/BasinSelector"
@@ -14,6 +15,7 @@ export interface CompareProps {
 }
 
 export const Compare: React.FC<CompareProps> = ({ data }) => {
+  const { t, lang } = useLanguage()
   const [basinA, setBasinA] = useState<string>("ramis")
   const [basinB, setBasinB] = useState<string>("coata")
   const [startYear, setStartYear] = useState<number>(2001)
@@ -83,10 +85,10 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
         <h2 style={{ fontSize: "1.75rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
-          Comparador de cuencas emparejadas
+          {t("compare_title")}
         </h2>
         <p style={{ color: "var(--color-text-secondary)", margin: 0, fontSize: "0.95rem" }}>
-          Evaluación rigurosa de la brecha temporal D(t) = P_A(t) - P_B(t) con errores estándar robustos HAC y control FDR.
+          {t("compare_subtitle")}
         </p>
       </div>
 
@@ -96,7 +98,7 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "var(--spacing-md)" }}>
           <BasinSelector
             id="basin-a"
-            label="Primera cuenca (A):"
+            label={`${t("compare_first_basin")} (A):`}
             selectedBasin={basinA}
             onSelectBasin={setBasinA}
             basins={data.basins}
@@ -105,7 +107,7 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
 
           <BasinSelector
             id="basin-b"
-            label="Segunda cuenca (B):"
+            label={`${t("compare_second_basin")} (B):`}
             selectedBasin={basinB}
             onSelectBasin={setBasinB}
             basins={data.basins}
@@ -127,7 +129,7 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
               fontWeight: 500
             }}
           >
-            Selecciona cuencas distintas para realizar la comparación emparejada.
+            {t("compare_alert_same")}
           </div>
         )}
       </div>
@@ -150,8 +152,8 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
               {contrast && (
                 <ContrastCard
                   contrast={contrast}
-                  basinAName={basinAObj.name}
-                  basinBName={basinBObj.name}
+                  basinAName={lang === "es" ? `Cuenca ${basinAObj.name}` : `${basinAObj.name} Basin`}
+                  basinBName={lang === "es" ? `Cuenca ${basinBObj.name}` : `${basinBObj.name} Basin`}
                   onOpenEvidence={(a, b) => setSelectedEvidencePair({ a, b })}
                 />
               )}
@@ -170,8 +172,10 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-sm)", marginBottom: "var(--spacing-md)" }}>
               <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
                 {compareMode === "gap"
-                  ? `Brecha temporal anual D(t) = ${basinAObj.name} - ${basinBObj.name}`
-                  : (compareMode === "annual" ? `Precipitaciones anuales superpuestas: ${basinAObj.name} vs ${basinBObj.name}` : `Ciclos estacionales comparados: ${basinAObj.name} vs ${basinBObj.name}`)}
+                  ? (lang === "es" ? `Brecha temporal anual D(t) = ${basinAObj.name} - ${basinBObj.name}` : `Annual time gap D(t) = ${basinAObj.name} - ${basinBObj.name}`)
+                  : (compareMode === "annual"
+                      ? (lang === "es" ? `Precipitaciones anuales superpuestas: ${basinAObj.name} vs ${basinBObj.name}` : `Superimposed annual precipitation: ${basinAObj.name} vs ${basinBObj.name}`)
+                      : (lang === "es" ? `Ciclos estacionales comparados: ${basinAObj.name} vs ${basinBObj.name}` : `Seasonal cycles comparison: ${basinAObj.name} vs ${basinBObj.name}`))}
               </h3>
 
               <div style={{ display: "flex", gap: "var(--spacing-xs)", flexWrap: "wrap" }}>
@@ -189,7 +193,7 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
                     transition: "all 0.15s ease"
                   }}
                 >
-                  Brecha D(t)
+                  {t("compare_btn_gap")}
                 </button>
                 <button
                   type="button"
@@ -205,7 +209,7 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
                     transition: "all 0.15s ease"
                   }}
                 >
-                  Superpuesta anual
+                  {t("compare_btn_annual")}
                 </button>
                 <button
                   type="button"
@@ -221,7 +225,7 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
                     transition: "all 0.15s ease"
                   }}
                 >
-                  Ciclos estacionales
+                  {t("compare_btn_monthly")}
                 </button>
               </div>
             </div>
@@ -229,9 +233,9 @@ export const Compare: React.FC<CompareProps> = ({ data }) => {
             <ClimateChart
               mode={compareMode}
               basinAId={basinA}
-              basinAName={`Cuenca ${basinAObj.name}`}
+              basinAName={lang === "es" ? `Cuenca ${basinAObj.name}` : `${basinAObj.name} Basin`}
               basinBId={basinB}
-              basinBName={`Cuenca ${basinBObj.name}`}
+              basinBName={lang === "es" ? `Cuenca ${basinBObj.name}` : `${basinBObj.name} Basin`}
               annualData={data.annual}
               monthlyData={data.monthly}
               trends={data.trends}

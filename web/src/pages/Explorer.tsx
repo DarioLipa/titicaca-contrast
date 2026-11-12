@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import type { HydrologyData } from "../app/dataLoader"
+import { useLanguage } from "../app/i18n"
 import { StatusMessage } from "../components/StatusMessage"
 import { BasinMap } from "../components/BasinMap"
 import { BasinSelector } from "../components/BasinSelector"
@@ -12,6 +13,7 @@ export interface ExplorerProps {
 }
 
 export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
+  const { t, lang } = useLanguage()
   const [selectedBasin, setSelectedBasin] = useState<string>("ramis")
   const [startYear, setStartYear] = useState<number>(2001)
   const [endYear, setEndYear] = useState<number>(2024)
@@ -56,10 +58,10 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
     <div className="container" style={{ paddingTop: "var(--spacing-xl)", paddingBottom: "var(--spacing-xl)" }}>
       <div style={{ marginBottom: "var(--spacing-lg)" }}>
         <h2 style={{ fontSize: "1.75rem", color: "var(--color-text-main)", marginBottom: "var(--spacing-xs)", fontWeight: 700 }}>
-          Explorador de cuencas tributarias
+          {t("explorer_title")}
         </h2>
         <p style={{ color: "var(--color-text-secondary)", margin: 0, fontSize: "0.95rem" }}>
-          Visualización de cartografía oficial ANA, series históricas de precipitación NASA IMERG y análisis univariado Theil-Sen / Mann-Kendall.
+          {t("explorer_subtitle")}
         </p>
       </div>
 
@@ -80,7 +82,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
           <div className="card" style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-md)" }}>
             <BasinSelector
               id="basin-selector-explorer"
-              label="Seleccionar cuenca tributaria:"
+              label={lang === "es" ? "Seleccionar cuenca tributaria:" : "Select tributary watershed:"}
               selectedBasin={selectedBasin}
               onSelectBasin={setSelectedBasin}
               basins={data.basins}
@@ -89,15 +91,15 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid var(--color-border-discrete)", paddingBottom: "var(--spacing-xs)" }}>
               <div>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em", display: "block" }}>
-                  Cuenca oficial
+                  {lang === "es" ? "Cuenca oficial" : "Official watershed"}
                 </span>
                 <strong style={{ fontSize: "1.3rem", color: "var(--color-text-main)" }}>
-                  Cuenca {currentBasin.name}
+                  {lang === "es" ? `Cuenca ${currentBasin.name}` : `${currentBasin.name} Watershed`}
                 </strong>
               </div>
               <div style={{ textAlign: "right" }}>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Superficie hidrográfica
+                  {t("explorer_card_area")}
                 </span>
                 <strong style={{ fontSize: "1.1rem", color: "var(--color-primary-cyan)", fontFamily: "var(--font-family-mono)" }}>
                   {Number(currentBasin.area_km2).toLocaleString()} km²
@@ -108,21 +110,23 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", backgroundColor: "var(--color-surface-elevated)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--color-border-discrete)" }}>
               <div>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Tendencia Theil-Sen (2001–2024):
+                  {t("explorer_card_trend")} (2001–2024):
                 </span>
                 <strong style={{ fontSize: "1.15rem", color: "var(--color-status-warning)", fontFamily: "var(--font-family-mono)" }}>
-                  {currentTrend ? `${currentTrend.sen_slope_mm_per_year} mm/año` : "Calculando..."}
+                  {currentTrend ? `${currentTrend.sen_slope_mm_per_year} ${lang === "es" ? "mm/año" : "mm/yr"}` : (lang === "es" ? "Calculando..." : "Calculating...")}
                 </strong>
               </div>
               <span className="badge" style={{ backgroundColor: "rgba(214, 164, 97, 0.15)", color: "var(--color-status-warning)", border: "1px solid rgba(214, 164, 97, 0.3)" }}>
-                {currentTrend && currentTrend.mann_kendall_p < 0.05 ? "Tendencia significativa" : "Variabilidad interanual"}
+                {currentTrend && currentTrend.mann_kendall_p < 0.05 ? (lang === "es" ? "Tendencia significativa" : "Significant trend") : (lang === "es" ? "Variabilidad interanual" : "Interannual variability")}
               </span>
             </div>
 
             <p style={{ fontSize: "0.88rem", color: "var(--color-text-secondary)", lineHeight: 1.55, margin: 0 }}>
               {currentTrend
-                ? `La serie anual 2001–2024 presenta una tasa mediana de cambio de ${currentTrend.sen_slope_mm_per_year} mm/año. El contraste no paramétrico de Mann-Kendall reporta p = ${currentTrend.mann_kendall_p}, ${currentTrend.mann_kendall_p < 0.05 ? "confirmando una tendencia decreciente con significancia al 5%." : "reflejando fluctuación interanual con evidencia no concluyente de tendencia monótona."}`
-                : "Cargando serie histórica de precipitación satelital..."}
+                ? (lang === "es"
+                    ? `La serie anual 2001–2024 presenta una tasa mediana de cambio de ${currentTrend.sen_slope_mm_per_year} mm/año. El contraste no paramétrico de Mann-Kendall reporta p = ${currentTrend.mann_kendall_p}, ${currentTrend.mann_kendall_p < 0.05 ? "confirmando una tendencia decreciente con significancia al 5%." : "reflejando fluctuación interanual con evidencia no concluyente de tendencia monótona."}`
+                    : `The 2001–2024 annual series exhibits a median rate of change of ${currentTrend.sen_slope_mm_per_year} mm/yr. The non-parametric Mann-Kendall test reports p = ${currentTrend.mann_kendall_p}, ${currentTrend.mann_kendall_p < 0.05 ? "confirming a decreasing trend with 5% statistical significance." : "reflecting interannual fluctuation with inconclusive monotonic trend evidence."}`)
+                : (lang === "es" ? "Cargando serie histórica de precipitación satelital..." : "Loading historical satellite precipitation series...")}
             </p>
 
             <details
@@ -143,7 +147,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
                   userSelect: "none"
                 }}
               >
-                Parámetros técnicos y metadatos oficiales
+                {lang === "es" ? "Parámetros técnicos y metadatos oficiales" : "Technical parameters and official metadata"}
               </summary>
               <div
                 style={{
@@ -157,11 +161,11 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
                 }}
               >
                 <div>
-                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>Código oficial ANA:</span>
+                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>{t("explorer_card_code")}:</span>
                   <strong style={{ color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>{currentBasin.official_code}</strong>
                 </div>
                 <div>
-                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>Fuente cartográfica:</span>
+                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>{lang === "es" ? "Fuente cartográfica:" : "Cartography source:"}</span>
                   <strong style={{ color: "var(--color-text-main)" }}>{currentBasin.source} SNIRH</strong>
                 </div>
                 <div>
@@ -171,8 +175,8 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
                   </strong>
                 </div>
                 <div>
-                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>Período validado:</span>
-                  <strong style={{ color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>24 años (2001–2024)</strong>
+                  <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>{t("contrast_period_prefix")}</span>
+                  <strong style={{ color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>24 {lang === "es" ? "años" : "years"} (2001–2024)</strong>
                 </div>
               </div>
             </details>
@@ -191,7 +195,9 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
       <div className="card" style={{ marginBottom: "var(--spacing-lg)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--spacing-sm)", marginBottom: "var(--spacing-md)" }}>
           <h3 style={{ fontSize: "1.15rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
-            {chartMode === "annual" ? `Precipitación anual y línea Theil-Sen: Cuenca ${currentBasin.name}` : `Ciclo estacional medio multianual: Cuenca ${currentBasin.name}`}
+            {chartMode === "annual"
+              ? (lang === "es" ? `Precipitación anual y línea Theil-Sen: Cuenca ${currentBasin.name}` : `Annual precipitation & Theil-Sen trend line: ${currentBasin.name} Basin`)
+              : (lang === "es" ? `Ciclo estacional medio multianual: Cuenca ${currentBasin.name}` : `Multi-year mean seasonal cycle: ${currentBasin.name} Basin`)}
           </h3>
           <div style={{ display: "flex", gap: "var(--spacing-xs)" }}>
             <button
@@ -208,7 +214,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
                 transition: "all 0.15s ease"
               }}
             >
-              Serie anual + Tendencia
+              {t("explorer_tab_annual")}
             </button>
             <button
               type="button"
@@ -224,7 +230,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
                 transition: "all 0.15s ease"
               }}
             >
-              Ciclo estacional
+              {t("explorer_tab_monthly")}
             </button>
           </div>
         </div>
@@ -232,7 +238,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
         <ClimateChart
           mode={chartMode}
           basinAId={selectedBasin}
-          basinAName={`Cuenca ${currentBasin.name}`}
+          basinAName={lang === "es" ? `Cuenca ${currentBasin.name}` : `${currentBasin.name} Basin`}
           annualData={data.annual}
           monthlyData={data.monthly}
           trends={data.trends}

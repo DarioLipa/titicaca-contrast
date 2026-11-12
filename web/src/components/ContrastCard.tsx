@@ -1,5 +1,6 @@
 import React from "react"
 import type { ContrastItem } from "../app/schemas"
+import { useLanguage } from "../app/i18n"
 
 export interface ContrastCardProps {
   contrast: ContrastItem
@@ -14,27 +15,29 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
   basinBName = contrast.basin_b,
   onOpenEvidence
 }) => {
+  const { t, lang } = useLanguage()
+
   const getBadge = (status: string) => {
     switch (status) {
       case "supported":
-        return <span className="badge badge-success">Divergencia confirmada</span>
+        return <span className="badge badge-success">{t("contrast_badge_supported")}</span>
       case "inconclusive":
-        return <span className="badge badge-alert">Variabilidad local moderada (inconcluso tras FDR)</span>
+        return <span className="badge badge-alert">{t("contrast_badge_inconclusive")}</span>
       case "no_change":
       default:
-        return <span className="badge">Régimen sincrónico</span>
+        return <span className="badge">{t("contrast_badge_synchronous")}</span>
     }
   }
 
   const getStatusText = (status: string) => {
     switch (status) {
       case "supported":
-        return "Se confirma divergencia sistemática en la evolución temporal de precipitaciones entre ambas cuencas tras control FDR (q ≤ 0.05)."
+        return t("contrast_status_supported")
       case "inconclusive":
-        return "Variación local observada a nivel nominal (p < 0.05) que modera su significancia bajo control FDR (q > 0.05), reflejando fluctuación microclimática dentro del mismo régimen regional."
+        return t("contrast_status_inconclusive")
       case "no_change":
       default:
-        return "Evolución climática sincrónica: las cuencas comparten el mismo régimen pluviométrico regional sin divergencias territoriales significativas (q > 0.05)."
+        return t("contrast_status_synchronous")
     }
   }
 
@@ -46,7 +49,7 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
             {basinAName} ↔ {basinBName}
           </h3>
           <span style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)" }}>
-            Período validado: {contrast.start_year}–{contrast.end_year} ({contrast.n_paired_years} años emparejados)
+            {t("contrast_period_prefix")} {contrast.start_year}–{contrast.end_year} ({contrast.n_paired_years} {t("contrast_period_paired")})
           </span>
         </div>
         {getBadge(contrast.evidence_status)}
@@ -64,10 +67,10 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
         }}
       >
         <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>
-          Diferencia de tendencia estimada (ΔTrend):
+          {t("contrast_delta_trend")}
         </span>
         <strong style={{ fontSize: "1.1rem", color: "var(--color-primary-cyan)", fontFamily: "var(--font-family-mono)" }}>
-          {contrast.gap_slope_mm_per_year > 0 ? `+${contrast.gap_slope_mm_per_year}` : contrast.gap_slope_mm_per_year} mm/año
+          {contrast.gap_slope_mm_per_year > 0 ? `+${contrast.gap_slope_mm_per_year}` : contrast.gap_slope_mm_per_year} {lang === "es" ? "mm/año" : "mm/yr"}
         </strong>
       </div>
 
@@ -93,7 +96,7 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
             userSelect: "none"
           }}
         >
-          Detalles de inferencia estadística (HAC / FDR)
+          {t("contrast_details_summary")}
         </summary>
         <div
           style={{
@@ -108,7 +111,7 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
         >
           <div>
             <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>
-              IC 95% (HAC L=2):
+              {lang === "es" ? "IC 95% (HAC L=2):" : "95% CI (HAC L=2):"}
             </span>
             <span style={{ fontWeight: 600, color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>
               [{contrast.gap_slope_ci95[0]}, {contrast.gap_slope_ci95[1]}]
@@ -117,7 +120,7 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
 
           <div>
             <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>
-              Valor p (HAC Newey-West):
+              {lang === "es" ? "Valor p (HAC Newey-West):" : "p-value (HAC Newey-West):"}
             </span>
             <span style={{ fontWeight: 600, color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>
               {contrast.p_value}
@@ -126,7 +129,7 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
 
           <div>
             <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>
-              Valor q (FDR m=6):
+              {lang === "es" ? "Valor q (FDR m=6):" : "q-value (FDR m=6):"}
             </span>
             <span style={{ fontWeight: 600, color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>
               {contrast.q_value_fdr}
@@ -135,10 +138,10 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
 
           <div>
             <span style={{ display: "block", color: "var(--color-text-secondary)", fontSize: "0.72rem" }}>
-              Observaciones emparejadas:
+              {lang === "es" ? "Observaciones emparejadas:" : "Paired observations:"}
             </span>
             <span style={{ fontWeight: 600, color: "var(--color-text-main)", fontFamily: "var(--font-family-mono)" }}>
-              {contrast.n_paired_years} años
+              {contrast.n_paired_years} {lang === "es" ? "años" : "years"}
             </span>
           </div>
         </div>
@@ -159,7 +162,7 @@ export const ContrastCard: React.FC<ContrastCardProps> = ({
           transition: "all 0.15s ease"
         }}
       >
-        Ver ficha de evidencia completa
+        {t("contrast_btn_evidence")}
       </button>
     </div>
   )

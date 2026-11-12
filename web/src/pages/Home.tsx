@@ -1,5 +1,6 @@
 import React from "react"
 import type { HydrologyData } from "../app/dataLoader"
+import { useLanguage } from "../app/i18n"
 import { StatusMessage } from "../components/StatusMessage"
 import { TerritoryHeroVisual } from "../components/TerritoryHeroVisual"
 import { HeroTelemetryPanels } from "../components/HeroTelemetryPanels"
@@ -10,6 +11,7 @@ export interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
+  const { t } = useLanguage()
   const isReady = data.status === "ready"
 
   return (
@@ -48,13 +50,11 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   color: "#F7FAFC"
                 }}
               >
-                Un mismo lago.
+                {t("hero_title_prefix")}
                 <br />
                 <span style={{ color: "var(--color-primary-cyan, #20D7DF)" }}>
-                  Diferentes realidades
+                  {t("hero_title_highlight")}
                 </span>
-                <br />
-                climáticas.
               </h1>
 
               <p
@@ -66,7 +66,7 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   maxWidth: "520px"
                 }}
               >
-                Descubre cómo evolucionan las precipitaciones en las cuencas que alimentan el lago Titicaca. Contrasta territorios, observa sus historias y examina la evidencia detrás de cada hallazgo.
+                {t("hero_desc")}
               </p>
 
               <div
@@ -99,7 +99,7 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                     cursor: "pointer"
                   }}
                 >
-                  Explorar las cuencas →
+                  {t("hero_btn_explore")}
                 </button>
 
                 <button
@@ -121,7 +121,7 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                     cursor: "pointer"
                   }}
                 >
-                  Comparar territorios
+                  {t("hero_btn_compare")}
                 </button>
               </div>
 
@@ -154,7 +154,7 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   </div>
                   <div>
                     <strong style={{ fontSize: "0.80rem", display: "block", color: "#F7FAFC" }}>
-                      Datos satelitales
+                      {t("hero_badge_satellite")}
                     </strong>
                     <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary)" }}>
                       NASA IMERG V07
@@ -184,7 +184,7 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   </div>
                   <div>
                     <strong style={{ fontSize: "0.80rem", display: "block", color: "#F7FAFC" }}>
-                      Cartografía oficial
+                      {t("hero_badge_cartography")}
                     </strong>
                     <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary)" }}>
                       ANA Perú
@@ -214,7 +214,7 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                   </div>
                   <div>
                     <strong style={{ fontSize: "0.80rem", display: "block", color: "#F7FAFC" }}>
-                      Inferencia estadística
+                      {t("hero_badge_stats")}
                     </strong>
                     <span style={{ fontSize: "0.72rem", color: "var(--color-text-secondary)" }}>
                       HAC / FDR
@@ -237,9 +237,9 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
           <section className="card">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--spacing-md)", flexWrap: "wrap", gap: "var(--spacing-sm)" }}>
               <h2 style={{ fontSize: "1.3rem", color: "var(--color-text-main)", margin: 0, fontWeight: 700 }}>
-                Hallazgos clave
+                {t("home_findings_title")}
               </h2>
-              <span className="badge badge-cyan">2001 – 2024 · 24 años validados</span>
+              <span className="badge badge-cyan">{t("home_period_badge")}</span>
             </div>
 
             <div
@@ -259,11 +259,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Cuencas monitoreadas:
+                  {t("home_card_basins_label")}
                 </span>
-                <strong style={{ fontSize: "1.25rem", color: "var(--color-text-main)" }}>4 cuencas oficiales</strong>
+                <strong style={{ fontSize: "1.25rem", color: "var(--color-text-main)" }}>
+                  {t("home_card_basins_val")}
+                </strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  Ramis, Coata, Ilave y Huancané
+                  {t("home_card_basins_sub")}
                 </span>
               </div>
 
@@ -276,11 +278,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Período validado:
+                  {t("home_card_period_label")}
                 </span>
-                <strong style={{ fontSize: "1.25rem", color: "var(--color-text-main)" }}>2001 – 2024</strong>
+                <strong style={{ fontSize: "1.25rem", color: "var(--color-text-main)" }}>
+                  {t("home_card_period_val")}
+                </strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  24 años completos (1,152 observaciones)
+                  {t("home_card_period_sub")}
                 </span>
               </div>
 
@@ -293,13 +297,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Tendencias verificadas:
+                  {t("home_card_trends_label")}
                 </span>
                 <strong style={{ fontSize: "1.25rem", color: "var(--color-status-warning)" }}>
-                  4 / 4 decrecientes
+                  {t("home_card_trends_val")}
                 </strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  Theil-Sen · -8.2 mm/año promedio
+                  {t("home_card_trends_sub")}
                 </span>
               </div>
 
@@ -312,19 +316,20 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
                 }}
               >
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-secondary)", display: "block" }}>
-                  Consistencia intercuenca:
+                  {t("home_card_consistency_label")}
                 </span>
                 <strong style={{ fontSize: "1.25rem", color: "var(--color-primary-cyan)" }}>
-                  4 de 4 en sincronía
+                  {t("home_card_consistency_val")}
                 </strong>
                 <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", display: "block" }}>
-                  Régimen regional sincrónico (q &gt; 0.05)
+                  {t("home_card_consistency_sub")}
                 </span>
               </div>
             </div>
 
             <p style={{ fontSize: "0.92rem", color: "var(--color-text-secondary)", margin: 0, lineHeight: 1.6 }}>
-              <strong style={{ color: "var(--color-text-main)" }}>Conclusión:</strong> Las cuatro cuencas tributarias del Lago Titicaca comparten una trayectoria de precipitación decreciente durante el período 2001–2024, respondiendo conjuntamente a un mismo régimen climático regional andino sin divergencias territoriales anómalas entre ellas.
+              <strong style={{ color: "var(--color-text-main)" }}>{t("home_conclusion_label")} </strong>
+              {t("home_conclusion_text")}
             </p>
           </section>
         )}
