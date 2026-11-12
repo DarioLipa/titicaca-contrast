@@ -17,6 +17,7 @@ New-Item -ItemType Directory -Path $tempDir | Out-Null
 
 $itemsToCopy = @(
     "README.md",
+    "README_es.md",
     "LICENSE",
     ".editorconfig",
     ".gitignore",

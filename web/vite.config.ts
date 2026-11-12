@@ -1,8 +1,14 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
+import path from "path"
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src")
+    }
+  },
   base: "./",
   build: {
     chunkSizeWarningLimit: 1200,
@@ -11,7 +17,6 @@ export default defineConfig({
         manualChunks: {
           "vendor-echarts": ["echarts"],
           "vendor-leaflet": ["leaflet"],
-          "vendor-three": ["three"],
           "vendor-react": ["react", "react-dom"]
         }
       }

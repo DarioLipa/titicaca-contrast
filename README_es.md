@@ -12,11 +12,11 @@
 
 ### 🌊 Un mismo lago. Diferentes realidades climáticas.
 
-**Observatorio satelital geoespacial, visualización 3D interactiva e inferencia climática reproducible de las cuencas tributarias del Lago Titicaca (Puno, Perú)**
+**Observatorio satelital geoespacial, pila orbital de cartas interactivas e inferencia climática reproducible de las cuencas tributarias del Lago Titicaca (Puno, Perú)**
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Three.js](https://img.shields.io/badge/Three.js-WebGL_3D-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
+[![Orbit Stack](https://img.shields.io/badge/Orbit_Stack-5_Cartas_Interactivas-0ea5e9?style=for-the-badge&logo=framer&logoColor=white)](https://github.com/DarioLipa/titicaca-contrast)
 [![Vite](https://img.shields.io/badge/Vite-6.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com/)
 [![Apache ECharts](https://img.shields.io/badge/ECharts-5.6-AA344D?style=for-the-badge&logo=apacheecharts&logoColor=white)](https://echarts.apache.org/)
@@ -60,11 +60,11 @@
 - Procesamiento exacto de 297 meses publicados oficialmente (2001-01 a 2025-09). Registro transparente de latencia oficial sin imputaciones artificiales.
 - Agregación zonal por polígono exacto de cuenca ponderado por área.
 
-### 🌐 2. Escena 3D Geoespacial Inmersiva (Three.js)
-- Reconstrucción tridimensional de las 4 cuencas y el Lago Titicaca con extrusión topográfica procedural y paleta cromática diferenciada.
-- Satélite orbital animado con haz cónico de escaneo e iluminación dinámica.
-- Algoritmo de encuadre proyectado inteligente (`fitCameraToScene`) con navegación suave y reseteo por doble clic.
-- Diseño accesible que respeta `prefers-reduced-motion` y desacopla la telemetría en Grid responsive.
+### 🌐 2. Pila Orbital de Cartas Territoriales (Sistema de 5 Cartas Interactivas)
+- Pila orbital con perspectiva 3D en abanico que presenta 5 territorios clave: Lago Titicaca como cuerpo receptor central (`#38BDF8`) flanqueado por Ramis (`#20D7DF`), Coata (`#20D6A0`), Ilave (`#C084FC`) y Huancané (`#69DAD6`).
+- Geometrías vectoriales oficiales de alta precisión impregnadas en cada carta con contornos ANA, superficies y tendencias Theil-Sen calculadas.
+- Mecánica orbital dinámica con transformaciones CSS 3D ($x = \Delta \cdot spread$, $y = |\Delta| \cdot drop$, rotación angular, resplandor de acento neón y navegación táctil/clic).
+- Rendimiento de ultra bajo peso sin sobrecarga WebGL, con soporte de movimiento reducido y cambio instantáneo de territorio en foco.
 
 ### 🗺️ 3. Explorador Cartográfico Hidrográfico (Leaflet + OSM)
 - Visualización interactiva sobre teselas protegidas HTTPS de OpenStreetMap sin advertencias ni API keys requeridas.
@@ -116,7 +116,7 @@ git clone https://github.com/DarioLipa/titicaca-contrast.git
 cd titicaca-contrast
 ```
 
-### 2. Frontend Web (React + Vite + Three.js)
+### 2. Frontend Web (React + Vite)
 ```bash
 cd web
 npm install
@@ -180,7 +180,7 @@ TITICACA-CONTRAST/
 │   │   └── images/                 # Fondo panorámico del Lago Titicaca
 │   ├── src/
 │   │   ├── app/                    # Schemas Zod y cargador reactivo de datos
-│   │   ├── components/             # Visualización 3D, mapas, gráficos y telemetría
+│   │   ├── components/             # Pila orbital, mapas, gráficos y telemetría
 │   │   ├── pages/                  # Inicio, Explorador, Comparador, Hallazgos, etc.
 │   │   ├── styles/                 # Tokens CSS y estilos globales
 │   │   └── tests/                  # 16 pruebas unitarias y de integración (Vitest)

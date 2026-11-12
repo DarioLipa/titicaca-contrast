@@ -1,6 +1,8 @@
 $ErrorActionPreference = "Stop"
 
 $screenshotsDir = (Resolve-Path "docs\screenshots").Path
+$tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ([System.Guid]::NewGuid().ToString())
+New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
 
 $server = Start-Process -FilePath "pipeline\.venv\Scripts\python.exe" -ArgumentList "-m", "http.server", "8085", "--directory", "web/dist" -PassThru
 Start-Sleep -Seconds 2
@@ -17,21 +19,24 @@ $resList = @(
 
 foreach ($res in $resList) {
     $outFile = Join-Path $screenshotsDir $res.name
-    $args = @(
+    if (Test-Path $outFile) {
+        Remove-Item $outFile -Force
+    }
+    $argList = @(
         "--headless",
-        "--no-sandbox",
         "--disable-gpu",
-        "--enable-webgl",
-        "--use-gl=angle",
-        "--virtual-time-budget=4000",
+        "--no-sandbox",
+        "--user-data-dir=$tempDir",
         "--window-size=$($res.w),$($res.h)",
-        "--screenshot=`"$outFile`"",
+        "--virtual-time-budget=4000",
+        "--screenshot=$outFile",
         "http://127.0.0.1:8085/"
     )
-    $proc = Start-Process -FilePath $chrome -ArgumentList $args -PassThru -Wait
+    $proc = Start-Process -FilePath $chrome -ArgumentList $argList -PassThru -Wait
 }
 
 Stop-Process -Id $server.Id -Force -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force $tempDir -ErrorAction SilentlyContinue
 
 if ($env:ARTIFACT_DIR -and (Test-Path $env:ARTIFACT_DIR)) {
     Copy-Item "$screenshotsDir\*.png" $env:ARTIFACT_DIR -Force -ErrorAction SilentlyContinue

@@ -12,11 +12,11 @@
 
 ### 🌊 One Lake. Different Climate Realities.
 
-**Geospatial satellite observatory, interactive 3D WebGL visualization, and reproducible climate inference for Lake Titicaca tributary watersheds (Puno, Peru)**
+**Geospatial satellite observatory, interactive orbital territory card stack, and reproducible climate inference for Lake Titicaca tributary watersheds (Puno, Peru)**
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Three.js](https://img.shields.io/badge/Three.js-WebGL_3D-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
+[![Orbit Stack](https://img.shields.io/badge/Orbit_Stack-5_Cards_Interactive-0ea5e9?style=for-the-badge&logo=framer&logoColor=white)](https://github.com/DarioLipa/titicaca-contrast)
 [![Vite](https://img.shields.io/badge/Vite-6.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com/)
 [![Apache ECharts](https://img.shields.io/badge/ECharts-5.6-AA344D?style=for-the-badge&logo=apacheecharts&logoColor=white)](https://echarts.apache.org/)
@@ -60,11 +60,11 @@
 - Transparent processing of 297 officially released months (2001-01 to 2025-09), preserving official product calibration latency without fabricated interpolations.
 - Zonal aggregation by exact watershed polygon boundaries.
 
-### 🌐 2. Immersive 3D Geospatial Scene (Three.js WebGL)
-- 3D spatial reconstruction of all 4 tributary basins and Lake Titicaca with procedural topographical extrusion and color coding.
-- Animated orbital satellite pass with conical scanning beam and dynamic scene lighting.
-- Intelligent projected framing algorithm (`fitCameraToScene`) ensuring smooth navigation and native double-click view reset.
-- Fully accessible with `prefers-reduced-motion` support and decoupled CSS Grid telemetry panels.
+### 🌐 2. Interactive Orbital Territory Stack (5-Card Geospatial System)
+- Fanning 3D-perspective orbital stack featuring 5 key territories: Lake Titicaca central receptor basin (`#38BDF8`) flanked by Ramis (`#20D7DF`), Coata (`#20D6A0`), Ilave (`#C084FC`), and Huancané (`#69DAD6`).
+- High-precision vector geometries impregnated directly into each card with official ANA contours, surface areas, and Theil-Sen precipitation trends.
+- Dynamic orbital mechanics with fluid CSS 3D transforms ($x = \Delta \cdot spread$, $y = |\Delta| \cdot drop$, rotation, neon glowing active cards, and keyboard/touch navigation).
+- Ultra-lightweight performance without WebGL overhead, including native `prefers-reduced-motion` support and decoupled CSS Grid telemetry panels.
 
 ### 🗺️ 3. Official Hydrographic Explorer (Leaflet + OpenStreetMap)
 - Interactive mapping powered by secure HTTPS OpenStreetMap tile servers with zero API key dependencies or watermarks.
@@ -116,7 +116,7 @@ git clone https://github.com/DarioLipa/titicaca-contrast.git
 cd titicaca-contrast
 ```
 
-### 2. Frontend Web App (React + Vite + Three.js)
+### 2. Frontend Web App (React + Vite)
 ```bash
 cd web
 npm install
@@ -180,7 +180,7 @@ TITICACA-CONTRAST/
 │   │   └── images/                 # Lake Titicaca background panorama
 │   ├── src/
 │   │   ├── app/                    # Zod schemas and reactive data loaders
-│   │   ├── components/             # 3D WebGL, maps, charts and telemetry
+│   │   ├── components/             # Orbit stack, maps, charts and telemetry
 │   │   ├── pages/                  # Home, Explorer, Compare, Findings, etc.
 │   │   ├── styles/                 # CSS design tokens and global styles
 │   │   └── tests/                  # 16 unit & integration tests (Vitest)
