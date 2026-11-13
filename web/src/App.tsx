@@ -12,6 +12,7 @@ import { loadAllHydrologyData, type HydrologyData } from "./app/dataLoader"
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>("home")
+  const [selectedBasinId, setSelectedBasinId] = useState<string>("ramis")
   const [dataPayload, setDataPayload] = useState<HydrologyData>({
     status: "loading",
     manifest: null,
@@ -37,12 +38,17 @@ export const App: React.FC = () => {
     }
   }, [])
 
+  const handleSelectBasin = (basinId: string) => {
+    setSelectedBasinId(basinId)
+    setCurrentTab("explorer")
+  }
+
   const renderContent = () => {
     switch (currentTab) {
       case "home":
-        return <Home data={dataPayload} onNavigate={setCurrentTab} />
+        return <Home data={dataPayload} onNavigate={setCurrentTab} onSelectBasin={handleSelectBasin} />
       case "explorer":
-        return <Explorer data={dataPayload} />
+        return <Explorer data={dataPayload} selectedBasinId={selectedBasinId} onSelectBasin={setSelectedBasinId} />
       case "compare":
         return <Compare data={dataPayload} />
       case "findings":
@@ -52,7 +58,7 @@ export const App: React.FC = () => {
       case "sources":
         return <Sources data={dataPayload} />
       default:
-        return <Home data={dataPayload} onNavigate={setCurrentTab} />
+        return <Home data={dataPayload} onNavigate={setCurrentTab} onSelectBasin={handleSelectBasin} />
     }
   }
 

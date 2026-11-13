@@ -22,6 +22,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       stat: "15,870.42 km²",
       metricLabel: lang === "es" ? "Superficie de cuenca" : "Watershed Area",
       trend: "-11.45 mm/año",
+      trendLabel: lang === "es" ? "Tendencia" : "Trend",
       accent: "#20D7DF",
       badge: "48.4% Área",
       code: "ANA 0179+018+019",
@@ -39,6 +40,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       stat: "4,882.42 km²",
       metricLabel: lang === "es" ? "Superficie de cuenca" : "Watershed Area",
       trend: "-8.13 mm/año",
+      trendLabel: lang === "es" ? "Tendencia" : "Trend",
       accent: "#20D6A0",
       badge: "14.9% Área",
       code: "ANA 0176",
@@ -56,6 +58,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       stat: "8,372 km²",
       metricLabel: lang === "es" ? "Superficie hídrica" : "Water Surface",
       trend: "3,812 m s.n.m.",
+      trendLabel: lang === "es" ? "Altitud oficial" : "Official altitude",
       accent: "#38BDF8",
       badge: "★ Espejo Central ★",
       code: "ANA SNIRH Perú",
@@ -73,6 +76,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       stat: "7,791.00 km²",
       metricLabel: lang === "es" ? "Superficie de cuenca" : "Watershed Area",
       trend: "-4.88 mm/año",
+      trendLabel: lang === "es" ? "Tendencia" : "Trend",
       accent: "#C084FC",
       badge: "23.8% Área",
       code: "ANA 016",
@@ -90,6 +94,7 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
       stat: "3,611.92 km²",
       metricLabel: lang === "es" ? "Superficie de cuenca" : "Watershed Area",
       trend: "-10.68 mm/año",
+      trendLabel: lang === "es" ? "Tendencia" : "Trend",
       accent: "#69DAD6",
       badge: "11.0% Área",
       code: "ANA 0178",
@@ -161,32 +166,60 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
           </div>
         </div>
 
-        {activeTerritory.id !== "titicaca" && onSelectBasin && (
-          <button
-            type="button"
-            onClick={() => onSelectBasin(activeTerritory.id!)}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              padding: "6px 14px",
-              borderRadius: "9999px",
-              backgroundColor: "rgba(16, 46, 67, 0.8)",
-              border: `1px solid ${activeTerritory.accent}`,
-              color: activeTerritory.accent,
-              fontSize: "0.78rem",
-              fontWeight: 700,
-              cursor: "pointer",
-              transition: "all 0.15s ease",
-              boxShadow: `0 0 10px ${activeTerritory.accent}30`
-            }}
-          >
-            {lang === "es" ? "Explorar serie histórica →" : "Explore historical series →"}
-          </button>
+        {activeTerritory.id !== "titicaca" ? (
+          onSelectBasin && (
+            <button
+              type="button"
+              onClick={() => onSelectBasin(activeTerritory.id!)}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "6px 14px",
+                borderRadius: "9999px",
+                backgroundColor: "rgba(16, 46, 67, 0.8)",
+                border: `1px solid ${activeTerritory.accent}`,
+                color: activeTerritory.accent,
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all 0.15s ease",
+                boxShadow: `0 0 10px ${activeTerritory.accent}30`
+              }}
+            >
+              {lang === "es"
+                ? `Abrir ${activeTerritory.name} en Explorador →`
+                : `Open ${activeTerritory.name} in Explorer →`}
+            </button>
+          )
+        ) : (
+          onSelectBasin && (
+            <button
+              type="button"
+              onClick={() => onSelectBasin("ramis")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "6px 14px",
+                borderRadius: "9999px",
+                backgroundColor: "rgba(16, 46, 67, 0.8)",
+                border: `1px solid ${activeTerritory.accent}`,
+                color: activeTerritory.accent,
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all 0.15s ease",
+                boxShadow: `0 0 10px ${activeTerritory.accent}30`
+              }}
+            >
+              {lang === "es" ? "Ver cuencas en Explorador →" : "View watersheds in Explorer →"}
+            </button>
+          )
         )}
       </div>
 
-      <div style={{ width: "100%", height: "460px", position: "relative" }}>
+      <div style={{ width: "100%", height: "500px", position: "relative" }}>
         <OrbitCardStack
           items={territories}
           defaultActiveIndex={2}
@@ -194,8 +227,10 @@ export const TerritoryHeroVisual: React.FC<TerritoryHeroVisualProps> = ({ onSele
           lift={38}
           onActiveChange={(item) => setActiveTerritory(item)}
           onCardClick={(item) => {
-            if (item.id !== "titicaca" && onSelectBasin) {
-              onSelectBasin(item.id!)
+            if (item.id === "titicaca") {
+              onSelectBasin?.("ramis")
+            } else if (item.id && onSelectBasin) {
+              onSelectBasin(item.id)
             }
           }}
         />

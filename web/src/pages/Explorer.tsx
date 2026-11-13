@@ -10,14 +10,23 @@ import { ExportControls } from "../components/ExportControls"
 
 export interface ExplorerProps {
   data: HydrologyData
+  selectedBasinId?: string
+  onSelectBasin?: (basinId: string) => void
 }
 
-export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
+export const Explorer: React.FC<ExplorerProps> = ({ data, selectedBasinId, onSelectBasin }) => {
   const { t, lang } = useLanguage()
-  const [selectedBasin, setSelectedBasin] = useState<string>("ramis")
+  const [internalBasin, setInternalBasin] = useState<string>(selectedBasinId || "ramis")
   const [startYear, setStartYear] = useState<number>(2001)
   const [endYear, setEndYear] = useState<number>(2024)
   const [chartMode, setChartMode] = useState<"annual" | "monthly">("annual")
+
+  const selectedBasin = selectedBasinId || internalBasin
+
+  const handleSelectBasin = (basinId: string) => {
+    setInternalBasin(basinId)
+    onSelectBasin?.(basinId)
+  }
 
   const basins = data.basins.length > 0 ? data.basins : [
     { id: "ramis" as const, name: "Ramis", official_code: "0179+018+019", area_km2: 15870.42, source: "ANA" },
@@ -71,7 +80,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
         <div>
           <BasinMap
             selectedBasin={selectedBasin}
-            onSelectBasin={setSelectedBasin}
+            onSelectBasin={handleSelectBasin}
             geoJsonData={data.geoJson}
             basins={data.basins}
             height="440px"
@@ -84,7 +93,7 @@ export const Explorer: React.FC<ExplorerProps> = ({ data }) => {
               id="basin-selector-explorer"
               label={lang === "es" ? "Seleccionar cuenca tributaria:" : "Select tributary watershed:"}
               selectedBasin={selectedBasin}
-              onSelectBasin={setSelectedBasin}
+              onSelectBasin={handleSelectBasin}
               basins={data.basins}
             />
 

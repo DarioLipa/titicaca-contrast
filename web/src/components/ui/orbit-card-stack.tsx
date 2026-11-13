@@ -12,6 +12,7 @@ export interface OrbitStackItem {
   code?: string
   metricLabel?: string
   trend?: string
+  trendLabel?: string
   altitude?: string
   badge?: string
   svgPath?: string
@@ -78,7 +79,7 @@ export const OrbitCardStack: React.FC<OrbitCardStackProps> = ({
         position: "relative",
         width: "100%",
         height: "100%",
-        minHeight: isMobile ? "460px" : "560px",
+        minHeight: isMobile ? "500px" : "570px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -92,7 +93,7 @@ export const OrbitCardStack: React.FC<OrbitCardStackProps> = ({
         style={{
           position: "relative",
           width: "100%",
-          height: isMobile ? "390px" : "450px",
+          height: isMobile ? "420px" : "480px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center"
@@ -130,8 +131,8 @@ export const OrbitCardStack: React.FC<OrbitCardStackProps> = ({
               }}
               style={{
                 position: "absolute",
-                width: isMobile ? "240px" : "clamp(260px, 20vw, 300px)",
-                height: isMobile ? "360px" : "430px",
+                width: isMobile ? "250px" : "clamp(270px, 21vw, 315px)",
+                height: isMobile ? "400px" : "465px",
                 transform: `translateX(${translateX}px) translateY(${translateY}px) rotateZ(${rotateZ}deg) scale(${scale})`,
                 zIndex,
                 opacity,
@@ -223,7 +224,7 @@ export const OrbitCardStack: React.FC<OrbitCardStackProps> = ({
                 style={{
                   position: "relative",
                   width: "100%",
-                  height: isMobile ? "150px" : "185px",
+                  height: isMobile ? "135px" : "170px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -304,12 +305,8 @@ export const OrbitCardStack: React.FC<OrbitCardStackProps> = ({
                   style={{
                     fontSize: "0.78rem",
                     color: "var(--color-text-secondary, #BED1DD)",
-                    lineHeight: 1.4,
-                    margin: "0 0 10px 0",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden"
+                    lineHeight: 1.45,
+                    margin: "0 0 10px 0"
                   }}
                 >
                   {item.description}
@@ -337,7 +334,7 @@ export const OrbitCardStack: React.FC<OrbitCardStackProps> = ({
                   {item.trend && (
                     <div style={{ textAlign: "right" }}>
                       <span style={{ color: "rgba(190, 209, 221, 0.7)", display: "block", fontSize: "0.68rem" }}>
-                        Tendencia
+                        {item.trendLabel || "Tendencia"}
                       </span>
                       <strong style={{ color: accentColor, fontFamily: "var(--font-family-mono, monospace)", fontSize: "0.82rem" }}>
                         {item.trend}

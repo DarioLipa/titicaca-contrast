@@ -23,7 +23,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![NASA IMERG V07](https://img.shields.io/badge/NASA_GES_DISC-IMERG_V07_Final-0B3D91?style=for-the-badge&logo=nasa&logoColor=white)](https://disc.gsfc.nasa.gov/)
 [![ANA Perú](https://img.shields.io/badge/ANA_Peru-SNIRH_Official-008080?style=for-the-badge)](https://snirh.ana.gob.pe/)
-[![Vitest](https://img.shields.io/badge/Vitest-16%2F16_Passed-success?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-17%2F17_Passed-success?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
 [![Pytest](https://img.shields.io/badge/Pytest-32%2F32_Passed-success?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org/)
 [![Security](https://img.shields.io/badge/Security-OWASP_CSP_Hardened-blueviolet?style=for-the-badge)](https://owasp.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
@@ -177,7 +177,7 @@ TITICACA-CONTRAST/
 │   │   ├── components/             # Orbit stack, maps, charts and telemetry
 │   │   ├── pages/                  # Home, Explorer, Compare, Findings, etc.
 │   │   ├── styles/                 # CSS design tokens and global styles
-│   │   └── tests/                  # 16 unit & integration tests (Vitest)
+│   │   └── tests/                  # 17 unit & integration tests (Vitest)
 │   ├── index.html                  # HTML entry point with CSP meta tags
 │   ├── package.json                # npm dependencies and scripts
 │   └── vite.config.ts              # Vite configuration with manualChunks

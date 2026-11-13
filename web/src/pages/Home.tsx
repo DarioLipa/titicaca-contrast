@@ -8,9 +8,10 @@ import { HeroTelemetryPanels } from "../components/HeroTelemetryPanels"
 export interface HomeProps {
   data: HydrologyData
   onNavigate: (tab: string) => void
+  onSelectBasin?: (basinId: string) => void
 }
 
-export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
+export const Home: React.FC<HomeProps> = ({ data, onNavigate, onSelectBasin }) => {
   const { t } = useLanguage()
   const isReady = data.status === "ready"
 
@@ -225,7 +226,13 @@ export const Home: React.FC<HomeProps> = ({ data, onNavigate }) => {
             </div>
 
             <div className="hero-right-zone">
-              <TerritoryHeroVisual onSelectBasin={() => onNavigate("explorer")} />
+              <TerritoryHeroVisual onSelectBasin={(basinId) => {
+                if (onSelectBasin) {
+                  onSelectBasin(basinId)
+                } else {
+                  onNavigate("explorer")
+                }
+              }} />
               <HeroTelemetryPanels />
             </div>
           </div>

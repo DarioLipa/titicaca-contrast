@@ -35,4 +35,18 @@ describe("Header navigation", () => {
     })
     expect(screen.getByRole("heading", { name: /Sources|Fuentes/i })).toBeInTheDocument()
   })
+
+  it("navigates directly to a selected basin in Explorer when clicking its card", async () => {
+    await act(async () => {
+      render(<App />)
+    })
+
+    const huancaneButtons = screen.getAllByRole("button", { name: /Huancané/i })
+    await act(async () => {
+      fireEvent.click(huancaneButtons[0])
+    })
+
+    expect(screen.getByRole("heading", { name: /Explorador|Explorer/i })).toBeInTheDocument()
+    expect(screen.getAllByText(/3,611\.92/i).length).toBeGreaterThanOrEqual(1)
+  })
 })
